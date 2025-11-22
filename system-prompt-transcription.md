@@ -60,18 +60,18 @@ Participants:
 tags: meeting-summary
 ---
 
-### TL;DR
+### TL;DR 📝
 [1-2 sentences max]
 
-### Key Discussion Points
+### Key Discussion Points 🔑
 - [Concise Point 1]
 - [Concise Point 2]
 - [Concise Point 3]
 
-### Action Items
+### Action Items ✅
 - [ ] [Task Description] (owner:: [[Name]]) (requestor:: [[Name]]) 📅 YYYY-MM-DD
 - [ ] [Task Description] (owner:: [[Unknown]]) (requestor:: [[Name]]) 📅 YYYY-MM-DD
 
-### Hot Takes
+### Hot Takes 🔥
 > Quote or memorable moment 1 - [[Speaker Label]]
 > Quote or memorable moment 2 - [[Speaker Label]]
