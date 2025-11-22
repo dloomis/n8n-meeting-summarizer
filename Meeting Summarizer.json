@@ -2,24 +2,24 @@
   "name": "Meeting Summarizer",
   "nodes": [
     {
-       "parameters": {
-         "triggerOn": "folder",
-         "path": "/data/tmp",
-         "events": [
-           "add",
-           "change"
-         ],
-         "options": {
-           "awaitWriteFinish": true
-         }
-       },
+      "parameters": {
+        "triggerOn": "folder",
+        "path": "/data/tmp",
+        "events": [
+          "add",
+          "change"
+        ],
+        "options": {
+          "awaitWriteFinish": true
+        }
+      },
       "type": "n8n-nodes-base.localFileTrigger",
       "typeVersion": 1,
       "position": [
-        0,
-        0
+        -352,
+        -96
       ],
-      "id": "aec3f921-3cdb-4480-a3d1-6fa4047ed159",
+      "id": "b979e7bd-bc7f-485d-8880-013f77aa7dd9",
       "name": "Local File Trigger"
     },
     {
@@ -30,60 +30,43 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        448,
-        0
+        96,
+        -96
       ],
-      "id": "33de08be-a4ee-40d0-b470-147d646a5144",
+      "id": "af0f1c8e-de13-4152-9b20-9a7ec05d2938",
       "name": "Read/Write Files from Disk"
     },
-     {
-       "parameters": {
-         "operation": "text",
-         "options": {}
-       },
-       "type": "n8n-nodes-base.extractFromFile",
-       "typeVersion": 1,
-       "position": [
-         672,
-         0
-       ],
-       "id": "eda4f912-31d0-4da1-83bc-615d4e3587c6",
-       "name": "Extract from File"
-     },
-     {
-       "parameters": {
-         "method": "GET",
-         "url": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt-transcription.md",
-         "sendHeaders": false,
-         "sendBody": false,
-         "options": {}
-       },
-       "type": "n8n-nodes-base.httpRequest",
-       "typeVersion": 4.1,
-       "position": [
-         896,
-         0
-       ],
-       "id": "fetch-system-prompt",
-       "name": "Fetch System Prompt"
-     },
-     {
-       "parameters": {
-         "method": "GET",
-         "url": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/user-prompt-transcription.md",
-         "sendHeaders": false,
-         "sendBody": false,
-         "options": {}
-       },
-       "type": "n8n-nodes-base.httpRequest",
-       "typeVersion": 4.1,
-       "position": [
-         1120,
-         0
-       ],
-       "id": "fetch-user-prompt",
-       "name": "Fetch User Prompt"
-     },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        320,
+        -96
+      ],
+      "id": "c2e3cda2-f347-45ba-92ee-19fba49becf4",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt-transcription.md",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "githubApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        544,
+        -96
+      ],
+      "id": "67bdfd5f-476d-4d09-ba4b-83f244892fe8",
+      "name": "Fetch System Prompt",
+      }
+    },
     {
       "parameters": {
         "operation": "toText",
@@ -96,10 +79,10 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        576,
-        256
+        224,
+        160
       ],
-      "id": "c156f557-2ed3-444f-ad21-2279674249c1",
+      "id": "c77ed8ee-4428-4c02-835d-e9a889c605f2",
       "name": "Convert to File"
     },
     {
@@ -111,10 +94,10 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        800,
-        256
+        448,
+        160
       ],
-      "id": "9972fc43-c66d-482b-95c2-ba9a4ae6ee8a",
+      "id": "99eb8f2a-3fc8-4c55-aad7-3ef65a969b21",
       "name": "Read/Write Files from Disk1"
     },
     {
@@ -124,10 +107,10 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        1024,
-        256
+        672,
+        160
       ],
-      "id": "8e8094cc-c95d-49aa-b7a5-9efc3d0ed5e8",
+      "id": "d2e2054f-7cc3-4317-85aa-c7d143662fa6",
       "name": "Delete local transcription file"
     },
     {
@@ -147,21 +130,21 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        224,
-        0
+        -128,
+        -96
       ],
-      "id": "dea65b9c-250e-443f-aefb-04446e33a8bb",
+      "id": "ec5e0027-d650-49e6-99ba-3229d83fc393",
       "name": "Store Transcription Path"
     },
     {
-       "parameters": {
-         "promptType": "define",
-         "text": "{{$node[\"Fetch User Prompt\"].json.body}}",
-         "messages": {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Here is the transcript to summarize. Default Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n\n{{ $('Extract from File').item.json.data }}\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "messages": {
           "messageValues": [
-             {
-               "message": "{{$node[\"Fetch System Prompt\"].json.body}}"
-             }
+            {
+              "message": "={{ $json.data }}"
+            }
           ]
         },
         "batching": {}
@@ -169,10 +152,10 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        224,
-        256
+        -128,
+        160
       ],
-      "id": "b66c183a-f40f-447e-816b-4c82de3e490c",
+      "id": "0ac4b688-dbac-4cb8-8e03-fab39b8c518e",
       "name": "Summarize Transcript"
     },
     {
@@ -190,10 +173,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        224,
-        512
+        -128,
+        416
       ],
-      "id": "1da6c66a-4750-41ce-8d61-6d7045dbcd92",
+      "id": "24412809-b477-4ecb-899b-5d128dd37d84",
       "name": "Claude Sonnet 4.5",
       }
     },
@@ -213,10 +196,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        416,
-        512
+        64,
+        416
       ],
-      "id": "585f40d8-9a12-4b3b-896d-31d20480363c",
+      "id": "1e987a51-ad11-43a9-adcd-654c63fc5e64",
       "name": "qwen/qwen3-30b-a3b-2507",
       }
     }
@@ -245,40 +228,29 @@
         ]
       ]
     },
-     "Extract from File": {
-       "main": [
-         [
-           {
-             "node": "Fetch System Prompt",
-             "type": "main",
-             "index": 0
-           }
-         ]
-       ]
-     },
-     "Fetch System Prompt": {
-       "main": [
-         [
-           {
-             "node": "Fetch User Prompt",
-             "type": "main",
-             "index": 0
-           }
-         ]
-       ]
-     },
-     "Fetch User Prompt": {
-       "main": [
-         [
-           {
-             "node": "Summarize Transcript",
-             "type": "main",
-             "index": 0
-           }
-         ]
-       ]
-     },
-     "Convert to File": {
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Fetch System Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch System Prompt": {
+      "main": [
+        [
+          {
+            "node": "Summarize Transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
       "main": [
         [
           {
@@ -322,11 +294,6 @@
         ]
       ]
     },
-    "Claude Sonnet 4.5": {
-      "ai_languageModel": [
-        []
-      ]
-    },
     "qwen/qwen3-30b-a3b-2507": {
       "ai_languageModel": [
         [
@@ -339,15 +306,14 @@
       ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "50b12fa0-203a-49d2-a796-c0d12959f9d6",
+  "versionId": "32f402c9-9c23-4d26-a687-06b7bffdd923",
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
   },
-  "id": "ktVVJUQFNbqHykMy",
+  "id": "eQXiPWGAUdrJLVEo",
   "tags": []
 }
