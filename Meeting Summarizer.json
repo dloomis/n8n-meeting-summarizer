@@ -36,20 +36,37 @@
       "id": "33de08be-a4ee-40d0-b470-147d646a5144",
       "name": "Read/Write Files from Disk"
     },
-    {
-      "parameters": {
-        "operation": "text",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.extractFromFile",
-      "typeVersion": 1,
-      "position": [
-        672,
-        0
-      ],
-      "id": "eda4f912-31d0-4da1-83bc-615d4e3587c6",
-      "name": "Extract from File"
-    },
+     {
+       "parameters": {
+         "operation": "text",
+         "options": {}
+       },
+       "type": "n8n-nodes-base.extractFromFile",
+       "typeVersion": 1,
+       "position": [
+         672,
+         0
+       ],
+       "id": "eda4f912-31d0-4da1-83bc-615d4e3587c6",
+       "name": "Extract from File"
+     },
+     {
+       "parameters": {
+         "method": "GET",
+         "url": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt-transcription.md",
+         "sendHeaders": false,
+         "sendBody": false,
+         "options": {}
+       },
+       "type": "n8n-nodes-base.httpRequest",
+       "typeVersion": 4.1,
+       "position": [
+         896,
+         0
+       ],
+       "id": "fetch-system-prompt",
+       "name": "Fetch System Prompt"
+     },
     {
       "parameters": {
         "operation": "toText",
@@ -125,9 +142,9 @@
         "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n\n<transcript>\n{{ $json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
         "messages": {
           "messageValues": [
-            {
-              "message": "# IDENTITY & PURPOSE\nYou are an expert meeting transcript summarizer. Your goal is to analyze transcripts and output a strictly formatted, concise summary suitable for Obsidian notes.\n\n# CRITICAL RULES\n<rules>\n1. **YAML HYGIENE (CRITICAL)**: \n    - **Delimiters**: The `---` lines must contain exactly three dashes and a newline. **ABSOLUTELY NO TRAILING SPACES** after the dashes.\n    - **Date Format**: If you can identify the meeting date, use `YYYY-MM-DD`. \n    - **No Date?**: If no date is found, leave the field **COMPLETELY EMPTY** (e.g., `Date: `). **DO NOT** write \"Unknown\", \"N/A\", or \"None\".\n2. **MANDATORY LAYOUT**: \n    - **Newlines**: You MUST insert a line break after every header, every list item, and every table row. \n    - **No Text Walls**: Do not output the summary as a single paragraph. It must be vertically listed.\n3. **Action Items (Tasks + Dataview)**: \n    - **Order of Operations (CRITICAL)**: \n        1. Checkbox `- [ ]`\n        2. Task Description\n        3. Dataview Metadata `(owner:: ...) (requestor:: ...)`\n        4. Task Due Date `📅 YYYY-MM-DD` (MUST BE LAST)\n    - **Syntax**: `- [ ] <Description> (owner:: [[Name]]) (requestor:: [[Name]]) 📅 <Date>`\n    - **Brackets**: You MUST use **parentheses** `( )` for the owner/requestor fields to avoid syntax conflicts with the double-bracketed names.\n    - **Deadlines**: \n        - If a specific date is mentioned, calculate that date.\n        - If **NO** date is mentioned, use the **Default Due Date** provided in the prompt.\n        - **Format**: Use `📅 YYYY-MM-DD`.\n    - **Attribution**: Identify Owner and Requestor. Use `[[Unknown]]` if ambiguous.\n4. **Formatting**:\n    - Use Markdown.\n    - Wrap ALL person names in double brackets, e.g., `[[Jane Doe]]`.\n    - **Anecdotes**: Use `>` for quotes. Attribute at the end: `- [[Speaker Name]]`.\n5. **Participants Property (STRICT)**:\n    - The `Participants` property MUST be a YAML list.\n    - **Source of Truth**: Extract ONLY the explicit **Speaker Labels** found in the transcript source markers (e.g., \"Speaker 1\", \"Microphone\").\n    - **Negative Constraint**: **DO NOT** extract names of people mentioned *inside* the conversation text.\n    - **Required Format**: `  - \"[[Label]]\"` (You MUST wrap the double brackets in double quotes).\n    - Deduplicate labels.\n6. **ANTI-DUPLICATION (STRICT)**:\n    - When selecting quotes, you MUST perform a substring check. \n    - If Quote A is fully contained within Quote B (e.g., \"Go team\" vs \"I said Go team!\"), **DISCARD the shorter version**. \n    - Output ONLY the longest, most complete version.\n</rules>\n\n# STEPS\n1. **Analyze**: Read the transcript to identify key decisions, tasks, and speakers.\n2. **Draft TL;DR**: Create a 1-2 sentence high-level summary.\n3. **Extract Points**: List key discussion points as concise bullets.\n4. **Extract Actions**: \n    - Write the Description.\n    - Add Metadata `( )`.\n    - **FINALLY** add the Date `📅` at the very end of the line.\n5. **Extract Anecdotes**: Select 3-4 distinct, impactful quotes.\n\n# OUTPUT TEMPLATE\n(You must strictly follow this vertical structure. Do not add spaces after the dashes.)\n\n---\nDate: \nParticipants:\n  - \"[[First Label]]\"\n  - \"[[Second Label]]\"\ntags: meeting-summary\n---\n\n### TL;DR\n[1-2 sentences max]\n\n### Key Discussion Points\n- [Concise Point 1]\n- [Concise Point 2]\n- [Concise Point 3]\n\n### Action Items\n- [ ] [Task Description] (owner:: [[Name]]) (requestor:: [[Name]]) 📅 YYYY-MM-DD\n- [ ] [Task Description] (owner:: [[Unknown]]) (requestor:: [[Name]]) 📅 YYYY-MM-DD\n\n### Anecdotes\n> Quote or memorable moment 1 - [[Speaker Label]]\n> Quote or memorable moment 2 - [[Speaker Label]]"
-            }
+             {
+               "message": "{{$node[\"Fetch System Prompt\"].json.body}}"
+             }
           ]
         },
         "batching": {}
@@ -211,18 +228,29 @@
         ]
       ]
     },
-    "Extract from File": {
-      "main": [
-        [
-          {
-            "node": "Summarize Transcript",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert to File": {
+     "Extract from File": {
+       "main": [
+         [
+           {
+             "node": "Fetch System Prompt",
+             "type": "main",
+             "index": 0
+           }
+         ]
+       ]
+     },
+     "Fetch System Prompt": {
+       "main": [
+         [
+           {
+             "node": "Summarize Transcript",
+             "type": "main",
+             "index": 0
+           }
+         ]
+       ]
+     },
+     "Convert to File": {
       "main": [
         [
           {
