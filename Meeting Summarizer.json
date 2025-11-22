@@ -2,17 +2,17 @@
   "name": "Meeting Summarizer",
   "nodes": [
     {
-      "parameters": {
-        "triggerOn": "folder",
-        "path": "/data/transcriptions",
-        "events": [
-          "add",
-          "change"
-        ],
-        "options": {
-          "awaitWriteFinish": true
-        }
-      },
+       "parameters": {
+         "triggerOn": "folder",
+         "path": "/data/tmp",
+         "events": [
+           "add",
+           "change"
+         ],
+         "options": {
+           "awaitWriteFinish": true
+         }
+       },
       "type": "n8n-nodes-base.localFileTrigger",
       "typeVersion": 1,
       "position": [
