@@ -67,6 +67,23 @@
        "id": "fetch-system-prompt",
        "name": "Fetch System Prompt"
      },
+     {
+       "parameters": {
+         "method": "GET",
+         "url": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/user-prompt-transcription.md",
+         "sendHeaders": false,
+         "sendBody": false,
+         "options": {}
+       },
+       "type": "n8n-nodes-base.httpRequest",
+       "typeVersion": 4.1,
+       "position": [
+         1120,
+         0
+       ],
+       "id": "fetch-user-prompt",
+       "name": "Fetch User Prompt"
+     },
     {
       "parameters": {
         "operation": "toText",
@@ -137,10 +154,10 @@
       "name": "Store Transcription Path"
     },
     {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n\n<transcript>\n{{ $json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
-        "messages": {
+       "parameters": {
+         "promptType": "define",
+         "text": "{{$node[\"Fetch User Prompt\"].json.body}}",
+         "messages": {
           "messageValues": [
              {
                "message": "{{$node[\"Fetch System Prompt\"].json.body}}"
@@ -240,6 +257,17 @@
        ]
      },
      "Fetch System Prompt": {
+       "main": [
+         [
+           {
+             "node": "Fetch User Prompt",
+             "type": "main",
+             "index": 0
+           }
+         ]
+       ]
+     },
+     "Fetch User Prompt": {
        "main": [
          [
            {
