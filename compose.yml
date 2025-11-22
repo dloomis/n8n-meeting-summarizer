@@ -1,0 +1,20 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n_app
+    environment:
+      - EXECUTIONS_PROCESS=main
+      - N8N_PORT=5678
+      - N8N_METRICS=true
+      - GENERIC_API_KEY=super-secret-key
+      - LMSTUDIO_HOST=http://host.docker.internal:1234 # example
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - /Users/dloomis/tmp:/data/tmp
+      - /Users/dloomis/Library/Mobile Documents/iCloud~md~obsidian/Documents/SDA/Meeting Summaries:/data/summaries
+    ports:
+      - "5678:5678"
+    restart: unless-stopped
+volumes:
+    n8n_data:
+        external: true
