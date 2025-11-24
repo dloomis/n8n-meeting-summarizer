@@ -16,10 +16,10 @@
       "type": "n8n-nodes-base.localFileTrigger",
       "typeVersion": 1,
       "position": [
-        -352,
-        -96
+        -368,
+        -192
       ],
-      "id": "b979e7bd-bc7f-485d-8880-013f77aa7dd9",
+      "id": "43ba3fb5-0422-4710-8b61-89ef95a90924",
       "name": "Local File Trigger"
     },
     {
@@ -30,10 +30,10 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        96,
-        -96
+        80,
+        -192
       ],
-      "id": "af0f1c8e-de13-4152-9b20-9a7ec05d2938",
+      "id": "a205bd36-67da-4faa-ac31-ddd295235e68",
       "name": "Read/Write Files from Disk"
     },
     {
@@ -44,10 +44,10 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        320,
-        -96
+        304,
+        -192
       ],
-      "id": "c2e3cda2-f347-45ba-92ee-19fba49becf4",
+      "id": "c201e170-90d1-464e-a730-d6178f91a69f",
       "name": "Extract from File"
     },
     {
@@ -60,10 +60,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        544,
-        -96
+        -368,
+        64
       ],
-      "id": "67bdfd5f-476d-4d09-ba4b-83f244892fe8",
+      "id": "0007e5ca-8f93-4d41-8c3c-8087c0734584",
       "name": "Fetch System Prompt",
       }
     },
@@ -73,16 +73,16 @@
         "sourceProperty": "text",
         "options": {
           "encoding": "utf8",
-          "fileName": "=meeting-summary-{{ Math.floor(Math.random() * 1000000) }}.md"
+          "fileName": "={{ $('All File Info').item.json.filenameNoExt }}.{{ Math.floor(Math.random() * 1000) }}.md"
         }
       },
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        224,
-        160
+        -368,
+        480
       ],
-      "id": "c77ed8ee-4428-4c02-835d-e9a889c605f2",
+      "id": "d65dbd17-ecfb-4d01-a51e-74cd90b1345d",
       "name": "Convert to File"
     },
     {
@@ -94,10 +94,10 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        448,
-        160
+        -144,
+        480
       ],
-      "id": "99eb8f2a-3fc8-4c55-aad7-3ef65a969b21",
+      "id": "ee822eb6-dd34-4d4a-aa9b-014b418dc8d3",
       "name": "Read/Write Files from Disk1"
     },
     {
@@ -107,10 +107,10 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        672,
-        160
+        80,
+        480
       ],
-      "id": "d2e2054f-7cc3-4317-85aa-c7d143662fa6",
+      "id": "68898e38-11e9-4880-8b6f-00081e81e636",
       "name": "Delete local transcription file"
     },
     {
@@ -130,10 +130,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -128,
-        -96
+        -144,
+        -192
       ],
-      "id": "ec5e0027-d650-49e6-99ba-3229d83fc393",
+      "id": "a5a64035-ac59-4d12-be33-d3243b7e43ac",
       "name": "Store Transcription Path"
     },
     {
@@ -152,10 +152,10 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        -128,
-        160
+        -144,
+        64
       ],
-      "id": "0ac4b688-dbac-4cb8-8e03-fab39b8c518e",
+      "id": "e7cc2770-fc38-449b-984f-8a1e0d1ff5b9",
       "name": "Summarize Transcript"
     },
     {
@@ -173,10 +173,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        -128,
-        416
+        -144,
+        304
       ],
-      "id": "24412809-b477-4ecb-899b-5d128dd37d84",
+      "id": "6b4fcd50-61c4-4f47-8e48-b4322d491732",
       "name": "Claude Sonnet 4.5",
       }
     },
@@ -196,12 +196,54 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        64,
-        416
+        32,
+        304
       ],
-      "id": "1e987a51-ad11-43a9-adcd-654c63fc5e64",
+      "id": "a3e34214-0cc3-4171-9025-3f70ebb66721",
       "name": "qwen/qwen3-30b-a3b-2507",
       }
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node - Remove file extension from filename\n// Works with single items or multiple items\n\nreturn items.map(item => {\n    const filename = $('Read/Write Files from Disk').first().json.fileName; // adjust field name as needed\n\n    if (!filename || typeof filename !== 'string') {\n        return item; // return unchanged if no valid filename\n    }\n\n    // Remove the extension (everything after the last dot)\n    // But preserve hidden files like \".gitignore\" or \".env\"\n    const cleanedFilename = filename.replace(/\\.[^/.]+$/, '');\n\n    // Return the item with the new filename (you can name the output field whatever you want)\n    return {\n        json: {\n            ...item.json,\n            filenameNoExt: cleanedFilename,\n            // Optionally keep original:\n            // filename: filename,\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        528,
+        -192
+      ],
+      "id": "ac6bccbd-ccb5-4627-a1dc-3a2750bef414",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d92fcf22-31bf-4994-8790-d62e784d7570",
+              "name": "filenameNoExt",
+              "value": "={{ $json.filenameNoExt }}",
+              "type": "string"
+            },
+            {
+              "id": "42add7da-af06-4f83-9f92-2d46c6d9ee72",
+              "name": "filenameFullPath",
+              "value": "={{ $('Store Transcription Path').item.json['transcription-file-path'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        752,
+        -192
+      ],
+      "id": "45c185d7-7aac-449c-bbf9-b0a2463fba8c",
+      "name": "All File Info"
     }
   ],
   "pinData": {},
@@ -232,7 +274,7 @@
       "main": [
         [
           {
-            "node": "Fetch System Prompt",
+            "node": "Code in JavaScript",
             "type": "main",
             "index": 0
           }
@@ -296,6 +338,11 @@
     },
     "qwen/qwen3-30b-a3b-2507": {
       "ai_languageModel": [
+        []
+      ]
+    },
+    "Claude Sonnet 4.5": {
+      "ai_languageModel": [
         [
           {
             "node": "Summarize Transcript",
@@ -304,13 +351,37 @@
           }
         ]
       ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "All File Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "All File Info": {
+      "main": [
+        [
+          {
+            "node": "Fetch System Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
   },
-  "versionId": "32f402c9-9c23-4d26-a687-06b7bffdd923",
+  "versionId": "e2a6f723-9e16-44fd-83f0-29c69210cb3a",
   "meta": {
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
   },
