@@ -24,13 +24,13 @@
     },
     {
       "parameters": {
-        "fileSelector": "={{ $json['transcription-file-path'] }}",
+        "fileSelector": "={{ $json.path }}",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        80,
+        -144,
         -192
       ],
       "id": "a205bd36-67da-4faa-ac31-ddd295235e68",
@@ -44,7 +44,7 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        304,
+        80,
         -192
       ],
       "id": "c201e170-90d1-464e-a730-d6178f91a69f",
@@ -112,29 +112,6 @@
       ],
       "id": "68898e38-11e9-4880-8b6f-00081e81e636",
       "name": "Delete local transcription file"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "26511ae5-044e-4cd2-ae4c-9fdf42914561",
-              "name": "transcription-file-path",
-              "value": "={{ $json.path }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        -144,
-        -192
-      ],
-      "id": "a5a64035-ac59-4d12-be33-d3243b7e43ac",
-      "name": "Store Transcription Path"
     },
     {
       "parameters": {
@@ -210,7 +187,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        528,
+        304,
         -192
       ],
       "id": "ac6bccbd-ccb5-4627-a1dc-3a2750bef414",
@@ -229,7 +206,7 @@
             {
               "id": "42add7da-af06-4f83-9f92-2d46c6d9ee72",
               "name": "filenameFullPath",
-              "value": "={{ $('Store Transcription Path').item.json['transcription-file-path'] }}",
+              "value": "={{ $('Local File Trigger').item.json.path }}",
               "type": "string"
             }
           ]
@@ -239,7 +216,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        752,
+        528,
         -192
       ],
       "id": "45c185d7-7aac-449c-bbf9-b0a2463fba8c",
@@ -252,7 +229,7 @@
       "main": [
         [
           {
-            "node": "Store Transcription Path",
+            "node": "Read/Write Files from Disk",
             "type": "main",
             "index": 0
           }
@@ -308,17 +285,6 @@
         [
           {
             "node": "Delete local transcription file",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Store Transcription Path": {
-      "main": [
-        [
-          {
-            "node": "Read/Write Files from Disk",
             "type": "main",
             "index": 0
           }
@@ -381,7 +347,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "b5a4184d-acc5-423a-a3c8-c4f51c4d085a",
+  "versionId": "351a6460-f063-43d6-992c-496cccd89c19",
   "meta": {
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
   },
