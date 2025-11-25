@@ -5,8 +5,9 @@
 This is an n8n workflow project. No traditional build/lint/test commands exist.
 
 - **Start n8n**: `docker-compose up`
-- **Validate workflow**: Import `Meeting Summarizer.json` into n8n UI
-- **Test workflow**: Place transcription file in `/data/tmp` and monitor `/data/summaries`
+- **Validate workflow**: Import `Meeting Summarizer.json` into n8n UI and check for connection errors
+- **Test workflow**: Place transcription file in `/data/tmp` and monitor `/data/summaries` for output
+- **Debug single execution**: Use n8n UI to manually trigger workflow with test data
 
 ## Code Style Guidelines
 
@@ -17,6 +18,7 @@ This is an n8n workflow project. No traditional build/lint/test commands exist.
 - Minimal comments - code should be self-documenting
 - Use `const`/`let` appropriately
 - Return early from functions
+- No imports needed - all n8n utilities available globally
 
 ### Markdown Formatting (Critical)
 - **YAML frontmatter**: Exactly 3 dashes (`---`) with no trailing spaces
