@@ -197,7 +197,7 @@
             {
               "id": "e99a29ea-e18c-4864-ba43-38c02ff4147b",
               "name": "gitSystemPromptURL",
-              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt-transcription.md",
+              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt.md",
               "type": "string"
             }
           ]

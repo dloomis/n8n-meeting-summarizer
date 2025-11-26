@@ -24,7 +24,7 @@
 - Line breaks: Mandatory after headers, list items, table rows
 
 ### Naming Conventions
-- Files: kebab-case (e.g., `system-prompt-transcription.md`)
+- Files: kebab-case (e.g., `system-prompt.md`)
 - Node names: Descriptive titles in n8n workflow
 - Variables: camelCase in JavaScript
 - Person names: Always wrapped in `[[Double Brackets]]`
