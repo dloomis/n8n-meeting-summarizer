@@ -16,24 +16,24 @@
       "type": "n8n-nodes-base.localFileTrigger",
       "typeVersion": 1,
       "position": [
-        -368,
+        -288,
         -192
       ],
-      "id": "43ba3fb5-0422-4710-8b61-89ef95a90924",
+      "id": "5fed7826-bf7c-49f7-9649-411de799608c",
       "name": "Local File Trigger"
     },
     {
       "parameters": {
-        "fileSelector": "={{ $json['transcription-file-path'] }}",
+        "fileSelector": "={{ $json.path }}",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        80,
+        -64,
         -192
       ],
-      "id": "a205bd36-67da-4faa-ac31-ddd295235e68",
+      "id": "e9a77ff6-622d-4cf3-9047-37ae02ff61d2",
       "name": "Read/Write Files from Disk"
     },
     {
@@ -44,15 +44,15 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        304,
+        160,
         -192
       ],
-      "id": "c201e170-90d1-464e-a730-d6178f91a69f",
+      "id": "79674ee5-4dd6-49d6-8ab2-f5c235212608",
       "name": "Extract from File"
     },
     {
       "parameters": {
-        "url": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt-transcription.md",
+        "url": "={{ $json.gitSystemPromptURL }}",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "githubApi",
         "options": {}
@@ -60,10 +60,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        -368,
+        -288,
         64
       ],
-      "id": "0007e5ca-8f93-4d41-8c3c-8087c0734584",
+      "id": "62a941a6-2084-4f7b-8180-82ef71ca2d33",
       "name": "Fetch System Prompt",
       }
     },
@@ -73,68 +73,30 @@
         "sourceProperty": "text",
         "options": {
           "encoding": "utf8",
-          "fileName": "={{ $('All File Info').item.json.filenameNoExt }}.{{ Math.floor(Math.random() * 1000) }}.md"
+          "fileName": "={{ $('Store file info').item.json.filenameNoExt }}.{{ Math.floor(Math.random() * 1000) }}.md"
         }
       },
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -368,
+        -288,
         480
       ],
-      "id": "d65dbd17-ecfb-4d01-a51e-74cd90b1345d",
+      "id": "059c9e67-368f-4ff2-909f-e570af3aea2b",
       "name": "Convert to File"
     },
     {
       "parameters": {
-        "operation": "write",
-        "fileName": "=/data/summaries/{{ $binary.data.fileName }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.readWriteFile",
-      "typeVersion": 1,
-      "position": [
-        -144,
-        480
-      ],
-      "id": "ee822eb6-dd34-4d4a-aa9b-014b418dc8d3",
-      "name": "Read/Write Files from Disk1"
-    },
-    {
-      "parameters": {
-        "command": "=rm \"{{ $node[\"Store Transcription Path\"].json[\"transcription-file-path\"] }}\"\n"
+        "command": "=rm \"{{ $('Store file info').item.json.filenameFullPath }}\"\n"
       },
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        80,
+        176,
         480
       ],
-      "id": "68898e38-11e9-4880-8b6f-00081e81e636",
+      "id": "45d44929-b267-4434-84fe-026f9366cf3f",
       "name": "Delete local transcription file"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "26511ae5-044e-4cd2-ae4c-9fdf42914561",
-              "name": "transcription-file-path",
-              "value": "={{ $json.path }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        -144,
-        -192
-      ],
-      "id": "a5a64035-ac59-4d12-be33-d3243b7e43ac",
-      "name": "Store Transcription Path"
     },
     {
       "parameters": {
@@ -152,10 +114,10 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        -144,
+        -64,
         64
       ],
-      "id": "e7cc2770-fc38-449b-984f-8a1e0d1ff5b9",
+      "id": "819f0e34-2f86-416f-baf0-43592162163b",
       "name": "Summarize Transcript"
     },
     {
@@ -173,10 +135,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        -144,
+        -64,
         304
       ],
-      "id": "6b4fcd50-61c4-4f47-8e48-b4322d491732",
+      "id": "4e9cf57b-1562-404f-88cd-4c25a626f258",
       "name": "Claude Sonnet 4.5",
       }
     },
@@ -196,10 +158,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        32,
+        128,
         304
       ],
-      "id": "a3e34214-0cc3-4171-9025-3f70ebb66721",
+      "id": "145b497e-c23b-4f6e-a34d-2a58a698ade7",
       "name": "qwen/qwen3-30b-a3b-2507",
       }
     },
@@ -210,11 +172,11 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        528,
+        384,
         -192
       ],
-      "id": "ac6bccbd-ccb5-4627-a1dc-3a2750bef414",
-      "name": "Code in JavaScript"
+      "id": "547fe4d5-e248-4f1c-8879-6a5dc831a768",
+      "name": "Strip file extension"
     },
     {
       "parameters": {
@@ -229,7 +191,13 @@
             {
               "id": "42add7da-af06-4f83-9f92-2d46c6d9ee72",
               "name": "filenameFullPath",
-              "value": "={{ $('Store Transcription Path').item.json['transcription-file-path'] }}",
+              "value": "={{ $('Local File Trigger').item.json.path }}",
+              "type": "string"
+            },
+            {
+              "id": "e99a29ea-e18c-4864-ba43-38c02ff4147b",
+              "name": "gitSystemPromptURL",
+              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt-transcription.md",
               "type": "string"
             }
           ]
@@ -239,11 +207,26 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        752,
+        608,
         -192
       ],
-      "id": "45c185d7-7aac-449c-bbf9-b0a2463fba8c",
-      "name": "All File Info"
+      "id": "9d308598-12c9-49e9-9b17-df507dc4a78b",
+      "name": "Store file info"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/summaries/{{ $binary.data.fileName }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        480
+      ],
+      "id": "3cc849a1-e6cb-48e4-ae34-7aad20d0c86e",
+      "name": "Write file to Obsidian"
     }
   ],
   "pinData": {},
@@ -252,7 +235,7 @@
       "main": [
         [
           {
-            "node": "Store Transcription Path",
+            "node": "Read/Write Files from Disk",
             "type": "main",
             "index": 0
           }
@@ -274,7 +257,7 @@
       "main": [
         [
           {
-            "node": "Code in JavaScript",
+            "node": "Strip file extension",
             "type": "main",
             "index": 0
           }
@@ -296,29 +279,7 @@
       "main": [
         [
           {
-            "node": "Read/Write Files from Disk1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Read/Write Files from Disk1": {
-      "main": [
-        [
-          {
-            "node": "Delete local transcription file",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Store Transcription Path": {
-      "main": [
-        [
-          {
-            "node": "Read/Write Files from Disk",
+            "node": "Write file to Obsidian",
             "type": "main",
             "index": 0
           }
@@ -336,11 +297,6 @@
         ]
       ]
     },
-    "qwen/qwen3-30b-a3b-2507": {
-      "ai_languageModel": [
-        []
-      ]
-    },
     "Claude Sonnet 4.5": {
       "ai_languageModel": [
         [
@@ -352,22 +308,33 @@
         ]
       ]
     },
-    "Code in JavaScript": {
+    "Strip file extension": {
       "main": [
         [
           {
-            "node": "All File Info",
+            "node": "Store file info",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "All File Info": {
+    "Store file info": {
       "main": [
         [
           {
             "node": "Fetch System Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write file to Obsidian": {
+      "main": [
+        [
+          {
+            "node": "Delete local transcription file",
             "type": "main",
             "index": 0
           }
@@ -381,7 +348,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "b5a4184d-acc5-423a-a3c8-c4f51c4d085a",
+  "versionId": "dedde1db-af4e-4091-9283-224f5fb365fc",
   "meta": {
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
   },
