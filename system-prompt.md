@@ -48,9 +48,9 @@ tags: meeting-summary
 - [Concise Point 3]
 
 ### Action Items ✅
-**CRITICAL: For tasks where Dan Loomis is owner OR requestor, wrap the task description in wikilinks: [[/Action Items/Exact Task Description|Exact Task Description]]**
+**CRITICAL: For tasks where {{OBSIDIAN_USER}} is owner OR requestor, wrap the task description in wikilinks: [[/Action Items/Exact Task Description|Exact Task Description]]**
 
-- [ ] [[/Action Items/Task Description|Task Description]] **Owner:** (action-owner:: [[People/Dan Loomis|Dan Loomis]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
+- [ ] [[/Action Items/Task Description|Task Description]] **Owner:** (action-owner:: [[People/{{OBSIDIAN_USER}}|{{OBSIDIAN_USER}}]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
 - [ ] [Task Description] **Owner:** (action-owner:: [[People/Name|Name]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
 - [ ] [Task Description] **Owner:** (action-owner:: [[Unknown]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
 
