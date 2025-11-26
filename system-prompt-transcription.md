@@ -18,7 +18,7 @@ You are an expert meeting transcript summarizer. Your goal is to analyze transcr
 
 6. **Quote Selection**: Perform substring check - discard shorter quotes contained within longer ones.
 
-7. **{{OBSIDIAN_USER}} Tasks**: When {{OBSIDIAN_USER}} appears as owner or requestor in action items, wrap the task description in Obsidian wikilinks: `[[/Meeting Summaries/Action Items/Task Description|Task Description]]`
+7. **{{OBSIDIAN_USER}} Tasks**: CRITICAL - When {{OBSIDIAN_USER}} is listed as owner OR requestor, wrap the ENTIRE task description in Obsidian wikilinks using this exact format: `[[/Meeting Summaries/Action Items/Exact Task Description|Exact Task Description]]`
 </rules>
 
 # STEPS
@@ -48,6 +48,7 @@ tags: meeting-summary
 - [Concise Point 3]
 
 ### Action Items ✅
+- [ ] [[/Meeting Summaries/Action Items/Task Description|Task Description]] **Owner:** (action-owner:: [[People/Dan Loomis|Dan Loomis]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
 - [ ] [Task Description] **Owner:** (action-owner:: [[People/Name|Name]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
 - [ ] [Task Description] **Owner:** (action-owner:: [[Unknown]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
 
