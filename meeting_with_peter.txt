@@ -1,8 +1,14 @@
+Monica
+Thanks for coming in, guys. We have a lot to do, so let's get started.
+
 Richard
-Thanks for coming in, guys. We have a lot to do, so let's get started. Sounds great. Me? Okay. Uh, well, we're just really excited to get going, Mr. Gregory. Yes. Who's we? Myself. Him. The guys back at the house. Guys?
+Sounds great. Me? Okay. Uh, well, we're just really excited to get going, Mr. Gregory. Yes. Who's we? Myself. Him. The guys back at the house.
+
+Peter
+Guys? What guys? Who is this?
 
 Erlich
-What guys? Who is this? Ehrlich Bachman. I'm an entrepreneur, much like yourself. Richard actually developed Pied Piper while residing in my incubator. So as per our agreement, I own 10% of the company.
+Ehrlich Bachman. I'm an entrepreneur, much like yourself. Richard actually developed Pied Piper while residing in my incubator. So as per our agreement, I own 10% of the company.
 
 Peter
 I'm paying you $200,000 for 5%, yet you're giving this man twice that in exchange for a futon and some sandwiches?
@@ -14,16 +20,22 @@ Peter
 What other percentages have you apportioned? Can I see your cap table, investment deck, business plan, or any other relevant paperwork you may have prepared?
 
 Richard
-I just was under the impression that we would just be coming by and saying hi, you know, to pick up the check. And I just didn't know that any of that stuff was due yet. Due?
+I just was under the impression that we would just be coming by and saying hi, you know, to pick up the check. And I just didn't know that any of that stuff was due yet.
 
 Peter
-This is not college, Richard. I'm not going to be giving you a course syllabus. You turned down $10 million to keep Pied Piper. What did you give up that money for? What is this company? What did I buy? You bought the algorithm, which... No! The algorithm is the product of the company. I know that. What I'm asking about is the company itself. Who is it? What do they do? Are they essential? Or do you just throw a percentage at them like you did with this? This all must be worked out now.
+Due? This is not college, Richard. I'm not going to be giving you a course syllabus. You turned down $10 million to keep Pied Piper. What did you give up that money for? What is this company? What did I buy? You bought the algorithm, which... No! The algorithm is the product of the company. I know that. What I'm asking about is the company itself. Who is it? What do they do? Are they essential? Or do you just throw a percentage at them like you did with this? This all must be worked out now.
 
 Richard
 When you said you'd guide us through some of the stuff, if I thought that this was the stuff you'd be guiding us through.
 
 Peter
-I cannot guide you until you give me something to guide. This is going very poorly. I know. He doesn't seem to know what he's doing. Did you just take a sip from an empty cup? Yes. Why did you do that?
+I cannot guide you until you give me something to guide. This is going very poorly. I know. He doesn't seem to know what he's doing. Did you just take a sip from an empty cup?
+
+Richard
+Yes.
+
+Peter
+Why did you do that?
 
 Richard
 Just something to do.
