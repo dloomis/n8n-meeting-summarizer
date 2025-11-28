@@ -1,0 +1,1395 @@
+Dan Loomis
+ur ur
+
+Steve Martin
+as the chief engineer, and then we moved Ernestis Della Pina up into the front office as an integration lead. That was approved about last week, I think Thursday or Friday, by the PCO. The intent of doing that change was to give us a good foundation for enterprise view of everything. So that's what happened. Mr. DP will be doing while bringing up Evan.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+He's a known asset to run the engineering team. I'll pause there. Any questions on that?
+
+Col. Peterson
+Is Michael Piller mainly supporting you or is he off supporting SYD 85?
+
+Steve Martin
+So we are bringing him back to us, ma'am.
+
+Col. Peterson
+Okay. That was going to be my question because I saw him on something for SYD 85 the other day and I was like.
+
+Steve Martin
+He's closing out stuff. Yes, ma'am.
+
+Col. Peterson
+On the other side.
+
+Steve Martin
+All the other.
+
+Col. Peterson
+I'm switching his port. Okay.
+
+Steve Martin
+Yeah, we need – and we need – this is a difficult contract, right? The way it was led and how it is and your CCB, not the CCB of the system, but going through your contract changes. If we have all these new teams coming on board, we need to really have someone. Yes, ma'am. Okay, on the left-hand side, you know, while staying with the picture, you know, how we're organized is Chief of Ops, Wayne. We organize that, as you can see, by functions. So it's IL-4, 5, IL-6, C2OPS. And you have a, you know, a deafening, a tech director. So we're essentially aligned around the systems themselves.
+
+Dan Loomis
+'t't ur ur
+
+Steve Martin
+When we get a new TS environment end of next year-ish, you'll see an extra box in there in the org chart.
+
+Dan Loomis
+'t't
+
+Steve Martin
+Okay. In the middle is the support team, right? They do the onboarding. They do the wind hours. They create the accounts and that type of activities, which is significant, right? We have over 7,000 various users and customers across all these environments. So that keeps them busy. And then the right-hand side is the traditional engineering, which is net new that we didn't have before. A reminder for everybody, we took over. the systems on 1 May. Prior to that, it was a transition from January to the end of April. So as we go through this, not because I'm sitting here as the PM of the contract, but I'm pretty
+
+Dan Loomis
+a
+
+Steve Martin
+impressed having been here in previous contracts watching us and doing the cyber stuff. And now we've kind of sat in the saddle and been responsible and accountable since May. And I think we've done good. And I think the communications has really, really improved and flowing that information down from the commander, from the core into these three branches is critical for me.
+
+Dan Loomis
+'t't
+
+Steve Martin
+Right. I got it. I got a level set. Everybody to make sure we know what the intent of the government is and we go off and execute that mission. So the organization kind of enforces that that structure. Any questions here, man?
+
+Col. Peterson
+If you have it later, you can save it for later, but talk to me about what have I paid so far for KSP SCI? Yeah. What requirements are you using to build that out? And how does that integrate in with CFETS and SMPTS and what that future is going to look for from an SCI perspective for Mission Delta II?
+
+Dan Loomis
+'t't
+
+Steve Martin
+It's CF.
+
+Col. Peterson
+CFBTS?
+
+Steve Martin
+I don't know what it is.
+
+Capt. Scneider
+News file. Oh, comment forces come in.
+
+Col. Peterson
+No, no, no. CFE. The CFE environment out of Dahlgren. They have a TS environment currently out of Dahlgren. that is paid for under the Mosaic contract. And SMPTS is looking at replacing that. And so the question is, how are you designing whatever KSPSCI is and what requirements are you designing to? And what have I already paid for?
+
+Sylvin Edwards
+So from the what you pay for perspective, we propose the initial team to bring your SCI environment to bear. So that's a new set of personnel coming in that will be located in Springs to demand the environment. And the initial lay down resources, that's just the time of the proposal, the only SCI requirement we were tracking was
+
+Dan Loomis
+a
+
+Sylvin Edwards
+Star Fox at the time that we would bring over. And so, The cloud spend on contract is just laid out in the environment.
+
+Col. Peterson
+Surefire wasn't one of my requirements.
+
+Dan Loomis
+'t't
+
+Sylvin Edwards
+Surefire?
+
+Col. Peterson
+Surefire, yeah, but now it's not one of my requirements.
+
+Sylvin Edwards
+Right.
+
+Col. Peterson
+And I'm pretty sure that was put into Warp for TS, right? I don't know what F8080 is doing. So that's what I'm saying. What have I already paid for and how is that all working together with what my actual requirement is? So I think we are a little skew there, and I need that answer sooner rather than later.
+
+Steve Martin
+Well, to be honest with you, ma'am, we proposed it in the contract. We were not turned off.
+
+Col. Peterson
+Okay, that's what I thought. So I just want to make sure we've already paid for and what we can kind of re-exactor towards our actual requirements.
+
+Steve Martin
+So we haven't spent money. We haven't hired anybody. We are looking at that. So we can hold today, right now.
+
+Col. Peterson
+I just don't know what you've been turned on for and what's part of the full, what I'm already paying for this year, right?
+
+Dan Loomis
+'t't
+
+Sylvin Edwards
+Right. So SCI was a 26, 26 requirement. That was our plan.
+
+Col. Peterson
+Yeah. I 100% want it.
+
+Sylvin Edwards
+Yeah. So we haven't expended a dime yet.
+
+Col. Peterson
+Okay.
+
+Sylvin Edwards
+Yes.
+
+Col. Peterson
+But do I owe you money to expend? I don't know what was planned and I don't know what was actually agreed to by the government and the proposal and what.
+
+Dan Loomis
+'t't
+
+Col. Peterson
+Okay.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+I wouldn't say it was a hard. So I wouldn't read it as a hard requirement that we had to deliver TSSEI in 2026.
+
+Sylvin Edwards
+That was our proposed solution that was accepted. Right. One January is when we proposed, we would start staffing up and bringing that to bear. If we need to reprioritize, obviously.
+
+Col. Peterson
+I don't want to get you guys off that plan. What I want from Captain Schneider is what requirements are we fulfilling? How are we doing this? And how is it working in with CFPTS and SMPTS plans? And what are the actual plans to fill the TS requirement for Mission Delta 2?
+
+Steve Martin
+Okay, hearing none. Good. So, ma'am, this is kind of hard because you've been with us for a while, right? But part of the C. Joel, the DID, right, we have to talk about program overview. So one of our deliverables, not deliverables to you, but one of the things we created is
+
+Dan Loomis
+a
+
+Steve Martin
+on the right.
+
+Dan Loomis
+'t't
+
+Steve Martin
+But the bottom line is, you know, I think we're adjusting well to new requirements. Garden of the Gods is a good call out, right?
+
+Sylvin Edwards
+You want to put the squadron up there.
+
+Steve Martin
+We're working on that. So for us, as the contract is led, is we're a distributed workforce. So we never had a center of mass anywhere. So it's really no impact on the move from that point forward. And the only major mod that we've had, and someone will get into the details on the financials later on, is adding the facilities in.
+
+Col. Peterson
+The updates to the environment is how contracting says, I must say that.
+
+Steve Martin
+Increase in supply.
+
+Col. Peterson
+Increase in supply to the environment.
+
+Dan Loomis
+'t't
+
+Col. Peterson
+So let's make sure we're all in the same work.
+
+Steve Martin
+Yes, yes, ma'am. Yep. The network picture on a page, but it is talking about the SCI stuff. But the bottom line is, I mean, we just had the conversation on the SCI. We were not tracking to a requirement. We were tracking to a PWS. So we'll go do the work.
+
+Col. Peterson
+My point is I want Tabin Schneider to give you a requirement.
+
+Steve Martin
+Yes, ma'am.
+
+Col. Peterson
+Making sure that they can check the box off on the things I need to get done.
+
+Steve Martin
+Yep. Yes, ma'am. Obviously, we know there's a lot of meetings going on, a lot of stuff with Atlas on aisle six or on here or on there. So we're continuing to move forward. We, you know, program overview from a networking perspective, you know, getting off SIPR was a big deal.
+
+Dan Loomis
+'t't
+
+Steve Martin
+The good news was we knew about this coming into the contract, actually. We had a plan from the beginning, that's why we were able to turn it at the last minute. And of course, we're currently working with the CEA team on the geo separation requirements
+
+Dan Loomis
+ur ur
+
+Steve Martin
+Yeah. and how that all lays out. It says holding on decisions, but we're not doing any work on Dahlgren, but we are building
+
+Dan Loomis
+'t't
+
+Steve Martin
+out the ILC for Atlas. So from a networking perspective, we're not holding as we previously discussed. And supporting other missions, you know, SDA, as you know, now going to KSP and our primary other customers at common. You'll someone's got some good financials to show how that's broken up for you. What they're paying for is they're sitting on the aisle six environment.
+
+Col. Peterson
+Have we had to issue any StopWorks on the SATCOM side of things? Or do they have funding that switches you through enough?
+
+Sylvin Edwards
+They funded as well as the 20-saves.
+
+Steve Martin
+Okay. So, ma'am, what I want to run you through now is a bunch of snapshots. The takeaway here is all of this is actually in Confluence or Jera.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+So, in the future, and we're going to do this, we'll catch Schneider probably next week, is each division is going to bring him through the knothole on kind of everything and where everything is at a greater detail. But what I wanted to show here is everything's there. So, all the past seed drills. be it onboarding, on-ramp transition plan, hopefully we'll never use until 2030, what would that be, 2035, with a follow-on. But anyways, everything's sitting there. So every time we update one, we put it in there.
+
+Col. Peterson
+Parking to back in the day, is there any chance that in the future, for historical records purposes, because we do this confluence right through your concrete,
+
+Dan Loomis
+ur ur
+
+Col. Peterson
+if I lose access to the KM confluence, how do I keep my historical records?
+
+Steve Martin
+We will transfer everything.
+
+Col. Peterson
+So I know, but... We know we've had systems go down in the past. Remember when we lost all the old JMS data?
+
+Steve Martin
+Yes, ma'am.
+
+Col. Peterson
+And so I'm trying to figure out how do I avoid that?
+
+Steve Martin
+So during the transition plan that I got posted up there, CGL 8, it talks about that. So the data would be provided... to your follow-on. It's a contractual requirement. So the CGL 8 was accepted and in that transition plan we provide
+
+Dan Loomis
+ur ur
+
+Steve Martin
+everything, right? You turn over the licenses. Very similar, I mean it was painful to be honest with the tech owning the licenses to us. Not that they did anything wrong, it's just a lot and we didn't have history with the software.
+
+Dan Loomis
+'t't
+
+Steve Martin
+And so when we'll talk to that a little bit about financials, so it's a lot to take over. We've got a lot of lessons from that, which were captured in that transition plan. So we owe it to you. And just like we did a transition on-ramp, it would be a transition off-ramp.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+It's all the data. We don't have any data rights, right? Everything is turned over to you. And we would put it into whatever system.
+
+Col. Peterson
+Right. The follow on. Yeah, we have good. And this might be a dashboard for you to go look at as we're looking at some of these dashboards for helping RPMs manage life. Copy. Thank you.
+
+Steve Martin
+And it has. So here. So we're going to bring you through a journey of schedules, ma'am. This has been a pain for me ever since section 31, right? It's everybody building schedules and Google docs or everybody has something different. I know you've got some pain points on the PI report. So now we got an IMS, right? We're using Microsoft project. We only got 10 licenses. The Cia team asked to use one. I said, sure. But there, I said, remember we're on KM platform. If you're sitting on NipperNet, I don't, know how that communicates.
+
+Col. Peterson
+That license works across it. But we have a similar problem
+
+Dan Loomis
+'t't
+
+Col. Peterson
+on the Odyssey side that are producing all our M's for all the sensors through that contract. But I think they also procure the licenses off in a different world. We probably need to figure out how all that's brought together for the squadron.
+
+Steve Martin
+Yes, ma'am. And we're closely linked with CIT, right? So as they build the squadron and the MD2 plan, we can export, we can update.
+
+Dan Loomis
+'t't
+
+Steve Martin
+So... Yeah. I mean, yeah, we'll work it. But what I wanted to show is we do have an EMS. And from the EMS, what's happening is we're pulling – I don't know. I don't know what that is. Thank you very much. Go away. Hot key. We pull all the different reports. So I put this one up front because the one on the bottom right is the one you love.
+
+Dan Loomis
+a
+
+Col. Peterson
+No, I don't love it. It's never right.
+
+Steve Martin
+And then – Yes, ma'am.
+
+Col. Peterson
+Like what's Sean overfilling in this week?
+
+Steve Martin
+Correct. So from the EMS now we made the same type of format because that is kind of a PI report,
+
+Dan Loomis
+ur ur
+
+Steve Martin
+you know, platform infrastructure networks. I don't know who came up with that well before our time because they bleed on each other. But now we're filling it in in those lanes. It gets out of that kind of...
+
+Col. Peterson
+The reason that's like that is because it ties back to the way we wrote it in the acquisition strategy, I believe, in the LOE. That's the only reason we're kind of stuck in those lanes, so long we don't go too far off of what the acquisition strategy says.
+
+Steve Martin
+No, no, we'll stick with that. We'll just bend the work. So as the EMS builds out, we'll be pulling in those milestones, you know, for the out months. Right. So what I want to show today is that, you know, we got it. I don't believe it is in. I didn't get it to Tim for the PI reports that we're doing, the consolidated one. And I don't think it made it. But but anyways, I want to let you know I got it. We're going to fill it in with. things that are meaningful versus I saw this going on before my time right it was just what can we put in there let's just put and it was meaningless and sometimes wrong so. Hey Steve. Yes.
+
+Dan Loomis
+'t't
+
+Aaron Falk
+What's going to be the way to get the most current view of this? I know you've been sending out screenshots of it, but is there going to be any kind of export or way that we can track it without having to ping you or request something?
+
+Steve Martin
+Yes, sir. All the schedules are sitting on Confluence. So under, yeah, on a PM page under, and I can send it out to the group. But if you go to that, on the very first slide, there was a Confluence location. Yeah. That's where the journey begins for the K-Hem platform. So in that page, all these are posted. So everything you see here will be there. I'm still in my mind working through, do I see MBM for minor little change, right? I don't want to get overly restrictive. But I'm forcing the entire team to pull from that one source so we can't have one off somebody creating – a slide or a plan that wasn't properly staffed both internally to us and externally with you all.
+
+Dan Loomis
+'t't
+
+Steve Martin
+Right. So I'm kind of pulling all those back to where it is. Here's where it is. And we'll update it as there are changes. I'm not going to be a cadence other than when we make a change, it gets updated. Perfect. Thank you. You bet you, sir. Welcome back. Thanks. So KSP, similar to what we've been briefing in the staff meeting, ma'am, no significant change. We were moving out is the bottom line.
+
+Dan Loomis
+'t't
+
+Steve Martin
+The schedule is holding to, I mean, the work is on sysops, right?
+
+Dan Loomis
+ur ur
+
+Steve Martin
+So our platform work will get done and there's a lot on them and we're all waiting for that decision on what is the priority. Is it, is it Dogman? Is it SMP? Is it IL6? Is it this left, right? So we're platform as we're brief. We're moving out on KSP. We didn't stop work. We did go through the CRA. They were upset as I briefed before, right? There wasn't a lot in it. And I said, well, yeah, but I need the ATO to start connecting data sources without an ATO. You can't do that. There is a thing called an IATT, But the space, the staff was like, yeah, we really don't kind of do those anymore, which was weird for me because that is a key enabler. So we got that done.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+I don't know, DP, if we got a feel for a one, two or – I know it won't be a three-year. but uh no no comment on that probably it's a year but yes yeah all do you have a feel if that is
+
+Col. Peterson
+going to get super impacted by the government shutdown yes actually okay so um i need to know where it's getting stuck and with whom so that i can pull them in as an accepted activity because atlas is an accepted activity so this I think it's inherently tough and I said, me getting to this ATO reduces our risk for operation, which means I need to have this done. So let me know where it is held up in the process, if it's whom, and I will reach out if you know their boss that's actually happens to be in the office. Whatever military I can get to, Pull them back in to do the work for us as an accepted activity.
+
+Dan Loomis
+a
+
+Sylvin Edwards
+It could be on two stuff.
+
+Col. Peterson
+Languish for any reason.
+
+Steve Martin
+Yes. Easy. And DP, we've got to look at the 48th because Helene, she's the government lead.
+
+Col. Peterson
+48th, I put on the accepted activities memo.
+
+Steve Martin
+Already? Yep.
+
+Col. Peterson
+The 48th, the 96th cyber test group with the 48th.
+
+Dan Loomis
+'t't
+
+Col. Peterson
+Underneath that and Wontez are all on my accepted memo now, the latest version of it. So if they need that, we make sure to try to cover every one that could affect our ability to be able to reduce our risk for ops.
+
+Steve Martin
+We'll get right on it. So – but we still got work to do as it shows, right? The sysad or sysops getting in there, they don't need their connection outward yet. So we still got work we can do while we're waiting on that agent. It just got done a week and a half ago.
+
+Col. Peterson
+Yeah, but I just don't want it to language for any way, shape, or form, considering this is one of our chief reproductions for moving off of the state of Ukraine.
+
+Dan Loomis
+a
+
+Steve Martin
+Express Route also briefed this a couple times, so hopefully the comms, you're feeling better with communication. This is kind of... Not this exact schedule, but the comms are open. The information is flowing. We still are working on, and the captain engaged the SIPS, which is the request to get the connections up at Vandy.
+
+Dan Loomis
+a
+
+Steve Martin
+The long lead is – It doesn't show it really here, but the long lead is if we don't have fiber from base point of presence to our building, we may have to run it. We're working through that. We don't want to assume, ma'am.
+
+Dan Loomis
+'t't
+
+Col. Peterson
+I mean, I thought they put fiber in place for S&P and whatnot, right?
+
+Steve Martin
+That's how they would have that.
+
+Col. Peterson
+But we don't want to assume.
+
+Steve Martin
+And it may be, no, this is our fiber, not your fiber.
+
+Col. Peterson
+No, it is all about the Atlas Family Systems and it is everyone's fiber in order to enable 18 Space Fence Squadron to do their mission.
+
+Dan Loomis
+a
+
+Steve Martin
+Yes, ma'am. So that should be an easy one. That's why it doesn't have a lot of time in there.
+
+Col. Peterson
+Okay.
+
+Steve Martin
+If it comes up.
+
+Col. Peterson
+Keep me updated if it comes up and becomes problematic. I get it if we're going to be pitching too much info over that particular fiber and it won't be able to handle the traffic or whatever. I don't literally know anything about fiber, but it seems correct. I mean...
+
+Steve Martin
+Yes, ma'am. And we're briefing this each weekly in a staff meeting, so I'll keep being in the loop. And the other one we talked about. If you remember bottom right-hand side in the staff meeting was the crypto short titles. We're still struggling. We're not at a point of, okay, let's elevate up yet.
+
+Dan Loomis
+'t't
+
+Steve Martin
+It's just generic crypto. We don't have our own crypto like some programs do. It's just –
+
+Col. Peterson
+generic based whatever you buy right yeah so it's the team on the on-site team is working
+
+Steve Martin
+through cap schneider is helping uh whether he knows it or not uh yeah uh to kind of push that
+
+Dan Loomis
+ur ur
+
+Steve Martin
+noodle and with the civilian workforce out up there again and the contractors are not willing to you know say something on behalf of the government. But it's not quite...
+
+Col. Peterson
+Okay. I was going to say, Colonel Jodison, when it's needed.
+
+Steve Martin
+Yes, ma'am.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+And this is just a combined one. I kind of like this one. It overlays... You know the SDA capabilities on both KSP and IL-6 it just overlays the you've seen this before we briefed But it's just and now this format to show the other milestones
+
+Col. Peterson
+Have you bounced this yet against the new schedule that L3 is briefing me this afternoon?
+
+Steve Martin
+I don't know that we've seen and L3 brief.
+
+Col. Peterson
+I invited you to that.
+
+DP
+We've been balancing the schedule on the C18 now, but I'm excited that in the relation to Mission Delta 2 C19.
+
+Col. Peterson
+Well, you guys are obviously more than welcome to sit in on that noon with L3 as well so that we're all working hand-in-hand. They're supposed to be briefing their new schedule, and then that'll help inform Thursday's decision
+
+Dan Loomis
+a
+
+Col. Peterson
+analysis rate.
+
+Aaron Falk
+Oh, for it to get us on. And I just sent them the link to your schedule confluence page so that Anne-Marie's got that.
+
+Steve Martin
+So all these on that page things are there and we'll update them. Now some major changes within. And then the last one, I'm hoping...
+
+Dan Loomis
+a
+
+Steve Martin
+I know you can do it. It's Dahlgren, and this is a little scary. I didn't put a date on it because there's no date. This is put in KSP East out at Dahlgren, but it gives you kind of a sense. We put hardware out at Dahlgren. Yes, ma'am. Yeah, if we put it on a truck, if you remember, and drove it around.
+
+Col. Peterson
+Calendars are in?
+
+Steve Martin
+It's just day, day.
+
+Col. Peterson
+It's a number of days. Okay, so it would take you a year and a half.
+
+Steve Martin
+Yes, and if you look at six months of it is a contract mod and hiring people. Yeah, because you've got to get people in sight, the whole thing. Yeah, we can really impact that a lot very quickly to bring it this way. And getting the site survey done is not difficult.
+
+Dan Loomis
+a
+
+Col. Peterson
+Yeah, but what I'm worried about is that they don't have room or the place in power, all those things. I'm not sure if those things are actually there.
+
+Steve Martin
+Right. So that's why I wanted to publish one.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+If the conversation comes up, people can see, yeah, Here it is. And they can, okay, really, once we start work, you know, 274, I'm not gonna do math in public. Well, it's pretty easy. 575. So it's 300 days. So just about a year to, you know,
+
+Dan Loomis
+'t't
+
+Col. Peterson
+And I'm sure there's ways to
+
+Steve Martin
+Yeah, bring that faster.
+
+Col. Peterson
+If we need to, if that substitution is done. Okay, of course.
+
+Steve Martin
+Got it. We learned a lot of lessons from from what we did up there. So accomplishments, you might have seen this. These are basically what I put in the PI report. So teams have done a lot of things over to Sensemate taking charge, right? Turning off clusters, saving spaces, getting rid of block 20. It is now, as I understand it right,
+
+Dan Loomis
+ur ur
+
+Steve Martin
+folks online were completely off of 20. Yeah, on to 25. Remove cipranet dependencies.
+
+Col. Peterson
+I keep using blocks anymore.
+
+Steve Martin
+I don't. But the audience knows it. And I actually talk about that a little bit.
+
+Dan Loomis
+a
+
+Steve Martin
+Yeah. So what we're talking about is, you know, the block design process. How we're delivering capability is done by a block. A block is January to June, July to December for the life of the contract. So no matter what capability we're delivering, all of it is tagged to a block. So there's another schedule we're going to be publishing is block 40, block 50, but it won't be. you know, this is KSP block 40. It's not like an F-16 block 40 where it's specific to a platform. It's just going to be all the capabilities being delivered during a period of time.
+
+Col. Peterson
+So what I would like to do using that kind of theory, right? How do I then incorporate SMP into that battle rhythm and make us into that, you know, seamless, I don't want to talk about SMP, I don't want to talk about KSP, I don't want to talk about whatever, I just want to talk about the platform infrastructure
+
+Dan Loomis
+ur ur
+
+Col. Peterson
+networks of support mission delta 2's mission is there a way to do that and incorporate that together
+
+Dan Loomis
+'t't
+
+Col. Peterson
+our maybe six month increments not correct for this contract we want to align them with the the three times a year that we are doing the other pi planning does that make more sense to align you guys with the other pi planning so that it is all seamless and integrated and plan together. So if you guys are planning on six-month centers, everyone else and their brother is planning on four-month centers, that doesn't make a lot of sense to me.
+
+DP
+Absolutely.
+
+Col. Peterson
+So take a look at that, see what that would do to you, so that what I would like to do is make this an integrated team right across the software platform networks. It all needs to be integrated together eventually. And if I'm requiring everyone else to plan on... those four-month centers and release things on those four-month centers.
+
+Dan Loomis
+'t't
+
+Col. Peterson
+And it's also going to go back to eventually, right, we're going to all line this up with the SPA4Gen cycle so that if you make a major change to the platform or something that's going to affect how the operators are reacting to it, we have that within their cycle.
+
+Steve Martin
+I like that. That's not a big shift. We haven't really put any resources against 40, 50, 60 and saying that we're going to align to the bigger program increment four months.
+
+Dan Loomis
+'t't
+
+Col. Peterson
+It would be better if you guys are planning all together with those bigger program increments, right? Because some of that software may drive a need and change to compute, store, whatever, right? Network connections to having that Azure connection in place to having whatever in place. And we really should be planning together like we were in the past, right?
+
+Dan Loomis
+'t't
+
+Col. Peterson
+On those aligned PI increments. And that way you guys are now aligned with what Mosaic is doing and you're aligned with what Atlas is doing and you're aligned with what Iris is doing and you're aligned with whatever the heck MIT and Lodge is doing in theory.
+
+Aaron Falk
+The easy intersection is going to be TS and SAP,
+
+Dan Loomis
+ur ur
+
+Aaron Falk
+which will open up the ability to put on other workloads.
+
+Dan Loomis
+'t't't
+
+Steve Martin
+copy
+
+Col. Peterson
+okay
+
+Steve Martin
+we'll redesign
+
+Col. Peterson
+take a look at that
+
+Steve Martin
+yes ma'am and then I would expect
+
+Col. Peterson
+you guys showing up at those planning events as well and putting your bits into it like we have in the past right
+
+Steve Martin
+yeah the one for like is it next week or the week after On that particular one, we're all dying in, but we're going to have Wayne because he's in Colorado. Present.
+
+Col. Peterson
+Local.
+
+Steve Martin
+But normally we're there.
+
+Col. Peterson
+Most of us are all dying in.
+
+Steve Martin
+Yes, ma'am. Absolutely. yes Delivery KSP, as you saw, we're working towards that. This gets in the weeds a little bit, but it's a big deal. getting rid of the Postgres operator. It was a direct impact to the developmental team along with the Palo Altos.
+
+Dan Loomis
+a
+
+Steve Martin
+While it just kind of flew by, I mean, we had one in a bad state, but it was scary. Yeah. I mean, it was a single point of failure, and the team went at it, built a plan, and we bought them, you know, the chief engineer brought them through a knothole. It's like just, I mean, you can't. We can't fail this. So how do we do pre-testing? You really can't because you got two, but they worked through it. They took one offline, they patched it, they got the Palo Alto sneeze in there, got it all up, got it running, switched over, brought the other one up and the end result, they're both in high assurance. I'm not going to hear a couple of times. They've been fine since, right? So that's a big deal for me anyway. Any questions there? Good. And I got it on alignment. That's an easy one. We'll get the schedules changed. So again, you can see this is being pulled. So SLAs, I wanted to put it out in front of everybody. So what we're actually on contract to do and here it is, the number one item, operational availability. We briefed the PEO that we can't sign up to this receipt to opt. It's not our system. So that's how that's kind of deferred to once KSP is in ops, you know, we're going to have that. Yeah. Operational outages.
+
+Col. Peterson
+Are we going back to the new Jarmet numbers that just was sent to me to sign? for that?
+
+Sylvin Edwards
+Are you talking about journey?
+
+Col. Peterson
+Whatever y'all just sent me to sign that says how we're doing ESL. I believe so. Okay, that's what Steve's on contract to do?
+
+Dan Loomis
+ur ur
+
+Sylvin Edwards
+I'm not sure the contract specifically defines a way, oh, 99.5? Yeah, that number.
+
+Col. Peterson
+Yeah, I know the number, but I mean, I think Steve would love to know how that number is
+
+Dan Loomis
+'t't
+
+Col. Peterson
+derived and be able to show it in his dashboards.
+
+Steve Martin
+Yeah, especially the second one. The second one's the hard one. I don't know, right? I mean, do you have a warm fuzzy that KSP or block? Well, the block will now change, but I don't know that KSP will meet the two minute with KSP. with everything we got to do.
+
+DP
+So the hardware itself can, there's a level of dependency with the Atlas developers and their ability to fail over within that two-minute tough period.
+
+Col. Peterson
+Yeah, correct.
+
+DP
+The hardware itself is absolutely more than capable.
+
+Col. Peterson
+And this is why I need you guys planning together.
+
+DP
+Right.
+
+Col. Peterson
+To try to meet some of these things, right? And the goal there really is, right,
+
+Dan Loomis
+'t't
+
+Col. Peterson
+how do I reduce the risk of being able to operate through degraded whatever, right? And that means that the operators don't even notice when you end up in the cloud versus on the hardware. Right. Sure.
+
+Steve Martin
+And I got a note up there the two minute. I've heard it been kicking around.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+Well, where is the actual requirement?
+
+Col. Peterson
+So right now it is tied to the, so right, everything's tied to the new software ICD. Eventually, I believe that requirement will show up in the advanced SDACNS, which I do not have yet. Okay. That's where it's going to show up. Yes.
+
+Steve Martin
+So starting, let's say, the end of – well, it won't be the end of this year, but once we say, check, you're in KSP, we'll track to that two-minute, but it may not be yet accountable. Okay. I don't know. We'll work on that. But the other items, as you can see, were clearly exceeding –
+
+Col. Peterson
+So what I need you to think through as well is as we work with the 18th and 19th and kind of get this all operationalized, if we need to push, you know, anything into DIRS and then CCIR reporting and the other system where we track metrics, We don't do this very well yet for any of our C2 hardware intensive stuff. We don't track any of this stuff really well. We need to start doing that because those are the readiest numbers that are reported up to the Secretary of War. And so we need to start thinking through how all that's going to get pushed through these different systems and up to him. So, work with Colton's team and the other folks that do that reporting. And with the 18th, I do that reporting. So, as we found out this weekend, right, we drove a CCIR reporting. It was a little bit confusing. We need to clear that up so that the three-star general doesn't get...
+
+Steve Martin
+CCIs.
+
+Col. Peterson
+Yeah. All the things that that's what that two minutes is linked to and how that actually is reported out in the official systems and how we're pushing our data and exposing our data for them to be able to pull into those systems and how we want to have it exposed.
+
+Dan Loomis
+a
+
+Steve Martin
+The next one, these are internally created goals for us. So this all, by the way, is reported in the MSR. So all this data, all these dashboards get pushed in, so it's also there. But we created these goals during proposal, frankly, and it shows up not in the PWS, but in goals that we created for us to maintain the various systems for various things.
+
+Dan Loomis
+a
+
+Steve Martin
+a And so far, we're hitting other than the top two we just looked at. We're hitting them all. Been close on a few. On an individual month, there's been one on hardware pre-OA that we didn't hit.
+
+Dan Loomis
+a
+
+Steve Martin
+But pretty much now, since we've been accepted for C2 Ops, we've been on track.
+
+Col. Peterson
+Yeah, it looks like your IL-6 is a little off.
+
+Dan Loomis
+ur ur
+
+Col. Peterson
+Okay. ur ur production software availability in IL-6.
+
+Steve Martin
+Production, pre-production software? Production software, 99.5, yeah.
+
+Col. Peterson
+So it looks like, so that's a little bit concerning to me that you're already underperforming in the IL-6,
+
+Dan Loomis
+ur ur
+
+Col. Peterson
+being that that's one of our go-to solutions. So I think I'd like to know more about that.
+
+Steve Martin
+Yeah, Wayne, you online? I am. Yeah. Remember that was that one event that we had, IL-6 production?
+
+Wayne Havey
+Correct. Yeah. So there was an AD outage because of a Microsoft patch that just took an extended period of time to address. So that's what brought the overall metric down so much for that month.
+
+Col. Peterson
+Okay.
+
+Steve Martin
+Let's put a little blurb together so the boss knows what... Yeah.
+
+Col. Peterson
+Yeah, it's as I'm trying to say, "Hey, IL6 will be as reliable as the hardware sitting right next to you." You know what I'm saying, right?
+
+Steve Martin
+Yes, ma'am.
+
+Col. Peterson
+And so if we're going to show these numbers out past me,
+
+Dan Loomis
+'t't
+
+Col. Peterson
+That makes someone worried.
+
+Steve Martin
+Yes ma'am. The good news is we're at $19.75, but you're right.
+
+Col. Peterson
+Not $19.75.
+
+Steve Martin
+That is correct. Correct. Right. Well, this is so...
+
+Col. Peterson
+And we're trying to sell aisle six as more reliable.
+
+Steve Martin
+Yeah, apples, oranges, but it wasn't.
+
+Col. Peterson
+I get it.
+
+Steve Martin
+Yeah.
+
+Col. Peterson
+But do you see where I'm going with that?
+
+Steve Martin
+Yes ma'am. Absolutely. So GFE, I'll pause there online. Any questions before I move into the next? Nothing heard. GFE, the only GFE I'm on contract is the wind hours.
+
+Dan Loomis
+a
+
+Steve Martin
+So we do two things, right? The team manages your wind hours.
+
+Sylvin Edwards
+Got 101 of them right now.
+
+Steve Martin
+I'm actually mailing four or five back to Colorado. That's going to be the center of gravity. Four or five are broke. So I'm going to let them disposition them.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+There's rules that you've got to go through to disposition the device. But so we serve, again, as both the manager of the wind hours and the process because I just got a request in and I said, yeah, no, you need to flow it through your – it was a contractor.
+
+Dan Loomis
+a
+
+Steve Martin
+Flow it through your government rep, send it over to the captain to assess the true need based on available resources because they cost you money. And, yeah, it's not us. It's a government cost. So it'll flow through you and then whatever the change is. And this is an internal process, right? Whatever you want. But we don't just issue them up if somebody asks. And then for us, we have 33 on the CAM platform of the 101. Like I said, five are broke. And obviously, we got until June, but –
+
+Col. Peterson
+We need to start working on that.
+
+Dan Loomis
+a
+
+Steve Martin
+That's how quickly we can get them. Yes, ma'am. 't a Special topic. So, Gavin, you out there? I am here. Okay. So, you know, who's onboarding? What's going on? So I wanted to let Gavin walk you through quickly on, you know, who's out there? Who's been asking? Is it in scope? Is it not? uh, the one I spoke to you before the MTSI, it's not this contract MTSI.
+
+Col. Peterson
+It's a different, if it's a different group. Yeah. Yeah. Well, yeah. Yeah.
+
+Steve Martin
+We're, we, we gave them, you know, some recommendations and we gave them what we can do for them. Uh, at this point they said they were getting a government re-rector, right? So then, so I don't know what that means. Uh, but that, that's the biggie. Uh, but if you want to go, uh, Do you want to know each one right now?
+
+Col. Peterson
+No, I think I know most of them are.
+
+Steve Martin
+Yeah. So we continue the process. As it says up there, we do a DNF with whoever it is, right? We find out. We collaborate. Some it's just like, well, no. Like the S6, they just want us to use us basically like Cipronet. I don't know if we want to get into business, right?
+
+Dan Loomis
+'t't
+
+Steve Martin
+They're not a – mission and not an app. They're just, I don't like Sipraneta, I want to be on your system. So we go through that initial kind of contract conversation and then we bubble it up and bring it over to Captain Schneider. That's not good. I'll say. Colonel Johnson, does the IMD
+
+Dan Loomis
+'t't
+
+Aaron Falk
+change the decision-making process on this?
+
+Col. Peterson
+No, I don't think it does. Because like they said, this is just someone, you know, these are other things coming to reside on our platform. Where I worry that might change the decision-making process on this, right, is that Tasker that we were looking at for everyone that shall forth use Adapt Cloudworks.
+
+Dan Loomis
+'t't
+
+Col. Peterson
+I think that's a bigger impact to these folks. We decided it didn't impact us, but these folks might not be allowed to onboard onto us, even if they want to, because of that memo.
+
+Steve Martin
+Yeah, and that memo, it's a draft, and once they sign it, it's from that point forward. So anybody who's in is in. But it's a good point here, and we're – Doing the same thing, we're talking with AFMC and AFL. Yeah, them on the SCI environment. And we gave them a requirements document through Kat Schneider. Said, hey, here's kind of what we do. And they make that same determination. No, you'd go into DAF Cloud Work. but we added in there, well, this is a weapon system. I need 24-7, 365. I need high this, high that. Do you meet those requirements? And if they do, it's kind of like, okay, so maybe you are the platform, right? And then we lay on top of that.
+
+Dan Loomis
+a
+
+Steve Martin
+So they have to go through that same thing. Thank you for these guys. Same thing.
+
+Col. Peterson
+Yeah, and that's really on them, not on our team to do. Now, where my change, Erin, is where some of those items that are up there, we are more interested in from a mission-built perspective, and so maybe they are not paying to be hosted, such as D&D.
+
+Aaron Falk
+Right. Yeah, I was just trying to, my first question was like, where does that fall into this ordering?
+
+Dan Loomis
+a
+
+Aaron Falk
+Do we want to start preempting things because it's of direct interest to MD2? Or, you know, as other things come up because there's a lot of...
+
+Col. Peterson
+We 100% can. I think Steve's team can handle it all at the same time. So it's not, there's no need to order them at this time. because there are sides appropriately to take care of the customers coming in. If they start getting too many customers asking to come on, yeah, then we can help them prioritize as needed through core.
+
+Dan Loomis
+'t't
+
+Steve Martin
+And again, not that, you know, because Selin's my boss, I keep calling him out, but we got a commercial solution that actually goes through what do they want? What are the resources? This many reserve instances. This is your pure commercial. cloud costs. There's no wiggle room here. This is what it will cost you. But then it gets into those, you know, those other things like, well, you know what?
+
+Dan Loomis
+a
+
+Col. Peterson
+That's actually directly in line with the new guidance that we're going to get down from the Secretary of War at the end of this week that we need to be doing more commercial solutions. And so they're already kind of ahead of that. Right. Where we need to be. And we actually might be able to use this to get us out of some other things that we need to do. All right.
+
+Aaron Falk
+Yeah, it might be worth noting that I think D&D is the only one that is not definitely cloud-based. D&D may be something that we need to do on-prem. So the resources are just hard.
+
+Col. Peterson
+That whole thing, Stacey lost it on us on D&D.
+
+Dan Loomis
+'t't
+
+Col. Peterson
+Erin, we need to circle back around with her on that.
+
+Aaron Falk
+Copy that.
+
+Col. Peterson
+a later us discussion.
+
+Steve Martin
+Yeah. We've always said nobody goes on to KSP or C2 Ops unless you guys direct it for the mission.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+Otherwise, everybody goes on somewhere else. But in this case, it could be special. Gavin, I know you called out, but I think we're good. Thank you for your service. You can sit down now.
+
+Col. Peterson
+Well,
+
+DP
+Thanks, Serge.
+
+Col. Peterson
+There might be some synergies with OTTI that we want to look at as well that you're onboarding there with our TTX and whatnot. So that's another one of interest.
+
+Steve Martin
+Yes, ma'am. You had called that out before. Okay, other topic, Garden of the God, you saw the emails, just wanted to kind of give you a summary of what's actually going on up there, right, for the transition. So here's kind of a rundown, what you see. And who's who's coming in. It's mostly one testers, but there are 125 badges issued. That's kind of the lay down. I only bring this up to if you're actually putting a squadron in that facility, some people may have to find another home.
+
+Dan Loomis
+'t't
+
+Steve Martin
+But I wanted you to see it. We'll keep you updated. Obviously, I do know you saw the email with the captain on giving a formal request to the PCO on what it is. And Sylvan sent over the last facility mod, just edit, copy, edit, paste, send it over so they can actually take an action.
+
+Dan Loomis
+a
+
+Steve Martin
+The special...
+
+Col. Peterson
+Increase in supply.
+
+Steve Martin
+Yes, ma'am. And so challenges, opportunities. I want to put you on the spot here, ma'am, but I know Booz will be coming back at me and saying, hey, what about? We've not committed anything. This was a former platform chief's idea. It's not a bad idea, but they haven't spent any money.
+
+Dan Loomis
+a
+
+Steve Martin
+It's business development, right? They gave us a proposal to go do this. Five million takes about a year to get accredited. What this is for everybody on the line, it's basically replacing wind hours with an organic capability that we host up at Garden of the Gods. So we take the existing wind hours and we put them on our system and we host the wind hours. So we have expandability. We don't have to go to anybody. It gets accredited by the space AO, which they've never done before.
+
+Dan Loomis
+'t't
+
+Steve Martin
+So it'd be teaching them again what this is. But it is NSA disapproved and Booz is one of the prime contractors that
+
+Dan Loomis
+'t't
+
+Steve Martin
+that supports them in the wind our solutions today uh so not pushing here just it's a thing out there we got to kind of are we going to do it or not uh because we got to think about facility space uh and stuff and the other one is uh you know the risk on getting what a journey uh getting up at vandenberg uh organizational changes uh the at the end of the day the
+
+Dan Loomis
+a
+
+Steve Martin
+Today, they should have received their trusted upload memo as the VAS team is out-processing.
+
+Dan Loomis
+ur ur ur ur
+
+Steve Martin
+We assume all that responsibility in our integration with the Tier 1 ITS. I was watching what these guys were saying. uh, is, is really good. I mean, there's, we've got the, and I believe you haven't, ma'am. It's the,
+
+Col. Peterson
+the race. Yes.
+
+Steve Martin
+The race.
+
+Col. Peterson
+Yeah.
+
+Steve Martin
+Yeah. So it's a, it's good between them and us. Uh, and, uh, it, it lays it out well. So we both can know what we're accountable and responsible for. So that, that relationship has really gone well. The vast team, I think a couple of them already moved off. Uh, I think their end is the end of the month. Uh, is what I've heard, but we're not waiting for that. So we're taking the seats, working collaboratively with the building owner and stuff, which most of them were out, as you know. But it's been a long journey, but we're there. And I told the team, let's start doing the trusted uploads because they're still here in case we need something from them. But they've been over the shoulder all this time anyway. Those are the two items that I wanted to bring up there. So that's the part A. Part B, I then get to shut up and Sylvan gets to talk numbers. So...
+
+Dan Loomis
+a
+
+Sylvin Edwards
+So this is fun status. I think we're well aware of where we are. Just orienting you to the slide, cleanse 1 through 7, those are the SDA cleanse, 8 through 14, those are SATCOM.
+
+Dan Loomis
+'t't
+
+Sylvin Edwards
+We've been communicating very closely with Katn Parker. Today, all of the SDA cleanse are funded basically through the end of November. We have the tasker, I think we found yesterday, Sarah, which was asking how much funding we need to get to the end of December with FY26 funds. We sent that back towards fundamentally those numbers that you see there. And then you asked earlier about SATCOM, where we funded to. We're in good shape there on SATCOM for a certain time.
+
+Dan Loomis
+'t't
+
+Col. Peterson
+So my request here is, and I'll have Captain Parkinson through contracting as well. We're trying to pulse everyone, knowing that you're sitting on IOUs right now. How long can your company really... Yeah. handle being on an IOU. Yeah, that's the comments.
+
+Sylvin Edwards
+So we're assessing that. I think we're comfortable at least through December.
+
+Col. Peterson
+That seems to be the general that I've been getting from. Yes. And what I want to do is get ahead of that
+
+Dan Loomis
+'t't
+
+Col. Peterson
+with whatever legally I can do if we get to
+
+Dan Loomis
+a
+
+Col. Peterson
+that. I just want my leadership to be aware of when our companies are starting to become uncomfortable. I mean, then that'll be going all the way up to General Purdy, right? And so, yeah, if we can send that back, you know, maybe to Captain Parker on, hey, here's where we think it'll start becoming uncomfortable for us, that would be helpful. And that's really just us gathering data for the department.
+
+Sylvin Edwards
+I have no questions. So these are our financial performance information. All of this reported in the MSR. There's a companion Excel sheet that comes with the MSR. It goes into incredibly more detail than just this, but this is a good question.
+
+Col. Peterson
+Yeah.
+
+Dan Loomis
+'t't ur ur
+
+Sylvin Edwards
+a big summary at the clean level. Categorizing that we're not doing EVM, this is budget versus actual, but we're using a lot of the similar formats that you see, current period, deltas, cumulative deltas, and then estimates that complete. I think the more meaningful portion of this chart is probably the little table down at the bottom that shows How performing against our, you know, costs against our schedule, burn rate and our spending training pretty tightly to most areas, except you can see in Glen 3, we're behind or I wouldn't say behind, not spending as much on tier two, three support, which I think is actually a good story there. We're not needing to pivot over for outages.
+
+Dan Loomis
+'t't
+
+Sylvin Edwards
+And then CLIN 5, you'll see we're a little behind, 21% versus 17%, and that's explaining the bullet. Really, it's all just KSB. Once that's accepted and we can claim victory, then they will invoice us for that. And so the balance of that disconnect that you can see today is driven by that effort.
+
+Col. Peterson
+And what's the disconnect on CLIN 2, ODCs?
+
+Sylvin Edwards
+That's just we're not traveling as much. That's purely travel.
+
+Col. Peterson
+Got it. That makes sense.
+
+Sylvin Edwards
+Yep. So overall, trending pretty tightly to the plan so far.
+
+Col. Peterson
+Okay.
+
+Sylvin Edwards
+Let's start. This is another look at the financials, kind of giving you a snapshot of how all the resources on the contract are being distributed by the missionaries. 95% of what we're doing, labor, non-labor, is associated to SDA. Satcom is about 5% of 5%. If you break those down, you're seeing now by environment, how your resource is being distributed. A lot of the effort is just kicking off, just starting there. And then how Satcom is paying as well.
+
+Dan Loomis
+'t't
+
+Sylvin Edwards
+And in the CFSR that we provide, it just drills down further. We can get into the, you know, atlas in which environments. And so eventually I'll start to collect that data and then kind of show it like this. But first go, just kind of give a first high level look, but we can go as deep as you'd like.
+
+Col. Peterson
+No, it's good.
+
+Sylvin Edwards
+Next chart. So here is the next level lower looking at the functional areas that align to what Steve was showing earlier with our org chart, but then also getting into the different environments. What are we spending on specifically care feeding the platform itself versus requests specifically of any of the different mission areas? And so at a high level, the majority, 40 percent of your resources are on storage, compute and licenses.
+
+Dan Loomis
+ur ur
+
+Sylvin Edwards
+That's the biggest bar that you see there. The next largest bucket would be Wayne's group and having DB's group on actually the operating platform, the engineering side in the environment.
+
+Dan Loomis
+'t't
+
+Sylvin Edwards
+A lot of our efforts actually
+
+Dan Loomis
+urturt
+
+Sylvin Edwards
+expand just on care and feeding of the environments itself. Not a lot of special requests come in to help the different app teams. And I think that's reflective of the SLAs we were showing earlier in that if we hit those SLAs, you're not often needing to know the mission areas specifically. This gives you a different look and this is specifically in that 95% bucket, right? SDA only. And then the next chart scheme will show SATCOM. So SATCOM, a lot more of their resources are spent on the
+
+Dan Loomis
+a
+
+Sylvin Edwards
+platform side. They're ramping up efforts, right? Different You know, you're seeing a little bit more of our efforts spent specifically helping them. I think a large part of that is having to do with, you know, can platform specifically design for your mission area. So, you know, there's a lot of things you got to help them to get working in the platform. So you see a little bit more up to Google. uptick in apps or directly, but by and large, same story, right? It's the care and feeding of the environment itself.
+
+Col. Peterson
+How come our cloud storage and compute is so much less to their platform ops, even though most of their stuff is in IL-6?
+
+Sylvin Edwards
+Yeah, we're... Yeah, we're working on introducing some different FinOps techniques to dial in our cloud spend.
+
+Dan Loomis
+urturt
+
+Sylvin Edwards
+We're working with Microsoft to right-size this so that in future iterations, in about two weeks here, we'll have a more...
+
+Col. Peterson
+More soon, the majority user in IL6 right now, not me. I mean, that's what's confusing me right now.
+
+DP
+Yeah. So there are more, more, more, and it's pretty substantial. And so that maybe will explain to you how the difference.
+
+Dan Loomis
+'t't
+
+DP
+That makes sense.
+
+Col. Peterson
+Yeah. Yeah. Okay. Okay.
+
+Sylvin Edwards
+Other financial topics, requesting or recommending a clean six ceiling increase. So the basis of our current budget was from our proposal timeframe early, you know, late Okay. last year and just in taking over a lot of the licensing costs. The actual prices we're seeing are a lot more expensive than what we had anticipated during our goals and time. I know the 2.2 million that we're seeing in Red West is probably about 6% of the overall budget for Cleanse 6.
+
+Dan Loomis
+a
+
+Sylvin Edwards
+But what's driving that number has been ASDOM. So we purchased the last year of ASDOM, which was about $600K, and we're planning at least to do it one more time. If you want there, if it's a requirement that we need to continue, we'll need to lay that in the out years as well. But that will obviously drive the need there. If we've removed ASDOM from this list, we're only about a million dollars off, so 3%. error among the proposal, which I don't know, you know, not too bad.
+
+Col. Peterson
+I don't think we're going to get out of Hasdom though, but that might be a bill that we're going to be able to share with some other folks. So let's look at that. And it's Hasdom really the only way, because I know there's actually a, there's a, there's potential increase in that requirement for the HATSIM licenses, where right now it's relegated down to 18th ops only is allowed to use the HATSIM data, correct? I remember right.
+
+Dan Loomis
+a
+
+Col. Peterson
+And there's some other folks like, hey, NSPC will be used to have some data or UDL or DARK or whomever. there might be for what we need to look at Hasdom. So I would like to re-engage on Hasdom when we have time to breathe and think through what is the right strategy for acquiring that data. And is Hasdom the only place to acquire it?
+
+Dan Loomis
+'t't
+
+DP
+- Okay.
+
+Col. Peterson
+- Now if we do acquire it from someone else that might change some of our predictions, which is what I worry about, right? urturt
+
+Sylvin Edwards
+Yes, sorry to just go back. Yep, yep. The second bullet there, I think Steve already mentioned to you, right, once we do a full pivot to Atlas and IELTS, it will be some increased cost in storage and compute there. We've got enough capacity, I believe, in contract right now to get the effort started. Start working the NPA environment, so not worried about that yet, but we need to cover that. And then another small cost, but just wanting to make sure it's on your radar when we do finally bring the SCI on, there is a network cost that we cannot cover that will have to be paid to the distance storefront.
+
+Dan Loomis
+a
+
+Col. Peterson
+Got it.
+
+Steve Martin
+That's all it happens. summary ma'am on the off side I mean you're
+
+Dan Loomis
+ur ur
+
+Steve Martin
+well involved in things we're doing the cyber team continues by getting the three year ATOs I think that's coming to an end with a couple systems that are coming up enough for bad reasons but the team seems to be hitting the mark not just focused on C2 ops at Vandenberg. I made it clear, like you said, we still got this IL-6 thing. We still got a DevSecOps. That's what makes us special. Correct. That we can get things into production. So we got to make sure our tool chain is still tight. Our IL-4 is still good and build out the IL-5. In this case, it was primarily for production for SATCOM. But they're hitting those marks. taking bruises along the way and learning lessons. But, you know, we got the team on site, they're getting engaged, getting involved, meeting the right people. And then on the financials, I mean, it was difficult to sit in a room, even though we were in it and do an estimate for how much all the software costs. And if we're off by, You know, 3% after really taking over since May.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+I'll just say I think that's pretty darn good because there was a lot of things found, you know, like equipment found on base. But we found it. We had to get it. There was some stuff that we didn't realize we needed. we had to go get so but now we got a good baseline and it's all part of that transition plan hopefully we won't use it for another nine years but uh it uh it's there and it will be things will turn over uh in a database right so whoever takes over has it you know it's not we walk away and you know sucks to be you right we want to be a mission partner regardless of what mission it is in the future so So, did you have anything to help?
+
+DP
+No, no.
+
+Steve Martin
+Any questions out on the net?
+
+Dan Loomis
+'t't
+
+Aaron Falk
+This is great, Steve. Can you distribute the slides? Or at least send a copy to me? Yes, of course.
+
+Capt. Scneider
+I mean, I don't like to distribute the slides, but then getting the compilence links out
+
+Dan Loomis
+ur ur
+
+Capt. Scneider
+and then just making sure that everyone does have access to those pages. I know sometimes getting the pages, you have to request access.
+
+Steve Martin
+Well, there's some, like the financials, I generally don't.
+
+Capt. Scneider
+Okay. But I know like send those out. I wanted to show in the beginning that like the mission, vision, everything else from there, that if we're planning to send that out to everyone, that they can do, make sure everyone has access so that they don't have to always ask permission. Yeah, I'll go.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+Yep, go get that checked. Thanks, Aaron.
+
+Aaron Falk
+I don't need the financials. But this was a great run through.
+
+Col. Peterson
+Yeah, I would say anyone else online have any comments or close it up? Okay. We talked through a couple of the things that I wanted to see, right? The planning
+
+Dan Loomis
+ur ur
+
+Col. Peterson
+kind of aligned with the rest of the team.
+
+Sylvin Edwards
+Yep.
+
+Col. Peterson
+And we're getting there and getting that all kind of into one bit. The integration with the mosaic side of the house needs to happen. The plan for TSSCI and what's the two requirements that we're doing and what's that actual plan. What am I paying for and where am I paying for it? And then the last thing I would challenge you on some of your bullets here on your closing, right? I still would love to see you all help us take something from the innovation pipeline and the innovation efforts that we're working now, right? And bring it all the way through from Contractor X was putting the software, you know, through the SDA tab lab or wherever. And we've now marched it all the way through.
+
+Dan Loomis
+ur ur
+
+Col. Peterson
+our tool chain up to actual ops, right? And it's working in ops. D&D might be that thing. It might not. There are other items out there, some other UCT items. There's always our good friend, Osiris. We need to actually prove out that we can do that in true tips, like ops fashion. And we need to get some wins there sooner rather than later. So please work with the team working those efforts to help us get those wins that we can go back to Congress and say, look, look at look at what we're doing. Yes, I'm bringing in some outside code and bringing outside commercial. I'm able to sustain it and whatever else and bring it through my tool chain and into operations to get into the hands of the operator. A lot of what you're going to hear from the secretary of war on Friday, I'm assuming someone from your leadership is going to that or was directed to go to that. You're going to hear a lot of that from him that now speed and delivery to ops is going to be what drives every single contract process. We were going to set them up from now on as well as the commercial solutions. And so we need to start proving out that we can do that as a team and that we can get that into ops. Whenever that looks like faster, quicker and. Be able to go back to be like, look, that is what we're doing with this program. So they leave us alone. We don't get any outside help.
+
+Steve Martin
+Yes, ma'am.
+
+Col. Peterson
+We've had plenty of outside help on this program we don't need anymore. Right? So let's show them that we're already doing everything the Secretary War wants to do.
+
+Dan Loomis
+'t't
+
+Col. Peterson
+My favorite is now where it's no longer Defense Acquisition University, it's the Warfighting Acquisition University. Go!
+
+Aaron Falk
+Oh, thank goodness.
+
+Col. Peterson
+Yes.
+
+Aaron Falk
+For a wound? Wow.
+
+Col. Peterson
+Yep. Anyway,
+
+Dan Loomis
+ur ur
+
+Col. Peterson
+Arsenal of freedom. Let's go. But a lot of those things are going to come and hit us within the next 180 days that we're going to have to prove out or we're going to get more help than we want. So let's figure out as a team how to...
+
+Steve Martin
+And that will help with the work Gavin's been doing on that list because they'll get motivated now. Oh, shit. We got Cam sitting right there. Let's go just go do that.
+
+Col. Peterson
+Yep.
+
+Steve Martin
+Yeah.
+
+Col. Peterson
+Let's just go do it. Put it in an operational hand and be like, here, it's being used in operations. Now, granted, asterisks, right? I still am a little bit shady on how we're going to sustain all that software this year. but y'all are going to tell me how we're going to do that. Yeah.
+
+Dan Loomis
+ur ur
+
+Steve Martin
+Well, and the, the, the, the piece that we have that's not traditional is what's silver created was
+
+Dan Loomis
+a
+
+Steve Martin
+the commercial side of your team. Here's the resources. Here's an embedded in that. Just so you know, is our costs. We got to bring on, if you bring on 10 little apps, And they pay their storage and compute. When you get over here, oh, shit, I need five more people and one in production, one in tool chain. And it's too late. You've got you've onboarded these 10 teams. So the tool actually allocates money for that, which we may not put. buy a person at that time, it may be three apps later, but they all have to pay into that. So it is truly a commercial solution. Yes, ma'am.
+
+Dan Loomis
+ur ur
+
+Col. Peterson
+Right. And I probably need some education to be able to talk to that smartly when I go and talk to leadership.
+
+Steve Martin
+Okay.
+
+Dan Loomis
+'t't't
+
+Col. Peterson
+Just to make sure I've got my talking points correct with OSD and with the PEO and with General Perdy.
+
+Steve Martin
+Actually, Sylvan, do you want the brief that you have, what we give to the teams, what the tool is? is made up of, you or Gavin, you could just take an expense and give her the briefing. I think that would answer that mail and get you some other stuff.
+
+DP
+And do you have a preference on the app that improves the status? Who's the decision maker on which that would be?
+
+Col. Peterson
+Well, that would be the stakeholders, the stakeholder forum. which is already finished, but really it would be mid, I mean, I don't know, take it through. We have like a bajillion boards now, right? Take it through the boards.
+
+Dan Loomis
+ur ur
+
+Col. Peterson
+Isn't it supposed to go through the innovation board now? Didn't I see a whole flowchart associated with that?
+
+Steve Martin
+Well, we get OTTI. Yeah, I don't know.
+
+Col. Peterson
+Just take it through whatever process you need to go through. to make that happen. I mean, obviously, you know, I heart getting rid of OSIRIS as soon as possible so we can get through the process and put it into ops, whether I even keep it for the long term or not. Great, but that just needs to happen. So I can deprecate that work. Yep.
+
+DP
+So Osiris. Okay.
+
+Col. Peterson
+My thought, but
+
+Dan Loomis
+ur ur
+
+Col. Peterson
+one of these other things referred to, I don't know. Just take it through the process.
+
+Aaron Falk
+There's a bang for the buck analysis, and then there's also a speed version. I've got some ideas on what would be a lightweight one that'll be a quick success, but possibly less impact than Osiris. do them all
+
+Col. Peterson
+I can do it all I don't know spend my money
+
+Aaron Falk
+we'll go
+
+Sylvin Edwards
+Oh, got a minute.
+
