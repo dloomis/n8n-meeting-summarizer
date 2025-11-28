@@ -74,7 +74,7 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 
 - Credentials are not included in the workflow JSON for security
 - Never commit real API keys to the repository
-- The workflow fetches the system prompt from this GitHub repo
+- The workflow fetches the system prompt from this GitHub repo (updated regularly; clone the repo if you want to customize without changes being overwritten)
 
 ## Troubleshooting
 
