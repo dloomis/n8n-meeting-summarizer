@@ -52,19 +52,16 @@ tags: meeting-summary
 - **Hot Takes**: `**Name**` (always bold after quote)
 
 ### Action Items
-- **CRITICAL**: Always insert a newline immediately after the task description
-- Format structure:
+- Format with line break after description:
   ```
   - [ ] Description
     🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD
   ```
-- The metadata line (with emojis) must start on a new line with proper indentation
 - Include emojis: 🎯 for owner, 🗣️ for requestor
 - Calculate specific dates when mentioned; otherwise use default due date
 - Use `Unknown` only when attribution is genuinely ambiguous
 - Prioritize explicit commitments with clear ownership
 - Limit to 5-7 top-priority items
-- Never put the description and metadata on the same line
 
 ### Content Guidelines
 - **TL;DR**: 1-2 sentences maximum
@@ -88,7 +85,6 @@ tags: meeting-summary
 - Verify YAML frontmatter has no trailing spaces
 - Confirm date format is `YYYY-MM-DD` or empty
 - Check person name formatting matches context (YAML vs body vs actions)
-- **Verify each action item has a newline separating description from metadata**
-- Ensure action items have emoji labels and proper indentation
+- Ensure action items have emoji labels and line break after description
 - Validate hot takes don't contain substring duplicates
 - Confirm line breaks maintain vertical structure
