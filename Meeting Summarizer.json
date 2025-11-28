@@ -10,65 +10,11 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        1376,
-        432
+        1792,
+        -288
       ],
       "id": "45d30ad9-4c0e-4be6-859e-e1308a398946",
       "name": "Write file to Obsidian"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "d92fcf22-31bf-4994-8790-d62e784d7570",
-              "name": "filenameNoExt",
-              "value": "={{ $json.filenameNoExt }}",
-              "type": "string"
-            },
-            {
-              "id": "42add7da-af06-4f83-9f92-2d46c6d9ee72",
-              "name": "filenameFullPath",
-              "value": "={{ $('Local File Trigger').item.json.path }}",
-              "type": "string"
-            },
-            {
-              "id": "e99a29ea-e18c-4864-ba43-38c02ff4147b",
-              "name": "gitSystemPromptURL",
-              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt.md",
-              "type": "string"
-            },
-            {
-              "id": "384ec46f-b694-4765-a2d1-a5c90856038d",
-              "name": "obsidianUser",
-              "value": "Dan Loomis",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1840,
-        -256
-      ],
-      "id": "bfc10f56-f944-4c1f-a84f-60bb7410c20f",
-      "name": "Store file info"
-    },
-    {
-      "parameters": {
-        "jsCode": "// n8n Code Node - Remove file extension from filename\n// Works with single items or multiple items\n\nreturn items.map(item => {\n    const filename = $('Read/Write Files from Disk').first().json.fileName; // adjust field name as needed\n\n    if (!filename || typeof filename !== 'string') {\n        return item; // return unchanged if no valid filename\n    }\n\n    // Remove the extension (everything after the last dot)\n    // But preserve hidden files like \".gitignore\" or \".env\"\n    const cleanedFilename = filename.replace(/\\.[^/.]+$/, '');\n\n    // Return the item with the new filename (you can name the output field whatever you want)\n    return {\n        json: {\n            ...item.json,\n            filenameNoExt: cleanedFilename,\n            // Optionally keep original:\n            // filename: filename,\n        }\n    };\n});"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1616,
-        -256
-      ],
-      "id": "7bf45097-1f9e-4384-a5c7-8a68f9618069",
-      "name": "Strip file extension"
     },
     {
       "parameters": {
@@ -86,8 +32,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        1648,
-        256
+        1408,
+        -64
       ],
       "id": "4e52ff29-0617-4636-9bf2-9f1316e2a407",
       "name": "qwen/qwen3-30b-a3b-2507",
@@ -108,8 +54,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        1376,
-        256
+        1216,
+        -64
       ],
       "id": "5ee249c7-c81e-49cb-98bd-59c57ee9337a",
       "name": "Claude Sonnet 4.5",
@@ -118,7 +64,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Here is the transcript to summarize. Default Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n\n{{ $('Extract from File').item.json.data }}\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "text": "=Here is the transcript to summarize. Default Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n\n{{ $('Webhook').item.json.body.transcript }}\nPlease generate the summary now following the OUTPUT TEMPLATE.",
         "messages": {
           "messageValues": [
             {
@@ -131,24 +77,11 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        1376,
-        16
+        1216,
+        -288
       ],
       "id": "8ef28ae0-f22e-42c8-9cf7-741f19d5ceb4",
       "name": "Summarize Transcript"
-    },
-    {
-      "parameters": {
-        "command": "=rm \"{{ $('Store file info').item.json.filenameFullPath }}\"\n"
-      },
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
-      "position": [
-        1616,
-        432
-      ],
-      "id": "dd92f0d7-d303-492b-807a-75d0b71eb2e9",
-      "name": "Delete local transcription file"
     },
     {
       "parameters": {
@@ -156,21 +89,21 @@
         "sourceProperty": "text",
         "options": {
           "encoding": "utf8",
-          "fileName": "={{ $('Store file info').item.json.filenameNoExt }}.{{ Math.floor(Math.random() * 1000) }}.md"
+          "fileName": "={{ $('Webhook').item.json.body.title }}.{{ Math.floor(Math.random() * 1000) }}.md"
         }
       },
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        1152,
-        432
+        1568,
+        -288
       ],
       "id": "bfedac69-08df-4b7b-a54a-5d057fa3f222",
       "name": "Convert to File"
     },
     {
       "parameters": {
-        "url": "={{ $json.gitSystemPromptURL }}",
+        "url": "=https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt.md",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "githubApi",
         "options": {}
@@ -178,8 +111,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        944,
-        16
+        992,
+        -288
       ],
       "id": "d6c4f77b-7a32-4454-af00-f25463bac6b9",
       "name": "Fetch System Prompt",
@@ -187,91 +120,23 @@
     },
     {
       "parameters": {
-        "operation": "text",
+        "httpMethod": "POST",
+        "path": "e451eb11-c18f-46ed-ab1a-a077d3863185",
         "options": {}
       },
-      "type": "n8n-nodes-base.extractFromFile",
-      "typeVersion": 1,
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
       "position": [
-        1392,
-        -256
+        768,
+        -288
       ],
-      "id": "54057e54-bee2-4cd0-a559-1e2a5bce2f92",
-      "name": "Extract from File"
-    },
-    {
-      "parameters": {
-        "fileSelector": "={{ $json.path }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.readWriteFile",
-      "typeVersion": 1,
-      "position": [
-        1168,
-        -256
-      ],
-      "id": "5a591dbf-f1db-4736-9e5a-90d7183314b8",
-      "name": "Read/Write Files from Disk"
-    },
-    {
-      "parameters": {
-        "triggerOn": "folder",
-        "path": "/data/tmp",
-        "events": [
-          "add",
-          "change"
-        ],
-        "options": {
-          "awaitWriteFinish": true
-        }
-      },
-      "type": "n8n-nodes-base.localFileTrigger",
-      "typeVersion": 1,
-      "position": [
-        944,
-        -256
-      ],
-      "id": "aec7336b-4bea-46d5-be5e-5b2c818d13b8",
-      "name": "Local File Trigger"
-    },
-    {
-      "parameters": {
-        "jsCode": "// Simple Find & Replace – n8n Code Node (FIXED)\n\nconst fieldName   = \"data\";                    // ← your actual field name (not the value!)\nconst find        = \"{{OBSIDIAN_USER}}\";       // text to find\nconst replaceWith = $('Store file info').first().json.obsidianUser;              // text to replace with\n\nreturn items.map(item => {\n    // Safely get the text from the correct field\n    let text = item.json[fieldName] ?? \"\";\n\n    // Ensure it's a string\n    if (typeof text !== \"string\") {\n        text = String(text);\n    }\n\n    // Perform the replacement (case-insensitive, global)\n    const result = text.replace(new RegExp(find.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'gi'), replaceWith);\n\n    // Add as new field (or overwrite original)\n    //item.json.replacedText = result;\n    item.json[fieldName] = result;  // uncomment if you want to overwrite\n\n    return item;\n});"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1152,
-        16
-      ],
-      "id": "0719c9d3-2e0c-4186-b53f-372e273db228",
-      "name": "Code in JavaScript"
+      "id": "3449c908-d874-46e0-b4ad-c7696bc5aa24",
+      "name": "Webhook",
+      "webhookId": "e451eb11-c18f-46ed-ab1a-a077d3863185"
     }
   ],
   "pinData": {},
   "connections": {
-    "Store file info": {
-      "main": [
-        [
-          {
-            "node": "Fetch System Prompt",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Strip file extension": {
-      "main": [
-        [
-          {
-            "node": "Store file info",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Claude Sonnet 4.5": {
       "ai_languageModel": [
         [
@@ -296,13 +161,7 @@
     },
     "Write file to Obsidian": {
       "main": [
-        [
-          {
-            "node": "Delete local transcription file",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Convert to File": {
@@ -320,51 +179,18 @@
       "main": [
         [
           {
-            "node": "Code in JavaScript",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Extract from File": {
-      "main": [
-        [
-          {
-            "node": "Strip file extension",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Read/Write Files from Disk": {
-      "main": [
-        [
-          {
-            "node": "Extract from File",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Local File Trigger": {
-      "main": [
-        [
-          {
-            "node": "Read/Write Files from Disk",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code in JavaScript": {
-      "main": [
-        [
-          {
             "node": "Summarize Transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Fetch System Prompt",
             "type": "main",
             "index": 0
           }
@@ -372,13 +198,13 @@
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1",
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "c8ea66e7-1d00-4eb6-8aa2-5dca65985d76",
+  "versionId": "20470d3a-ab8e-46dd-ac03-8ecc25f2f695",
   "meta": {
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
   },
