@@ -27,26 +27,24 @@ An automated workflow using n8n to summarize meeting transcripts into structured
    cd n8n-meeting-summarizer
    ```
 
-2. **Start n8n**:
+2. **Configure paths**: Edit `compose.yml` to replace `/path/to/your/tmp/directory` and `/path/to/your/obsidian/vault/Meeting Summaries` with your actual local paths
+
+3. **Start n8n**:
    ```bash
    docker-compose up
    ```
 
-3. **Access n8n UI** at `http://localhost:5678`
+4. **Access n8n UI** at `http://localhost:5678`
 
-4. **Create credentials** in n8n UI:
+5. **Create credentials** in n8n UI:
    - **GitHub API**: Create a personal access token with repo read access
    - **Anthropic API**: Get API key from Anthropic
    - **OpenAI API**: Get API key from OpenAI
 
-5. **Import workflow**:
+6. **Import workflow**:
    - In n8n UI, go to Workflows > Import from File
    - Select `Meeting Summarizer.json`
    - Assign the created credentials to the respective nodes
-
-6. **Configure paths** (if needed):
-   - Ensure `/data/tmp` and `/data/summaries` are accessible
-   - The workflow expects transcription files in the format with speaker names on separate lines
 
 ## Usage
 
