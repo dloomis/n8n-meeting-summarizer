@@ -60,9 +60,9 @@ tags: meeting-summary
 - [Concise Point 3]
 
 ### Action Items ✅
-- [ ] [Task Description] **Owner:** (action-owner:: [[People/Name|Name]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
-- [ ] [Task Description] **Owner:** (action-owner:: [[People/Name|Name]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
-- [ ] [Task Description] **Owner:** (action-owner:: [[Unknown]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
+- [ ] [Task Description] **Owner:** (action-owner:: Name) **Requestor:** (action-requestor:: Name) 📅 YYYY-MM-DD
+- [ ] [Task Description] **Owner:** (action-owner:: Name) **Requestor:** (action-requestor:: Name) 📅 YYYY-MM-DD
+- [ ] [Task Description] **Owner:** (action-owner:: Unknown) **Requestor:** (action-requestor:: Name) 📅 YYYY-MM-DD
 
 ### Hot Takes 🔥
 > Quote or memorable moment 1 - Speaker Label
