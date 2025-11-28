@@ -27,8 +27,10 @@ tags: meeting-summary
 - [Major topic 4]
 
 ### Action Items ✅
-- [ ] [Task description] 🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD
-- [ ] [Task description] 🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD
+- [ ] [Task description]
+  🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD
+- [ ] [Task description]
+  🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD
 
 ### Hot Takes 🔥
 > Impactful quote or decision - **Speaker**
@@ -50,7 +52,11 @@ tags: meeting-summary
 - **Hot Takes**: `**Name**` (always bold after quote)
 
 ### Action Items
-- Format: `- [ ] Description 🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD`
+- Format with line break after description:
+  ```
+  - [ ] Description
+    🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD
+  ```
 - Include emojis: 🎯 for owner, 🗣️ for requestor
 - Calculate specific dates when mentioned; otherwise use default due date
 - Use `Unknown` only when attribution is genuinely ambiguous
@@ -79,6 +85,6 @@ tags: meeting-summary
 - Verify YAML frontmatter has no trailing spaces
 - Confirm date format is `YYYY-MM-DD` or empty
 - Check person name formatting matches context (YAML vs body vs actions)
-- Ensure action items have emoji labels
+- Ensure action items have emoji labels and line break after description
 - Validate hot takes don't contain substring duplicates
 - Confirm line breaks maintain vertical structure
