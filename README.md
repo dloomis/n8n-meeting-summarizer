@@ -50,7 +50,7 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 
 ## Usage
 
-1. **Prepare transcription**: Create a text file with speaker labels (see `meeting_with_peter.txt` for example)
+1. **Prepare transcription**: Use MacWhisper to transcribe audio files, then format as text with speaker labels (see `meeting_with_peter.txt` for example)
 2. **Place file**: Copy the transcription file to `/Users/dloomis/tmp/` (mounted as `/data/tmp`)
 3. **Monitor output**: Check `/Users/dloomis/Library/Mobile Documents/iCloud~md~obsidian/Documents/SDA/Meeting Summaries/` for generated summaries
 
