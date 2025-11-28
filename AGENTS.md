@@ -2,7 +2,8 @@
 
 ## Build/Lint/Test Commands
 - **Start n8n**: `docker-compose up`
-- **Validate workflow**: Import `Meeting Summarizer.json` into n8n UI and check for errors
+- **Setup credentials**: Create GitHub API, Anthropic API, and OpenAI API credentials in n8n UI
+- **Validate workflow**: Import `Meeting Summarizer.json` into n8n UI, assign credentials, and check for errors
 - **Test workflow**: Place transcription file in `/data/tmp` and monitor `/data/summaries`
 - **Debug single execution**: Use n8n UI to manually trigger with test data
 
