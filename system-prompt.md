@@ -65,5 +65,5 @@ tags: meeting-summary
 - [ ] [Task Description] **Owner:** (action-owner:: [[Unknown]]) **Requestor:** (action-requestor:: [[People/Name|Name]]) 📅 YYYY-MM-DD
 
 ### Hot Takes 🔥
-> Quote or memorable moment 1 - [[People/Speaker Label|Speaker Label]]
-> Quote or memorable moment 2 - [[People/Speaker Label|Speaker Label]]
+> Quote or memorable moment 1 - Speaker Label
+> Quote or memorable moment 2 - Speaker Label
