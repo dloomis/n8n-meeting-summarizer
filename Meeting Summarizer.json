@@ -65,7 +65,7 @@
       ],
       "id": "62a941a6-2084-4f7b-8180-82ef71ca2d33",
       "name": "Fetch System Prompt",
-      }
+
     },
     {
       "parameters": {
@@ -140,7 +140,7 @@
       ],
       "id": "4e9cf57b-1562-404f-88cd-4c25a626f258",
       "name": "Claude Sonnet 4.5",
-      }
+
     },
     {
       "parameters": {
@@ -163,7 +163,7 @@
       ],
       "id": "145b497e-c23b-4f6e-a34d-2a58a698ade7",
       "name": "qwen/qwen3-30b-a3b-2507",
-      }
+
     },
     {
       "parameters": {
