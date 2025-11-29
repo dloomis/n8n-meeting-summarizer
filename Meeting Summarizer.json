@@ -16,10 +16,10 @@
       "type": "n8n-nodes-base.localFileTrigger",
       "typeVersion": 1,
       "position": [
-        -288,
-        -192
+        -64,
+        -48
       ],
-      "id": "5fed7826-bf7c-49f7-9649-411de799608c",
+      "id": "36e730da-9fc4-4287-bc82-2ec9ac91a628",
       "name": "Local File Trigger"
     },
     {
@@ -30,10 +30,10 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        -64,
-        -192
+        160,
+        -48
       ],
-      "id": "e9a77ff6-622d-4cf3-9047-37ae02ff61d2",
+      "id": "f09b5662-4f56-4ddd-91e9-2427d7d5e530",
       "name": "Read/Write Files from Disk"
     },
     {
@@ -44,23 +44,23 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        160,
-        -192
+        384,
+        -48
       ],
-      "id": "79674ee5-4dd6-49d6-8ab2-f5c235212608",
+      "id": "99088fdf-9aa6-42d4-b10e-61e3b5ee5ad7",
       "name": "Extract from File"
     },
     {
       "parameters": {
-        "jsCode": "// Extract participants and date from transcript text\\nreturn items.map(item => {\\n    const text = item.json.data || '';\\n    const blocks = text.split(/\\\\n\\\\n/).filter(b => b.trim());\\n    const participants = [...new Set(blocks.map(b => b.split('\\\\n')[0].trim()).filter(p => p))];\\n    const participantsHint = participants.length > 0 ? participants.join(', ') : 'None detected - extract from transcript';\\n    const dateRegex = /\\\\b(\\\\d{4}-\\\\d{2}-\\\\d{2})\\\\b/g;\\n    let extractedDate = text.match(dateRegex) ? text.match(dateRegex)[0] : new Date().toISOString().split('T')[0];\\n    return {\\n        json: {\\n            ...item.json,\\n            participantsHint,\\n            extractedDate\\n        }\\n    };\\n});"
+        "jsCode": "// Extract participants and date from transcript text\nreturn items.map(item => {\n    const text = item.json.data || '';\n    const blocks = text.split(/\\n\\n/).filter(b => b.trim());\n    const participants = [...new Set(blocks.map(b => b.split('\\n')[0].trim()).filter(p => p))];\n    const participantsHint = participants.length > 0 ? participants.join(', ') : 'None detected - extract from transcript';\n    const dateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/g;\n    let extractedDate = text.match(dateRegex) ? text.match(dateRegex)[0] : new Date().toISOString().split('T')[0];\n    return {\n        json: {\n            ...item.json,\n            participantsHint,\n            extractedDate\n        }\n    };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        384,
-        -192
+        608,
+        -48
       ],
-      "id": "extract-metadata-id",
+      "id": "b0478bec-cabc-435a-981b-5b57de79fb13",
       "name": "Extract Metadata"
     },
     {
@@ -73,10 +73,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        -288,
-        64
+        -64,
+        208
       ],
-      "id": "62a941a6-2084-4f7b-8180-82ef71ca2d33",
+      "id": "1861a84f-c3c9-4bf5-a4e1-ef0d09ba61bc",
       "name": "Fetch System Prompt"
     },
     {
@@ -91,10 +91,10 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -288,
-        480
+        -64,
+        624
       ],
-      "id": "059c9e67-368f-4ff2-909f-e570af3aea2b",
+      "id": "62483493-f24f-4758-b75e-ba589a4a6de9",
       "name": "Convert to File"
     },
     {
@@ -104,16 +104,16 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        176,
-        480
+        384,
+        624
       ],
-      "id": "45d44929-b267-4434-84fe-026f9366cf3f",
+      "id": "c752eed6-9d0f-4801-9493-67fb40ed818d",
       "name": "Delete local transcription file"
     },
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $json.participantsHint }}\nExtracted Date (hint): {{ $json.extractedDate }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participantsHint }}\nExtracted Date (hint): {{ $('Store file info').item.json.extractedDate }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
         "messages": {
           "messageValues": [
             {
@@ -126,10 +126,10 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        -64,
-        64
+        160,
+        208
       ],
-      "id": "819f0e34-2f86-416f-baf0-43592162163b",
+      "id": "3234eacb-3e29-481a-8897-eea25b6c2fc1",
       "name": "Summarize Transcript"
     },
     {
@@ -147,10 +147,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        -64,
-        304
+        160,
+        448
       ],
-      "id": "4e9cf57b-1562-404f-88cd-4c25a626f258",
+      "id": "f55b2e36-5168-48b5-b4da-032feb6cc5c5",
       "name": "Claude Sonnet 4.5"
     },
     {
@@ -169,10 +169,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        128,
-        304
+        352,
+        448
       ],
-      "id": "145b497e-c23b-4f6e-a34d-2a58a698ade7",
+      "id": "ace3527b-80e9-442f-9daa-60ffbfef4bbf",
       "name": "qwen/qwen3-30b-a3b-2507"
     },
     {
@@ -182,10 +182,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
-        -192
+        832,
+        -48
       ],
-      "id": "547fe4d5-e248-4f1c-8879-6a5dc831a768",
+      "id": "27a0f675-fbe0-416a-9aad-a0437e97a452",
       "name": "Strip file extension"
     },
     {
@@ -229,10 +229,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        608,
-        -192
+        1056,
+        -48
       ],
-      "id": "9d308598-12c9-49e9-9b17-df507dc4a78b",
+      "id": "f7efa843-9144-4f76-9c64-f77d3eb7e596",
       "name": "Store file info"
     },
     {
@@ -244,10 +244,10 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        -64,
-        480
+        160,
+        624
       ],
-      "id": "3cc849a1-e6cb-48e4-ae34-7aad20d0c86e",
+      "id": "ca8e3b94-bbda-498e-bae9-d1051d7c4ab3",
       "name": "Write file to Obsidian"
     }
   ],
@@ -375,16 +375,15 @@
       ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
-    "executionOrder": "v1",
-    "callerPolicy": "workflowsFromSameOwner",
-    "availableInMCP": false
+    "executionOrder": "v1"
   },
-  "versionId": "dedde1db-af4e-4091-9283-224f5fb365fc",
+  "versionId": "f335b112-6cd8-41ad-bd56-80eab9107374",
   "meta": {
+    "templateCredsSetupCompleted": true,
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
   },
-  "id": "eQXiPWGAUdrJLVEo",
+  "id": "elv9LGYfxKP6T8DN",
   "tags": []
 }
