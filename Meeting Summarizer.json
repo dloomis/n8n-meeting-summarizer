@@ -52,7 +52,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Extract participants and date from transcript text\nreturn items.map(item => {\n    const text = item.json.data || '';\n    const blocks = text.split(/\\n\\n/).filter(b => b.trim());\n    const participants = [...new Set(blocks.map(b => b.split('\\n')[0].trim()).filter(p => p))];\n    const participantsHint = participants.length > 0 ? participants.join(', ') : 'None detected - extract from transcript';\n    const dateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/g;\n    let extractedDate = text.match(dateRegex) ? text.match(dateRegex)[0] : new Date().toISOString().split('T')[0];\n    return {\n        json: {\n            ...item.json,\n            participantsHint,\n            extractedDate\n        }\n    };\n});"
+        "jsCode": "// Extract participants and date from transcript text\nreturn items.map(item => {\n    const text = item.json.data || '';\n    const blocks = text.split(/\\n\\n/).filter(b => b.trim());\n    const participants = [...new Set(blocks.map(b => b.split('\\n')[0].trim()).filter(p => p))];\n    const dateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/g;\n    let extractedDate = text.match(dateRegex) ? text.match(dateRegex)[0] : new Date().toISOString().split('T')[0];\n    return {\n        json: {\n            ...item.json,\n            participants,\n            extractedDate\n        }\n    };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -113,7 +113,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participantsHint }}\nExtracted Date (hint): {{ $('Store file info').item.json.extractedDate }}\nImportant Participants for Prioritization: {{ $('Store file info').item.json.importantParticipants.join(', ') }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participants && $('Store file info').item.json.participants.length > 0 ? $('Store file info').item.json.participants.join(', ') : 'None detected - extract from transcript' }}\nExtracted Date (hint): {{ $('Store file info').item.json.extractedDate }}\nImportant Participants for Prioritization: {{ $('Store file info').item.json.importantParticipants.join(', ') }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
         "messages": {
           "messageValues": [
             {
@@ -211,10 +211,10 @@
               "type": "string"
             },
             {
-              "id": "participants-hint-id",
-              "name": "participantsHint",
-              "value": "={{ $json.participantsHint }}",
-              "type": "string"
+              "id": "participants-id",
+              "name": "participants",
+              "value": "={{ $json.participants }}",
+              "type": "array"
             },
             {
               "id": "extracted-date-id",
