@@ -50,8 +50,9 @@ tags: meeting-summary
 - **Hot Takes**: `**Name**` (always bold after quote)
 
 ### Action Items
-- Format: `- [ ] Description 🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD`
+- Format: `- [ ] Description 🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD #priority/high`
 - Include emojis: 🎯 for owner, 🗣️ for requestor
+- Add priority tags: Use `#priority/high`, `#priority/medium`, or `#priority/low` based on urgency and impact (boost for Important Participants)
 - Calculate specific dates when mentioned; otherwise use default due date
 - Use `Unknown` only when attribution is genuinely ambiguous
 - Prioritize explicit commitments with clear ownership
