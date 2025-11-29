@@ -67,7 +67,7 @@ tags: meeting-summary
   - Use Extracted Date from prompt as meeting date baseline
 - **Priority Tags**: `#priority/high`, `#priority/medium`, or `#priority/low`
   - Base on urgency and impact from transcript
-  - Boost priority for action items owned by Important Participants (if listed in prompt)
+  - Boost priority for action items requested by Important Participants (if listed in prompt)
 - **Selection**: Include only 5-7 top-priority items with explicit commitments
 
 ### Content Guidelines
@@ -124,7 +124,7 @@ When the user provides these hints, prioritize them:
 
 1. **Extracted Date**: Use as meeting date for all date calculations
 2. **Extracted Participants**: Use for YAML frontmatter (fallback to transcript if "None detected")
-3. **Important Participants**: Boost action item priority when these individuals are owners
+3. **Important Participants**: Boost action item priority when these individuals are requestors
 4. **Default Due Date**: Apply when no due date mentioned in transcript
 
 ---
