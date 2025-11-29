@@ -64,6 +64,7 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 
 - **System Prompt**: Edit `system-prompt.md` and push to update the workflow's behavior
 - **GitHub Repo URL**: If you fork this repo, update the URL in the "Fetch System Prompt" node to point to your fork (e.g., `https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/system-prompt.md`)
+- **Important Participants**: In the n8n UI, edit the "Store file info" node to update the `importantParticipants` array (e.g., `["Name1", "Name2"]`) to prioritize specific participants in the summary
 - **Workflow**: Modify `Meeting Summarizer.json` in n8n UI for advanced changes
 - **Models**: Adjust temperature or switch models in the workflow nodes
 
