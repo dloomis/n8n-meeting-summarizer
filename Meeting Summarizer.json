@@ -52,6 +52,19 @@
     },
     {
       "parameters": {
+        "jsCode": "// Extract participants and date from transcript text\\nreturn $input.all().map(item => {\\n    const text = item.json.data || '';\\n    const blocks = text.split(/\\\\n\\\\n/).filter(b => b.trim());\\n    const participants = [...new Set(blocks.map(b => b.split('\\\\n')[0].trim()).filter(p => p))];\\n    const dateRegex = /\\\\b(\\\\d{4}-\\\\d{2}-\\\\d{2})\\\\b/g;\\n    let extractedDate = text.match(dateRegex) ? text.match(dateRegex)[0] : new Date().toISOString().split('T')[0];\\n    return {\\n        json: {\\n            ...item.json,\\n            participants,\\n            extractedDate\\n        }\\n    };\\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        384,
+        -192
+      ],
+      "id": "extract-metadata-id",
+      "name": "Extract Metadata"
+    },
+    {
+      "parameters": {
         "url": "={{ $json.gitSystemPromptURL }}",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "githubApi",
@@ -64,8 +77,7 @@
         64
       ],
       "id": "62a941a6-2084-4f7b-8180-82ef71ca2d33",
-      "name": "Fetch System Prompt",
-
+      "name": "Fetch System Prompt"
     },
     {
       "parameters": {
@@ -101,7 +113,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Here is the transcript to summarize. Default Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n\n{{ $('Extract from File').item.json.data }}\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $json.participants && $json.participants.length > 0 ? $json.participants.join(', ') : 'None detected - extract from transcript' }}\nExtracted Date (hint): {{ $json.extractedDate }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
         "messages": {
           "messageValues": [
             {
@@ -139,8 +151,7 @@
         304
       ],
       "id": "4e9cf57b-1562-404f-88cd-4c25a626f258",
-      "name": "Claude Sonnet 4.5",
-
+      "name": "Claude Sonnet 4.5"
     },
     {
       "parameters": {
@@ -162,8 +173,7 @@
         304
       ],
       "id": "145b497e-c23b-4f6e-a34d-2a58a698ade7",
-      "name": "qwen/qwen3-30b-a3b-2507",
-
+      "name": "qwen/qwen3-30b-a3b-2507"
     },
     {
       "parameters": {
@@ -198,6 +208,18 @@
               "id": "e99a29ea-e18c-4864-ba43-38c02ff4147b",
               "name": "gitSystemPromptURL",
               "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt.md",
+              "type": "string"
+            },
+            {
+              "id": "participants-id",
+              "name": "participants",
+              "value": "={{ $json.participants }}",
+              "type": "array"
+            },
+            {
+              "id": "extracted-date-id",
+              "name": "extractedDate",
+              "value": "={{ $json.extractedDate }}",
               "type": "string"
             }
           ]
@@ -254,6 +276,17 @@
       ]
     },
     "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Extract Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Metadata": {
       "main": [
         [
           {

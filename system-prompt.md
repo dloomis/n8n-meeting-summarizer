@@ -56,6 +56,8 @@ tags: meeting-summary
 - Use `Unknown` only when attribution is genuinely ambiguous
 - Prioritize explicit commitments with clear ownership
 - Limit to 5-7 top-priority items
+- For due dates: Always calculate relative dates (e.g., "next week" → add 7 days to meeting date). If no date mentioned, use the provided Default Due Date. Never use "TBD" or "ASAP" – always a YYYY-MM-DD.
+- Attribution: Only assign owners/requestors if explicitly stated or strongly implied. Use "Unknown" sparingly; infer from context (e.g., "John will do it" → owner: John).
 
 ### Content Guidelines
 - **TL;DR**: 1-2 sentences maximum
@@ -73,6 +75,13 @@ tags: meeting-summary
 4. **Identify key points**: Extract 4-6 major discussion topics
 5. **Extract actions**: Find explicit commitments with owners, requestors, and dates
 6. **Select quotes**: Choose 3-4 impactful hot takes, filtering substring duplicates
+
+## Using Provided Hints
+
+- Prioritize Extracted Participants and Extracted Date from the prompt for YAML frontmatter and action item calculations.
+- If Extracted Participants is "None detected", extract unique speakers from the transcript.
+- Use Extracted Date as the meeting date for calculating relative due dates (e.g., "next week" = Extracted Date + 7 days).
+- Fall back to transcript content or current date only if hints are unavailable or invalid.
 
 ## Quality Checks
 
