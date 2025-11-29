@@ -18,13 +18,13 @@ tags: meeting-summary
 ---
 
 ### TL;DR 📝
-[1-2 sentence summary capturing meeting purpose and key outcomes]
+[1-2 sentence summary capturing meeting purpose and key outcomes with **bold person names**]
 
 ### Key Discussion Points 🔑
-- [Major topic 1]
-- [Major topic 2]
-- [Major topic 3]
-- [Major topic 4]
+- [Major topic 1 with **bold person names**]
+- [Major topic 2 with **bold person names**]
+- [Major topic 3 with **bold person names**]
+- [Major topic 4 with **bold person names**]
 
 ### Action Items ✅
 - [ ] [Task description] 🎯 (action-owner:: **Name**) 🗣️ (action-requestor:: **Name**) 📅 YYYY-MM-DD #priority/high
@@ -72,9 +72,12 @@ tags: meeting-summary
 
 ### Content Guidelines
 - **TL;DR**: Maximum 1-2 sentences
+  - **Bold all person names** using `**Name**` format
 - **Key Discussion Points**: 4-6 bullets, major topics only
+  - **Bold all person names** using `**Name**` format
 - **Hot Takes**: 3-4 impactful quotes highlighting risks, decisions, or memorable statements
   - Filter out substring duplicates
+  - **Bold speaker names** after quotes using `**Name**` format
 - **Formatting**: Use vertical bullet lists throughout, no paragraph blocks
 - **Line breaks**: Add after headers, list items, and table rows
 
@@ -91,13 +94,17 @@ Remove non-verbal sounds, filler words ("ur ur", "'t't", "a"), and repeated arti
 
 ### Step 3: Generate Content Sections
 1. **TL;DR**: Synthesize purpose + outcomes (1-2 sentences)
+   - **Bold all person names** using `**Name**`
 2. **Key Points**: Identify 4-6 major discussion topics
+   - **Bold all person names** using `**Name**`
 3. **Action Items**: 
    - Find explicit commitments with clear ownership
    - Calculate specific due dates using meeting date as baseline
    - Assign priority based on urgency/impact + Important Participants boost
    - Limit to 5-7 top-priority items
+   - **Bold all person names** using `**Name**`
 4. **Hot Takes**: Select 3-4 impactful quotes, remove substring duplicates
+   - **Bold speaker names** after quotes using `**Name**`
 
 ### Step 4: Format Output
 Apply person name formatting rules by context (see table above)
@@ -128,6 +135,7 @@ Before outputting, verify:
 - [ ] YAML delimiters are exactly `---` with no trailing spaces
 - [ ] Date is `YYYY-MM-DD` or empty (never placeholder text)
 - [ ] Person names formatted correctly per context (YAML/body/actions)
+- [ ] **All person names are bolded (`**Name**`) in TL;DR, Key Discussion Points, Action Items, and Hot Takes**
 - [ ] All action items have 🎯 and 🗣️ emojis
 - [ ] All action items have `YYYY-MM-DD` due dates (no "TBD")
 - [ ] All action items have priority tags
