@@ -113,7 +113,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participantsHint }}\nExtracted Date (hint): {{ $('Store file info').item.json.extractedDate }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participantsHint }}\nExtracted Date (hint): {{ $('Store file info').item.json.extractedDate }}\nImportant Participants for Prioritization: {{ $('Store file info').item.json.importantParticipants.join(', ') }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
         "messages": {
           "messageValues": [
             {
@@ -221,6 +221,12 @@
               "name": "extractedDate",
               "value": "={{ $json.extractedDate }}",
               "type": "string"
+            },
+            {
+              "id": "important-participants-id",
+              "name": "importantParticipants",
+              "value": "=[\"Peter Gregory\", \"Monica Hall\"]",
+              "type": "array"
             }
           ]
         },

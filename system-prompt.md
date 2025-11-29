@@ -55,6 +55,7 @@ tags: meeting-summary
 - Calculate specific dates when mentioned; otherwise use default due date
 - Use `Unknown` only when attribution is genuinely ambiguous
 - Prioritize explicit commitments with clear ownership
+- Boost priority (e.g., to High) for action items owned by Important Participants listed in the prompt
 - Limit to 5-7 top-priority items
 - For due dates: Always calculate relative dates (e.g., "next week" → add 7 days to meeting date). If no date mentioned, use the provided Default Due Date. Never use "TBD" or "ASAP" – always a YYYY-MM-DD.
 - Attribution: Only assign owners/requestors if explicitly stated or strongly implied. Use "Unknown" sparingly; infer from context (e.g., "John will do it" → owner: John).
