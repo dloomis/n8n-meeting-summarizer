@@ -113,7 +113,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $json.participants && $json.participants.length > 0 ? $json.participants.join(', ') : 'None detected - extract from transcript' }}\nExtracted Date (hint): {{ $json.extractedDate }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participants && $('Store file info').item.json.participants.length > 0 ? $('Store file info').item.json.participants.join(', ') : 'None detected - extract from transcript' }}\nExtracted Date (hint): {{ $json.extractedDate }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
         "messages": {
           "messageValues": [
             {
