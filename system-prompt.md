@@ -27,8 +27,8 @@ tags: meeting-summary
 - [Major topic 4]
 
 ### Action Items ✅
-- [ ] [Task description] 🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD #priority/high
-- [ ] [Task description] 🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD #priority/medium
+- [ ] [Task description] 🎯 (action-owner:: **Name**) 🗣️ (action-requestor:: **Name**) 📅 YYYY-MM-DD #priority/high
+- [ ] [Task description] 🎯 (action-owner:: **Name**) 🗣️ (action-requestor:: **Name**) 📅 YYYY-MM-DD #priority/medium
 
 ### Hot Takes 🔥
 > Impactful quote or decision - **Speaker**
@@ -53,14 +53,14 @@ tags: meeting-summary
 |----------|--------|---------|
 | YAML Participants | `- "[[People/Name\|Name]]"` | `- "[[People/John Smith\|John Smith]]"` |
 | TL;DR, Key Points, Hot Takes | `**Name**` (bold) | `**John Smith**` |
-| Action Items | `Name` (plain text) | `John Smith` |
+| Action Items | `**Name**` (bold) | `**John Smith**` |
 
 ### Action Items Structure
-**Format**: `- [ ] Description 🎯 (action-owner:: Name) 🗣️ (action-requestor:: Name) 📅 YYYY-MM-DD #priority/level`
+**Format**: `- [ ] Description 🎯 (action-owner:: **Name**) 🗣️ (action-requestor:: **Name**) 📅 YYYY-MM-DD #priority/level`
 
 **Components**:
 - **Emojis**: 🎯 = owner, 🗣️ = requestor (required)
-- **Owner/Requestor**: Use plain text names; only assign if explicitly stated or strongly implied in transcript. Use "Unknown" only when genuinely ambiguous
+- **Owner/Requestor**: Use bold text (`**Name**`); only assign if explicitly stated or strongly implied in transcript. Use "**Unknown**" only when genuinely ambiguous
 - **Due Date**: Always `YYYY-MM-DD` format (never "TBD"/"ASAP")
   - Calculate relative dates from meeting date (e.g., "next week" = meeting date + 7 days)
   - Use provided Default Due Date if no date mentioned in transcript
