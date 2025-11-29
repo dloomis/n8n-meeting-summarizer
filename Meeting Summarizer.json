@@ -52,7 +52,24 @@
     },
     {
       "parameters": {
-        "jsCode": "// Extract participants and date from transcript text\nreturn items.map(item => {\n    const text = item.json.data || '';\n    const blocks = text.split(/\\n\\n/).filter(b => b.trim());\n    const participants = [...new Set(blocks.map(b => b.split('\\n')[0].trim()).filter(p => p))];\n    const participantsHint = participants.length > 0 ? participants.join(', ') : 'None detected - extract from transcript';\n    const dateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/g;\n    let extractedDate = text.match(dateRegex) ? text.match(dateRegex)[0] : new Date().toISOString().split('T')[0];\n    return {\n        json: {\n            ...item.json,\n            participantsHint,\n            extractedDate\n        }\n    };\n});"
+        "method": "POST",
+        "url": "http://localhost:11434/api/generate",
+        "sendBody": true,
+        "bodyContentType": "json",
+        "body": "={ \"model\": \"llama3.1:8b\", \"prompt\": \"Analyze the sentiment of this meeting transcript. Provide: 1) Overall sentiment (positive/negative/neutral), 2) Confidence score (0-1), 3) Key emotional highlights. Transcript: {{ $('Extract from File').item.json.data }}\", \"stream\": false }"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        480,
+        -48
+      ],
+      "id": "analyze-sentiment-id",
+      "name": "Analyze Sentiment"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract participants and date from transcript text\nreturn items.map(item => {\n    const text = item.json.data || '';\n    const blocks = text.split(/\\n\\n/).filter(b => b.trim());\n    const participants = [...new Set(blocks.map(b => b.split('\\n')[0].trim()).filter(p => p))];\n    const participantsHint = participants.length > 0 ? participants.join(', ') : 'None detected - extract from transcript';\n    const dateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/g;\n    let extractedDate = text.match(dateRegex) ? text.match(dateRegex)[0] : new Date().toISOString().split('T')[0];\n    const sentimentText = $('Analyze Sentiment').item.json.data.response || '';\n    const overallMatch = sentimentText.match(/Overall sentiment:\\s*(\\w+)/i);\n    const scoreMatch = sentimentText.match(/Confidence score:\\s*([\\d.]+)/);\n    const highlightsMatch = sentimentText.match(/Key emotional highlights:\\s*(.+)/i);\n    const sentimentOverall = overallMatch ? overallMatch[1].toLowerCase() : 'neutral';\n    const sentimentScore = scoreMatch ? parseFloat(scoreMatch[1]) : 0.5;\n    const sentimentHighlights = highlightsMatch ? highlightsMatch[1].split(',').map(h => h.trim()) : [];\n    return {\n        json: {\n            ...item.json,\n            participantsHint,\n            extractedDate,\n            sentimentOverall,\n            sentimentScore,\n            sentimentHighlights\n        }\n    };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -113,7 +130,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participantsHint }}\nExtracted Date (hint): {{ $('Store file info').item.json.extractedDate }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participantsHint }}\nExtracted Date (hint): {{ $('Store file info').item.json.extractedDate }}\nSentiment Analysis: Overall {{ $('Store file info').item.json.sentimentOverall }} (score: {{ $('Store file info').item.json.sentimentScore }}). Highlights: {{ $('Store file info').item.json.sentimentHighlights.join(', ') }}.\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
         "messages": {
           "messageValues": [
             {
@@ -221,6 +238,24 @@
               "name": "extractedDate",
               "value": "={{ $json.extractedDate }}",
               "type": "string"
+            },
+            {
+              "id": "sentiment-overall-id",
+              "name": "sentimentOverall",
+              "value": "={{ $json.sentimentOverall }}",
+              "type": "string"
+            },
+            {
+              "id": "sentiment-score-id",
+              "name": "sentimentScore",
+              "value": "={{ $json.sentimentScore }}",
+              "type": "number"
+            },
+            {
+              "id": "sentiment-highlights-id",
+              "name": "sentimentHighlights",
+              "value": "={{ $json.sentimentHighlights }}",
+              "type": "array"
             }
           ]
         },
@@ -276,6 +311,17 @@
       ]
     },
     "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Analyze Sentiment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze Sentiment": {
       "main": [
         [
           {

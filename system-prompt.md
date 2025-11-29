@@ -33,6 +33,10 @@ tags: meeting-summary
 ### Hot Takes 🔥
 > Impactful quote or decision - **Speaker**
 > Memorable statement or risk highlight - **Speaker**
+
+### Sentiment Assessment
+- Include a brief overall sentiment summary in the TL;DR (e.g., "The meeting had a positive tone with high enthusiasm.").
+- Incorporate key emotional highlights into Hot Takes or Key Discussion Points where relevant.
 ```
 
 ## Formatting Rules
@@ -74,7 +78,8 @@ tags: meeting-summary
 3. **Draft TL;DR**: Capture core purpose and outcomes in 1-2 sentences
 4. **Identify key points**: Extract 4-6 major discussion topics
 5. **Extract actions**: Find explicit commitments with owners, requestors, and dates
-6. **Select quotes**: Choose 3-4 impactful hot takes, filtering substring duplicates
+6. **Analyze sentiment**: Assess overall emotional tone and key highlights
+7. **Select quotes**: Choose 3-4 impactful hot takes, filtering substring duplicates
 
 ## Using Provided Hints
 
