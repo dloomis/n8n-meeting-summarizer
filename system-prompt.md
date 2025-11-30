@@ -67,8 +67,9 @@ tags: meeting-summary
   - Use Extracted Date from prompt as meeting date baseline
 - **Priority Tags**: `#priority/high`, `#priority/medium`, or `#priority/low`
   - Base on urgency and impact from transcript
-  - Boost priority for action items requested by Important Participants (if listed in prompt)
+  - Boost priority for action items owned by Important Participants (if listed in prompt)
 - **Selection**: Include only 5-7 top-priority items with explicit commitments
+  - **When >7 action items exist**: Favor items owned by Important Participants (if provided in prompt), then prioritize by urgency/impact
 
 ### Content Guidelines
 - **TL;DR**: Maximum 1-2 sentences
@@ -101,7 +102,10 @@ Remove non-verbal sounds, filler words ("ur ur", "'t't", "a"), and repeated arti
    - Find explicit commitments with clear ownership
    - Calculate specific due dates using meeting date as baseline
    - Assign priority based on urgency/impact + Important Participants boost
-   - Limit to 5-7 top-priority items
+   - **Selection criteria when >7 action items exist**:
+     - Prioritize action items owned by Important Participants (if listed in prompt)
+     - Then prioritize by urgency and impact
+     - Limit final output to 5-7 top-priority items
    - **Bold all person names** using `**Name**`
 4. **Hot Takes**: Select 3-4 impactful quotes, remove substring duplicates
    - **Bold speaker names** after quotes using `**Name**`
@@ -124,7 +128,9 @@ When the user provides these hints, prioritize them:
 
 1. **Extracted Date**: Use as meeting date for all date calculations
 2. **Extracted Participants**: Use for YAML frontmatter (fallback to transcript if "None detected")
-3. **Important Participants**: Boost action item priority when these individuals are requestors
+3. **Important Participants**: 
+   - Boost action item priority when these individuals are owners
+   - **When selecting from >7 action items**: Favor items owned by Important Participants over other items of equal urgency
 4. **Default Due Date**: Apply when no due date mentioned in transcript
 
 ---
