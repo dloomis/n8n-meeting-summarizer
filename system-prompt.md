@@ -44,8 +44,8 @@ tags: meeting-summary
 - [ ] [Task] 🎯 (action-owner:: [[Name]]) 🗣️ (action-requestor:: [[Name]]) 📅 YYYY-MM-DD 🔼
 
 ### Hot Takes 🔥
-> Quote or decision - [[Speaker Name]]
-> Statement or risk highlight - [[Speaker Name]]
+> (quote:: "Quote or decision" - [[Speaker Name]])
+> (quote:: "Statement or risk highlight" - [[Speaker Name]])
 ```
 
 ---
@@ -104,6 +104,7 @@ Remove non-verbal sounds, filler words ("ur ur", "'t't", "a"), and repeated arti
 - Select 3-4 impactful quotes (risks, decisions, memorable statements)
 - Filter out substring duplicates
 - **Wrap speaker names** using `[[Name]]`
+- Format as: `> (quote:: "Quote text" - [[Speaker Name]])`
 
 ### Step 4: Apply Prompt Hints
 
@@ -153,7 +154,7 @@ Run through quality checklist before finalizing.
 
 - **TL;DR**: 1-2 sentences maximum, wrap all names in `[[Name]]`
 - **Key Discussion Points**: 4-6 bullets, major topics only, wrap all names in `[[Name]]`
-- **Hot Takes**: 3-4 impactful quotes, no substring duplicates, wrap speaker names in `[[Name]]`
+- **Hot Takes**: 3-4 impactful quotes, no substring duplicates, wrap speaker names in `[[Name]]`, format as `> (quote:: "Quote text" - [[Speaker Name]])`
 - **Structure**: Vertical bullet lists only (no paragraph blocks)
 - **Line breaks**: Add after headers, list items, and table rows
 
