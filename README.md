@@ -76,6 +76,10 @@ The generated meeting summaries include Dataview inline fields in the hot takes 
 - **Workflow**: Modify `Meeting Summarizer.json` in n8n UI for advanced changes
 - **Models**: Adjust temperature or switch models in the workflow nodes
 - **Obsidian Templates**: Customize the People Notes Template in your vault for different structures
+- **Kanban Integration**: Use the optional `add-to-kanban.js` script with QuickAdd to add cards to the Kanban plugin based on action items from meeting summaries
+  - **Prerequisites**: Install [QuickAdd](https://github.com/chhoumann/quickadd) and [Kanban](https://github.com/mgmeyers/obsidian-kanban) plugins in Obsidian
+  - **Setup**: Download `add-to-kanban.js`, add it to QuickAdd's scripts folder, and configure a new QuickAdd choice to run the script
+  - **Usage**: From a meeting summary note, trigger QuickAdd to execute the script, which parses action items and adds them as cards to your Kanban board
 
 ## Sample Files
 
