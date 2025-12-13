@@ -58,7 +58,15 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 ## File Formats
 
 - **Input**: Plain text with speaker names followed by dialogue (e.g., `Richard\nHello...\nPeter\nResponse...`)
-- **Output**: Obsidian markdown with frontmatter, sections for TL;DR, key points, action items, hot takes
+- **Output**: Obsidian markdown with frontmatter, sections for TL;DR, key points, action items, and hot takes with Dataview inline fields for querying
+
+## Obsidian Vault Integration
+
+The generated meeting summaries include Dataview inline fields in the hot takes section for advanced querying. People notes in the vault are templated with frontmatter properties and Dataview queries to display quotes and related meetings.
+
+- **Hot Takes Querying**: Use Dataview to filter quotes by speaker across all meeting summaries.
+- **People Notes**: Structured templates with sections for notes, hot takes, and meetings, populated via Dataview.
+- **CSS Hiding**: Inline fields are hidden in preview mode via a custom CSS snippet for clean viewing.
 
 ## Customization
 
@@ -67,6 +75,7 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 - **Important Participants**: In the n8n UI, edit the "Store file info" node to update the `importantParticipants` array (e.g., `["Name1", "Name2"]`) to prioritize specific participants in the summary
 - **Workflow**: Modify `Meeting Summarizer.json` in n8n UI for advanced changes
 - **Models**: Adjust temperature or switch models in the workflow nodes
+- **Obsidian Templates**: Customize the People Notes Template in your vault for different structures
 
 ## Sample Files
 
