@@ -17,6 +17,7 @@ TABLE WITHOUT ID q as "Hot Take", file.link as "Meeting"
 FROM "03 Meeting Summaries"
 FLATTEN quote as q
 WHERE contains(q, this.file.name)
+SORT file.cday DESC
 ```
 
 ## Meetings
