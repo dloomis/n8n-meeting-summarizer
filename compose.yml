@@ -8,10 +8,12 @@ services:
       - N8N_METRICS=true
       - GENERIC_API_KEY=super-secret-key
       - LMSTUDIO_HOST=http://host.docker.internal:1234 # example
+      - GENERIC_TIMEZONE=America/New_York
+      - TZ=America/New_York
     volumes:
       - n8n_data:/home/node/.n8n
-       - /path/to/your/tmp/directory:/data/tmp
-       - /path/to/your/obsidian/vault/Meeting Summaries:/data/summaries
+      - /Users/dloomis/tmp/:/data/tmp
+      - /Users/dloomis/Library/Mobile Documents/iCloud~md~obsidian/Documents/SDA/03 Meeting Summaries:/data/summaries/
     ports:
       - "5678:5678"
     restart: unless-stopped
