@@ -67,6 +67,7 @@ The generated meeting summaries include Dataview inline fields in the hot takes 
 - **Hot Takes Querying**: Use Dataview to filter quotes by speaker across all meeting summaries.
 - **People Notes**: Structured templates with sections for notes, hot takes, and meetings, populated via Dataview.
 - **CSS Hiding**: Inline fields are hidden in preview mode via a custom CSS snippet for clean viewing.
+- **Kanban Boards**: Use the optional QuickAdd script to automatically add action items from meeting summaries to your Kanban boards for task management.
 
 ## Customization
 
