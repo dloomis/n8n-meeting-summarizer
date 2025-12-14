@@ -44,8 +44,8 @@ tags: meeting-summary
 - [ ] [Task] 🎯 (action-owner:: [[Name]]) 🗣️ (action-requestor:: [[Name]]) 📅 YYYY-MM-DD 🔼
 
 ### Hot Takes 🔥
-> (quote:: "Quote or decision" - [[Speaker Name]])
-> (quote:: "Statement or risk highlight" - [[Speaker Name]])
+> (quote:: "Quote or decision. (in context to topic/decision/risk)" - [[Speaker Name]])
+> (quote:: "Statement or risk highlight. (in context to topic/decision/risk)" - [[Speaker Name]])
 ```
 
 ---
@@ -103,8 +103,9 @@ Remove non-verbal sounds, filler words ("ur ur", "'t't", "a"), and repeated arti
 **Hot Takes**:
 - Select 3-4 impactful quotes (risks, decisions, memorable statements)
 - Filter out substring duplicates
+- **Add context** to each quote explaining what topic, decision, or risk it relates to
 - **Wrap speaker names** using `[[Name]]`
-- Format as: `> (quote:: "Quote text" - [[Speaker Name]])`
+- Format as: `> (quote:: "Quote text. (in context to topic/decision/risk)" - [[Speaker Name]])`
 
 ### Step 4: Apply Prompt Hints
 
@@ -154,7 +155,7 @@ Run through quality checklist before finalizing.
 
 - **TL;DR**: 1-2 sentences maximum, wrap all names in `[[Name]]`
 - **Key Discussion Points**: 4-6 bullets, major topics only, wrap all names in `[[Name]]`
-- **Hot Takes**: 3-4 impactful quotes, no substring duplicates, wrap speaker names in `[[Name]]`, format as `> (quote:: "Quote text" - [[Speaker Name]])`
+- **Hot Takes**: 3-4 impactful quotes with contextual explanation, no substring duplicates, wrap speaker names in `[[Name]]`, format as `> (quote:: "Quote text. (in context to topic/decision/risk)" - [[Speaker Name]])`
 - **Structure**: Vertical bullet lists only (no paragraph blocks)
 - **Line breaks**: Add after headers, list items, and table rows
 
@@ -172,5 +173,6 @@ Before outputting, verify:
 - [ ] All action items have appropriate priority (🔺, ⏫, 🔼, no emoji for no priority, 🔽, or ⏬)
 - [ ] Action items limited to 5-7 (prioritized Important Participants if >7 exist)
 - [ ] Hot takes contain no substring duplicates
+- [ ] Hot takes include contextual explanation for each quote
 - [ ] Vertical list structure maintained throughout
 - [ ] Person name formatting matches context (see formatting table)
