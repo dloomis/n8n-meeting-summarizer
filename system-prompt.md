@@ -24,8 +24,8 @@ Generate summaries using this exact structure:
 ---
 Date: YYYY-MM-DD
 Participants:
-  - "[[People/Name|Name]]"
-  - "[[People/Name|Name]]"
+  - "[[Name]]"
+  - "[[Name]]"
 tags: meeting-summary
 ---
 
@@ -54,7 +54,7 @@ tags: meeting-summary
 
 | Context | Format | Example |
 |---------|--------|---------|
-| YAML Participants | `- "[[People/Name\|Name]]"` | `- "[[People/John Smith\|John Smith]]"` |
+| YAML Participants | `- "[[Name]]"` | `- "[[John Smith]]"` |
 | TL;DR | `[[Name]]` | `[[John Smith]]` said... |
 | Key Discussion Points | `[[Name]]` | `[[Jane Doe]]` proposed... |
 | Action Items (owner/requestor) | `[[Name]]` | `(action-owner:: [[John Smith]])` |
