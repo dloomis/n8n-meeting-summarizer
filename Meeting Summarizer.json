@@ -89,66 +89,7 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "filenameNoExt",
-              "name": "filenameNoExt",
-              "value": "={{ $json.filenameNoExt }}",
-              "type": "string"
-            },
-            {
-              "id": "filenameFullPath",
-              "name": "filenameFullPath",
-              "value": "={{ $('Local File Trigger').item.json.path }}",
-              "type": "string"
-            },
-            {
-              "id": "gitSystemPromptURL",
-              "name": "gitSystemPromptURL",
-              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt.md",
-              "type": "string"
-            },
-            {
-              "id": "participantsHint",
-              "name": "participantsHint",
-              "value": "={{ $json.participants }}",
-              "type": "array"
-            },
-            {
-              "id": "extractedDate",
-              "name": "extractedDate",
-              "value": "={{ $json.extractedDate }}",
-              "type": "string"
-            },
-            {
-              "id": "importantParticipants",
-              "name": "importantParticipants",
-              "value": "={{ $json.names }}",
-              "type": "array"
-            },
-            {
-              "id": "e689e5d0-6be1-4845-a843-330bd4393fa7",
-              "name": "evergreenTopic",
-              "value": "={{ $json.evergreenTopic }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1184,
-        -240
-      ],
-      "id": "565e4512-d32c-4d0d-b888-ff708d1ab014",
-      "name": "Store file info"
-    },
-    {
-      "parameters": {
-        "url": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/evergreen-prompt.md",
+        "url": "={{ $json.getEvergreenSystemPromptURL }}",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "githubApi",
         "options": {}
@@ -245,7 +186,7 @@
     },
     {
       "parameters": {
-        "command": "=rm \"{{ $('Store file info').item.json.filenameFullPath }}\""
+        "command": "=rm \"{{ $('Store file info (UPDATE ME)').item.json.filenameFullPath }}\""
       },
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
@@ -263,7 +204,7 @@
         "sourceProperty": "output",
         "options": {
           "encoding": "utf8",
-          "fileName": "={{ $('Store file info').item.json.filenameNoExt }}.{{ Math.floor(Math.random() * 1000) }}.md"
+          "fileName": "={{ $('Store file info (UPDATE ME)').item.json.filenameNoExt }}.{{ Math.floor(Math.random() * 1000) }}.md"
         }
       },
       "type": "n8n-nodes-base.convertToFile",
@@ -332,7 +273,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participantsHint.join(', ') }}\nExtracted Date (hint): {{ $('Store file info').item.json.extractedDate }}\nImportant Participants for Prioritization: {{ $('Store file info').item.json.importantParticipants.join(', ') }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info (UPDATE ME)').item.json.participantsHint.join(', ') }}\nExtracted Date (hint): {{ $('Store file info (UPDATE ME)').item.json.extractedDate }}\nImportant Participants for Prioritization: {{ $('Store file info (UPDATE ME)').item.json.importantParticipants.join(', ') }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
         "options": {
           "systemMessage": "={{ $json.data }}"
         }
@@ -349,7 +290,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Please generate the evergreen note now on this CONCEPT: {{ $('Store file info').item.json.evergreenTopic }} using this TRANSCRIPT: {{ $('Parse Metadata').item.json.data }}",
+        "text": "=Please generate the evergreen note now on this CONCEPT: {{ $('Store file info (UPDATE ME)').item.json.evergreenTopic }} using this TRANSCRIPT: {{ $('Parse Metadata').item.json.data }}",
         "options": {
           "systemMessage": "={{ $json.data }}"
         }
@@ -365,7 +306,7 @@
     },
     {
       "parameters": {
-        "url": "={{ $json.gitSystemPromptURL }}",
+        "url": "={{ $json.gitSummarySystemPromptURL }}",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "githubApi",
         "options": {}
@@ -404,6 +345,71 @@
       ],
       "id": "54dbf4ab-a157-4b23-b3dd-9d575b1ba6fd",
       "name": "Parse Metadata"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "gitSystemPromptURL",
+              "name": "gitSummarySystemPromptURL",
+              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt.md",
+              "type": "string"
+            },
+            {
+              "id": "76145651-6504-45f1-977e-6310ddce78cc",
+              "name": "getEvergreenSystemPromptURL",
+              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/evergreen-prompt.md",
+              "type": "string"
+            },
+            {
+              "id": "filenameNoExt",
+              "name": "filenameNoExt",
+              "value": "={{ $json.filenameNoExt }}",
+              "type": "string"
+            },
+            {
+              "id": "filenameFullPath",
+              "name": "filenameFullPath",
+              "value": "={{ $('Local File Trigger').item.json.path }}",
+              "type": "string"
+            },
+            {
+              "id": "participantsHint",
+              "name": "participantsHint",
+              "value": "={{ $json.participants }}",
+              "type": "array"
+            },
+            {
+              "id": "extractedDate",
+              "name": "extractedDate",
+              "value": "={{ $json.extractedDate }}",
+              "type": "string"
+            },
+            {
+              "id": "importantParticipants",
+              "name": "importantParticipants",
+              "value": "={{ $json.names }}",
+              "type": "array"
+            },
+            {
+              "id": "e689e5d0-6be1-4845-a843-330bd4393fa7",
+              "name": "evergreenTopic",
+              "value": "={{ $json.evergreenTopic }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1184,
+        -240
+      ],
+      "id": "565e4512-d32c-4d0d-b888-ff708d1ab014",
+      "name": "Store file info (UPDATE ME)"
     }
   ],
   "pinData": {},
@@ -464,17 +470,6 @@
         [
           {
             "node": "Fetch Evergreen Prompt",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Store file info": {
-      "main": [
-        [
-          {
-            "node": "Route by Type",
             "type": "main",
             "index": 0
           }
@@ -595,7 +590,7 @@
       "main": [
         [
           {
-            "node": "Store file info",
+            "node": "Store file info (UPDATE ME)",
             "type": "main",
             "index": 0
           }
@@ -612,6 +607,17 @@
           }
         ]
       ]
+    },
+    "Store file info (UPDATE ME)": {
+      "main": [
+        [
+          {
+            "node": "Route by Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
@@ -620,7 +626,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "ecb425e4-6fab-48d9-92c3-9a20283bfe20",
+  "versionId": "1ee62e4c-7389-4cc8-a841-592ce4897631",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
