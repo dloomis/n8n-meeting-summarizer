@@ -46,9 +46,11 @@ An automated workflow using n8n to summarize meeting transcripts into structured
    - In n8n UI, go to Workflows > Import from File
    - Select `Meeting Summarizer.json`
    - Assign credentials to nodes:
-     - "Fetch System Prompt" node: GitHub API credential
+     - "Fetch Summary Prompt" node: GitHub API credential
+     - "Fetch Evergreen Prompt" node: GitHub API credential
      - "Claude Sonnet 4.5" node: Anthropic API credential
      - "qwen/qwen3-30b-a3b-2507" node: OpenAI API credential
+     - "Claude Opus 4.5" node: Anthropic API credential
 
 ## Usage
 
