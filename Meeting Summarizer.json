@@ -53,19 +53,6 @@
     },
     {
       "parameters": {
-        "jsCode": "return items.map(item => {\n    const text = item.json.data || '';\n    const blocks = text.split(/\\n\\n/).filter(b => b.trim());\n    const participants = [...new Set(blocks.map(b => b.split('\\n')[0].trim()).filter(p => p))];\n    const dateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/g;\n    let extractedDate = text.match(dateRegex) ? text.match(dateRegex)[0] : new Date().toISOString().split('T')[0];\n    return {\n        json: {\n            ...item.json,\n            participants,\n            extractedDate\n        }\n    };\n});"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        560,
-        -240
-      ],
-      "id": "54dbf4ab-a157-4b23-b3dd-9d575b1ba6fd",
-      "name": "Extract Metadata"
-    },
-    {
-      "parameters": {
         "jsCode": "// n8n Code Node - Remove file extension from filename\n// Works with single items or multiple items\n\nreturn items.map(item => {\n    const filename = $('Read/Write Files from Disk').first().json.fileName; // adjust field name as needed\n\n    if (!filename || typeof filename !== 'string') {\n        return item; // return unchanged if no valid filename\n    }\n\n    // Remove the extension (everything after the last dot)\n    // But preserve hidden files like \".gitignore\" or \".env\"\n    const cleanedFilename = filename.replace(/\\.[^/.]+$/, '');\n\n    // Return the item with the new filename (you can name the output field whatever you want)\n    return {\n        json: {\n            ...item.json,\n            filenameNoExt: cleanedFilename,\n            // Optionally keep original:\n            // filename: filename,\n        }\n    };\n});"
       },
       "type": "n8n-nodes-base.code",
@@ -79,25 +66,12 @@
     },
     {
       "parameters": {
-        "jsCode": "return items.map(item => {\n    const filename = item.json.filenameNoExt || '';\n    // Look for trailing # followed by keyword/phrase\n    const hashIndex = filename.lastIndexOf('#');\n    const isEvergreen = hashIndex !== -1;\n    const evergreenTopic = isEvergreen ? filename.substring(hashIndex + 1).trim() : null;\n    \n    return {\n        json: {\n            isEvergreen,\n            evergreenTopic\n        }\n    };\n});"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1232,
-        -240
-      ],
-      "id": "4ead6c4a-0b26-4215-af2e-68bca7452a45",
-      "name": "Detect Evergreen"
-    },
-    {
-      "parameters": {
         "dataType": "boolean",
         "value1": true,
         "rules": {
           "rules": [
             {
-              "value2": "={{ $json.isEvergreen }}",
+              "value2": "={{ $json.evergreenTopic !== null }}",
               "output": 1
             }
           ]
@@ -150,8 +124,14 @@
             {
               "id": "importantParticipants",
               "name": "importantParticipants",
-              "value": "=[\"Steve Martin\"]",
+              "value": "={{ $json.names }}",
               "type": "array"
+            },
+            {
+              "id": "e689e5d0-6be1-4845-a843-330bd4393fa7",
+              "name": "evergreenTopic",
+              "value": "={{ $json.evergreenTopic }}",
+              "type": "string"
             }
           ]
         },
@@ -160,7 +140,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1008,
+        1184,
         -240
       ],
       "id": "565e4512-d32c-4d0d-b888-ff708d1ab014",
@@ -181,7 +161,12 @@
       ],
       "id": "0228f639-e37c-4bf3-869f-a5821c2731b3",
       "name": "Fetch Evergreen Prompt",
-
+      "credentials": {
+        "githubApi": {
+          "id": "8lyAS5hJKsnkm5wM",
+          "name": "GitHub account"
+        }
+      }
     },
     {
       "parameters": {
@@ -320,7 +305,7 @@
         "sourceProperty": "output",
         "options": {
           "encoding": "utf8",
-          "fileName": "={{ $('Detect Evergreen').item.json.evergreenTopic }}.md"
+          "fileName": "={{ $('Parse file name arguments').item.json.evergreenTopic }}.md"
         }
       },
       "type": "n8n-nodes-base.convertToFile",
@@ -394,7 +379,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Please generate the evergreen note now on this CONCEPT: {{ $('Detect Evergreen').item.json.evergreenTopic }} using this TRANSCRIPT: {{ $('Extract Metadata').item.json.data }}",
+        "text": "=Please generate the evergreen note now on this CONCEPT: {{ $('Store file info').item.json.evergreenTopic }} using this TRANSCRIPT: {{ $('Parse Metadata').item.json.data }}",
         "options": {
           "systemMessage": "={{ $json.data }}"
         }
@@ -423,7 +408,38 @@
       ],
       "id": "e2edc6d8-f647-4e04-aa82-55c88a05c3aa",
       "name": "Fetch Summary Prompt",
-
+      "credentials": {
+        "githubApi": {
+          "id": "8lyAS5hJKsnkm5wM",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n    const filename = item.json.filenameNoExt || '';\n    \n    /**\n     * Parses a filename for person names after '!' and evergreen topic after '#'.\n     * Names are extracted after '!' until '#' or end, split by commas.\n     * Topic is extracted after the last '#' if present.\n     * @param {string} filename - The filename to parse (without extension)\n     * @returns {object} Object with 'names' array and 'evergreenTopic' string or null\n     */\n    function parseFilename(filename) {\n        let names = [];\n        let evergreenTopic = null;\n        \n        // Find '!' for names\n        const bangIndex = filename.indexOf('!');\n        if (bangIndex !== -1) {\n            let namePart = '';\n            for (let i = bangIndex + 1; i < filename.length; i++) {\n                if (filename[i] === '#') {\n                    break;\n                }\n                namePart += filename[i];\n            }\n            names = namePart.split(',')\n                .map(name => name.trim())\n                .filter(name => name.length > 0);\n        }\n        \n        // Find last '#' for evergreen topic\n        const hashIndex = filename.lastIndexOf('#');\n        if (hashIndex !== -1) {\n            evergreenTopic = filename.substring(hashIndex + 1).trim();\n        }\n        \n        return {\n            names,\n            evergreenTopic\n        };\n    }\n    \n    const { names, evergreenTopic } = parseFilename(filename);\n    \n    return {\n        json: {\n            ...item.json,\n            names,\n            evergreenTopic\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        992,
+        -240
+      ],
+      "id": "4ead6c4a-0b26-4215-af2e-68bca7452a45",
+      "name": "Parse file name arguments"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n    const text = item.json.data || '';\n    const blocks = text.split(/\\n\\n/).filter(b => b.trim());\n    const participants = [...new Set(blocks.map(b => b.split('\\n')[0].trim()).filter(p => p))];\n    const dateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/g;\n    let extractedDate = text.match(dateRegex) ? text.match(dateRegex)[0] : new Date().toISOString().split('T')[0];\n    return {\n        json: {\n            ...item.json,\n            participants,\n            extractedDate\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        -240
+      ],
+      "id": "54dbf4ab-a157-4b23-b3dd-9d575b1ba6fd",
+      "name": "Parse Metadata"
     }
   ],
   "pinData": {},
@@ -454,18 +470,7 @@
       "main": [
         [
           {
-            "node": "Extract Metadata",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Extract Metadata": {
-      "main": [
-        [
-          {
-            "node": "Strip file extension",
+            "node": "Parse Metadata",
             "type": "main",
             "index": 0
           }
@@ -476,18 +481,7 @@
       "main": [
         [
           {
-            "node": "Store file info",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Detect Evergreen": {
-      "main": [
-        [
-          {
-            "node": "Route by Type",
+            "node": "Parse file name arguments",
             "type": "main",
             "index": 0
           }
@@ -516,7 +510,7 @@
       "main": [
         [
           {
-            "node": "Detect Evergreen",
+            "node": "Route by Type",
             "type": "main",
             "index": 0
           }
@@ -632,6 +626,28 @@
           }
         ]
       ]
+    },
+    "Parse file name arguments": {
+      "main": [
+        [
+          {
+            "node": "Store file info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Metadata": {
+      "main": [
+        [
+          {
+            "node": "Strip file extension",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
@@ -640,7 +656,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "196a0a36-7ee1-4234-ab7d-0f4f0353cd3f",
+  "versionId": "02e6f500-750c-4aa6-ae3f-9df10492bdd6",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
