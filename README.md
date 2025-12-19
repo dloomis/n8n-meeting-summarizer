@@ -56,7 +56,7 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 
 1. **Prepare transcription**: Use MacWhisper to transcribe audio files, then format as text with speaker labels (see `meeting_with_peter.txt` for example)
 2. **Place file**: Copy the transcription file to your local tmp directory (mounted as `/data/tmp` in the container)
-3. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for generated summaries
+3. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries and Evergreen Notes folder for concept-based notes
 
 ## File Formats
 
@@ -65,10 +65,11 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 
 ## Obsidian Vault Integration
 
-The generated meeting summaries include Dataview inline fields in the hot takes section for advanced querying. People notes in the vault are templated with frontmatter properties and Dataview queries to display quotes and related meetings.
+The workflow generates both meeting summaries and Evergreen Notes from transcripts, integrating with your Obsidian vault for structured knowledge management. Meeting summaries include Dataview inline fields for querying, while Evergreen Notes capture concepts with links to related meetings.
 
 - **Hot Takes Querying**: Use Dataview to filter quotes by speaker across all meeting summaries.
 - **People Notes**: Structured templates with sections for notes, hot takes, and meetings, populated via Dataview.
+- **Evergreen Notes**: Concept-based notes extracted from transcripts (triggered by '#' in filename), stored in the Evergreen Notes folder with backlinks to meetings.
 - **CSS Hiding**: Inline fields are hidden in preview mode via a custom CSS snippet for clean viewing.
 - **Kanban Boards**: Use the optional QuickAdd script to automatically add action items from meeting summaries to your Kanban boards for task management.
 
