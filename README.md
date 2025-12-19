@@ -77,7 +77,7 @@ The workflow generates both meeting summaries and Evergreen Notes from transcrip
 ## Customization
 
 - **System Prompt**: Edit `system-prompt.md` and push to update the workflow's behavior
-- **GitHub Repo URL**: If you fork this repo, update the URL in the "Fetch System Prompt" node to point to your fork (e.g., `https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/system-prompt.md`)
+- **GitHub Repo URL**: If you fork this repo, update the `PROMPT_REPO_URL` environment variable in `compose.yml` to point to your fork (e.g., `https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/`)
 - **Important Participants**: The workflow automatically extracts participant names from the filename after '!' (comma-separated) and uses them for prioritization. If no names are specified, it falls back to a default list. You can override this in the "Store file info" node by editing the `importantParticipants` array.
 - **Workflow**: Modify `Meeting Summarizer.json` in n8n UI for advanced changes
 - **Models**: Adjust temperature or switch models in the workflow nodes

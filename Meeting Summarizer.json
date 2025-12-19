@@ -106,7 +106,7 @@
             {
               "id": "gitSystemPromptURL",
               "name": "gitSystemPromptURL",
-              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt.md",
+              "value": "={{ $env.PROMPT_REPO_URL }}system-prompt.md",
               "type": "string"
             },
             {
@@ -148,7 +148,7 @@
     },
     {
       "parameters": {
-        "url": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/evergreen-prompt.md",
+        "url": "={{ $env.PROMPT_REPO_URL }}evergreen-prompt.md",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "githubApi",
         "options": {}

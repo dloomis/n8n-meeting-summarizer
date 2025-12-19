@@ -12,11 +12,12 @@ services:
       - TZ=America/New_York
       - NODES_EXCLUDE="[]"
       - N8N_RESTRICT_FILE_ACCESS_TO="/data;/data/tmp;/data/summaries;/data/evergreen"
+      - PROMPT_REPO_URL=https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/
     volumes:
       - n8n_data:/home/node/.n8n
-       # - "/path/to/your/tmp:/data/tmp"
-       # - "/path/to/your/obsidian/vault/Meeting Summaries:/data/summaries/"
-       # - "/path/to/your/obsidian/vault/Evergreen Notes:/data/evergreen"
+      - "/Users/dloomis/tmp:/data/tmp"
+      - "/Users/dloomis/Documents/Obsidian/Meeting Summaries:/data/summaries/"
+      - "/Users/dloomis/Documents/Obsidian/Evergreen Notes:/data/evergreen"
     ports:
       - "5678:5678"
     restart: unless-stopped
