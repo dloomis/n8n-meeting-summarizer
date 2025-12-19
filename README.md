@@ -28,7 +28,7 @@ An automated workflow using n8n to summarize meeting transcripts into structured
    cd n8n-meeting-summarizer
    ```
 
-2. **Configure paths**: Edit `compose.yml` to replace `/path/to/your/tmp/directory` and `/path/to/your/obsidian/vault/Meeting Summaries` with your actual local paths
+2. **Configure paths**: Edit `compose.yml` to replace `/path/to/your/tmp/directory`, `/path/to/your/obsidian/vault/Meeting Summaries`, and `/path/to/your/obsidian/vault/Evergreen Notes` with your actual local paths
 
 3. **Start n8n**:
    ```bash
