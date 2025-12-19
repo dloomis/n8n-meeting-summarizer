@@ -55,7 +55,7 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 
 ## Usage
 
-1. **Prepare transcription**: Use MacWhisper to transcribe audio files, then format as text with speaker labels (see `meeting_with_peter.txt` for example). Optionally, include '!' in the filename followed by comma-separated participant names (e.g., `meeting!Alice,Bob.txt`) to specify participants for prioritization in the summary. Also, include '#' followed by a concept (e.g., `meeting!Alice,Bob#productivity.txt`) to generate an Evergreen Note on that topic.
+1. **Prepare transcription**: Use MacWhisper to transcribe audio files, then format as text with speaker labels (see `meeting_with_peter.txt` for example). Optionally, include '!' in the filename followed by comma-separated participant names (e.g., `meeting!Alice,Bob.txt`) to specify participants for prioritization in the summary (if not specified, participants are extracted from the transcript). Also, include '#' followed by a concept (e.g., `meeting!Alice,Bob#productivity.txt`) to generate an Evergreen Note on that topic.
 2. **Place file**: Copy the transcription file to your local tmp directory (mounted as `/data/tmp` in the container)
 3. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries and Evergreen Notes folder for concept-based notes
 
