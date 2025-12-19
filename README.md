@@ -1,6 +1,6 @@
 # N8N Meeting Summarizer
 
-An automated workflow using n8n to summarize meeting transcripts into structured Obsidian-compatible notes and generate evergreen notes on specific concepts.
+An automated workflow using n8n that either summarizes meeting transcripts into structured Obsidian-compatible notes or generates evergreen notes on specific concepts based on filename markers.
 
 ## Features
 
