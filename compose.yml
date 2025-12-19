@@ -6,17 +6,20 @@ services:
       - EXECUTIONS_PROCESS=main
       - N8N_PORT=5678
       - N8N_METRICS=true
-      - GENERIC_API_KEY=super-secret-key
+      - GENERIC_API_KEY=your-api-key-here
       - LMSTUDIO_HOST=http://host.docker.internal:1234 # example
       - GENERIC_TIMEZONE=America/New_York
       - TZ=America/New_York
+      - NODES_EXCLUDE="[]"
+      - N8N_RESTRICT_FILE_ACCESS_TO="/data;/data/tmp;/data/summaries;/data/evergreen"
     volumes:
       - n8n_data:/home/node/.n8n
-      - /Users/dloomis/tmp/:/data/tmp
-      - /Users/dloomis/Library/Mobile Documents/iCloud~md~obsidian/Documents/SDA/03 Meeting Summaries:/data/summaries/
+       # - "/path/to/your/tmp:/data/tmp"
+       # - "/path/to/your/obsidian/vault/Meeting Summaries:/data/summaries/"
+       # - "/path/to/your/obsidian/vault/Evergreen Notes:/data/evergreen"
     ports:
       - "5678:5678"
     restart: unless-stopped
 volumes:
-    n8n_data:
-        external: true
+  n8n_data:
+    external: true

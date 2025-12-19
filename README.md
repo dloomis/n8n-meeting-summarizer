@@ -8,6 +8,7 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 - **Text Extraction**: Processes text files with speaker labels
 - **AI Summarization**: Uses Claude Sonnet 4.5 and Qwen models for analysis
 - **Obsidian Output**: Generates formatted markdown with YAML frontmatter, participants, action items, and hot takes
+- **Evergreen Notes Processing**: Automatically detects and processes transcripts into Evergreen Notes using workflow logic (files with '#' trigger note generation)
 - **GitHub Integration**: Fetches system prompts from this repository
 
 ## Prerequisites
@@ -87,6 +88,7 @@ The generated meeting summaries include Dataview inline fields in the hot takes 
 - `meeting_with_peter.txt`: Example transcription input
 - `meeting_with_peter.mp3`: Sample audio file
 - `meeting_with_peter.442.md`: Example summary output
+- `evergreen-prompt.md`: Template for Evergreen Notes generation
 
 ## Security Notes
 

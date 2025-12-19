@@ -16,10 +16,10 @@
       "type": "n8n-nodes-base.localFileTrigger",
       "typeVersion": 1,
       "position": [
-        832,
-        -256
+        -112,
+        -240
       ],
-      "id": "ed44244a-1c52-4c31-b370-d7de53c82d08",
+      "id": "21beb7b8-cbda-4dec-817e-375fe9f777aa",
       "name": "Local File Trigger"
     },
     {
@@ -30,11 +30,12 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        1056,
-        -256
+        112,
+        -240
       ],
-      "id": "b8672256-b544-4ef8-ada0-fdae0074ae23",
-      "name": "Read/Write Files from Disk"
+      "id": "7b7bd697-f9a5-4dad-beaf-5b23dac13b6b",
+      "name": "Read/Write Files from Disk",
+      "alwaysOutputData": true
     },
     {
       "parameters": {
@@ -44,10 +45,10 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        1280,
-        -256
+        336,
+        -240
       ],
-      "id": "fa51e2c8-fe6f-4c05-81a6-72f5ef0d9acc",
+      "id": "e54f908e-fc11-4ef6-9ba8-014b970c7cba",
       "name": "Extract from File"
     },
     {
@@ -57,15 +58,117 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1504,
-        -256
+        560,
+        -240
       ],
-      "id": "ef1fd92c-1085-4938-a0a4-7dcda639406b",
+      "id": "54dbf4ab-a157-4b23-b3dd-9d575b1ba6fd",
       "name": "Extract Metadata"
     },
     {
       "parameters": {
-        "url": "={{ $json.gitSystemPromptURL }}",
+        "jsCode": "// n8n Code Node - Remove file extension from filename\n// Works with single items or multiple items\n\nreturn items.map(item => {\n    const filename = $('Read/Write Files from Disk').first().json.fileName; // adjust field name as needed\n\n    if (!filename || typeof filename !== 'string') {\n        return item; // return unchanged if no valid filename\n    }\n\n    // Remove the extension (everything after the last dot)\n    // But preserve hidden files like \".gitignore\" or \".env\"\n    const cleanedFilename = filename.replace(/\\.[^/.]+$/, '');\n\n    // Return the item with the new filename (you can name the output field whatever you want)\n    return {\n        json: {\n            ...item.json,\n            filenameNoExt: cleanedFilename,\n            // Optionally keep original:\n            // filename: filename,\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        784,
+        -240
+      ],
+      "id": "55e9a93d-e75d-498d-9f70-28bd40927f4b",
+      "name": "Strip file extension"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n    const filename = item.json.filenameNoExt || '';\n    // Look for trailing # followed by keyword/phrase\n    const hashIndex = filename.lastIndexOf('#');\n    const isEvergreen = hashIndex !== -1;\n    const evergreenTopic = isEvergreen ? filename.substring(hashIndex + 1).trim() : null;\n    \n    return {\n        json: {\n            isEvergreen,\n            evergreenTopic\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1232,
+        -240
+      ],
+      "id": "4ead6c4a-0b26-4215-af2e-68bca7452a45",
+      "name": "Detect Evergreen"
+    },
+    {
+      "parameters": {
+        "dataType": "boolean",
+        "value1": true,
+        "rules": {
+          "rules": [
+            {
+              "value2": "={{ $json.isEvergreen }}",
+              "output": 1
+            }
+          ]
+        },
+        "fallbackOutput": 0
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        176
+      ],
+      "id": "3b06e9cc-5314-4eb6-9305-b60fc2e81f2b",
+      "name": "Route by Type"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "filenameNoExt",
+              "name": "filenameNoExt",
+              "value": "={{ $json.filenameNoExt }}",
+              "type": "string"
+            },
+            {
+              "id": "filenameFullPath",
+              "name": "filenameFullPath",
+              "value": "={{ $('Local File Trigger').item.json.path }}",
+              "type": "string"
+            },
+            {
+              "id": "gitSystemPromptURL",
+              "name": "gitSystemPromptURL",
+              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt.md",
+              "type": "string"
+            },
+            {
+              "id": "participantsHint",
+              "name": "participantsHint",
+              "value": "={{ $json.participants }}",
+              "type": "array"
+            },
+            {
+              "id": "extractedDate",
+              "name": "extractedDate",
+              "value": "={{ $json.extractedDate }}",
+              "type": "string"
+            },
+            {
+              "id": "importantParticipants",
+              "name": "importantParticipants",
+              "value": "=[\"Steve Martin\"]",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1008,
+        -240
+      ],
+      "id": "565e4512-d32c-4d0d-b888-ff708d1ab014",
+      "name": "Store file info"
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/evergreen-prompt.md",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "githubApi",
         "options": {}
@@ -73,85 +176,55 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        832,
-        0
+        256,
+        384
       ],
-      "id": "02c004e3-6bbb-467a-8a6b-72ba495e78ba",
-      "name": "Fetch System Prompt"
+      "id": "0228f639-e37c-4bf3-869f-a5821c2731b3",
+      "name": "Fetch Evergreen Prompt",
+
     },
     {
       "parameters": {
-        "operation": "toText",
-        "sourceProperty": "text",
-        "options": {
-          "encoding": "utf8",
-          "fileName": "={{ $('Store file info').item.json.filenameNoExt }}.{{ Math.floor(Math.random() * 1000) }}.md"
-        }
+        "operation": "write",
+        "fileName": "=/data/evergreen/[0 - EDIT THIS FILE]{{ $binary.data.fileName }}",
+        "dataPropertyName": "=data",
+        "options": {}
       },
-      "type": "n8n-nodes-base.convertToFile",
-      "typeVersion": 1.1,
-      "position": [
-        832,
-        416
-      ],
-      "id": "264c9f9c-4be3-4ccc-9112-3e3334bef6e5",
-      "name": "Convert to File"
-    },
-    {
-      "parameters": {
-        "command": "=rm \"{{ $('Store file info').item.json.filenameFullPath }}\"\n"
-      },
-      "type": "n8n-nodes-base.executeCommand",
+      "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        1280,
-        416
+        1184,
+        384
       ],
-      "id": "6810b66b-e37f-43d9-a788-b3963fef1cfe",
-      "name": "Delete local transcription file"
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participantsHint.join(', ') }}\nExtracted Date (hint): {{ $('Store file info').item.json.extractedDate }}\nImportant Participants for Prioritization: {{ $('Store file info').item.json.importantParticipants.join(', ') }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "={{ $json.data }}"
-            }
-          ]
-        },
-        "batching": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.7,
-      "position": [
-        1056,
-        0
-      ],
-      "id": "49f49a67-cb50-419d-ade4-4146f891c4c7",
-      "name": "Summarize Transcript"
+      "id": "e6c1e5b3-53d2-446f-b168-5e070322df9a",
+      "name": "Write Evergreen to Obsidian"
     },
     {
       "parameters": {
         "model": {
           "__rl": true,
+          "value": "claude-opus-4-5-20251101",
           "mode": "list",
-          "value": "claude-sonnet-4-5-20250929",
-          "cachedResultName": "Claude Sonnet 4.5"
+          "cachedResultName": "Claude Opus 4.5"
         },
         "options": {
-          "temperature": 0.2
+          "temperature": 0.5
         }
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        1056,
-        240
+        560,
+        208
       ],
-      "id": "8207e613-3d15-47a5-bb2f-30e076ad4dcc",
-      "name": "Claude Sonnet 4.5"
+      "id": "d79c3f27-4a5c-46e4-88df-c4fd4282960e",
+      "name": "Claude Sonnet 4.5",
+      "credentials": {
+        "anthropicApi": {
+          "id": "3wpoD5gzpLoMbX1q",
+          "name": "Anthropic account"
+        }
+      }
     },
     {
       "parameters": {
@@ -169,77 +242,95 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        1248,
-        240
+        736,
+        208
       ],
-      "id": "42742f2e-8935-4317-bbb9-0b31be3271a6",
-      "name": "qwen/qwen3-30b-a3b-2507"
+      "id": "ec3fd73f-5bb6-4d91-954e-3fd859158c42",
+      "name": "qwen/qwen3-30b-a3b-2507",
+      "credentials": {
+        "openAiApi": {
+          "id": "uyrXO9ysZPVSk76V",
+          "name": "OpenAi account"
+        }
+      }
     },
     {
       "parameters": {
-        "jsCode": "// n8n Code Node - Remove file extension from filename\n// Works with single items or multiple items\n\nreturn items.map(item => {\n    const filename = $('Read/Write Files from Disk').first().json.fileName; // adjust field name as needed\n\n    if (!filename || typeof filename !== 'string') {\n        return item; // return unchanged if no valid filename\n    }\n\n    // Remove the extension (everything after the last dot)\n    // But preserve hidden files like \".gitignore\" or \".env\"\n    const cleanedFilename = filename.replace(/\\.[^/.]+$/, '');\n\n    // Return the item with the new filename (you can name the output field whatever you want)\n    return {\n        json: {\n            ...item.json,\n            filenameNoExt: cleanedFilename,\n            // Optionally keep original:\n            // filename: filename,\n        }\n    };\n});"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1728,
-        -256
-      ],
-      "id": "69555a66-3816-47c5-8dfc-1f8c15d83eb7",
-      "name": "Strip file extension"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "d92fcf22-31bf-4994-8790-d62e784d7570",
-              "name": "filenameNoExt",
-              "value": "={{ $json.filenameNoExt }}",
-              "type": "string"
-            },
-            {
-              "id": "42add7da-af06-4f83-9f92-2d46c6d9ee72",
-              "name": "filenameFullPath",
-              "value": "={{ $('Local File Trigger').item.json.path }}",
-              "type": "string"
-            },
-            {
-              "id": "e99a29ea-e18c-4864-ba43-38c02ff4147b",
-              "name": "gitSystemPromptURL",
-              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt.md",
-              "type": "string"
-            },
-            {
-              "id": "participants-hint-id",
-              "name": "participantsHint",
-              "value": "={{ $json.participants }}",
-              "type": "array"
-            },
-            {
-              "id": "extracted-date-id",
-              "name": "extractedDate",
-              "value": "={{ $json.extractedDate }}",
-              "type": "string"
-            },
-            {
-              "id": "important-participants-id",
-              "name": "importantParticipants",
-              "value": "=[\"Steve Martin\"]",
-              "type": "array"
-            }
-          ]
+        "model": {
+          "__rl": true,
+          "value": "qwen/qwen3-30b-a3b-2507",
+          "mode": "list",
+          "cachedResultName": "qwen/qwen3-30b-a3b-2507"
         },
-        "options": {}
+        "responsesApiEnabled": false,
+        "options": {
+          "temperature": 0.2
+        }
       },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
       "position": [
-        1952,
-        -256
+        736,
+        592
       ],
-      "id": "94ca7dec-7a4d-4d49-9961-907f84f19b42",
-      "name": "Store file info"
+      "id": "810a9959-fc2b-480a-a72b-48865f4df3da",
+      "name": "qwen/qwen3-30b-a3b-",
+      "credentials": {
+        "openAiApi": {
+          "id": "uyrXO9ysZPVSk76V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "command": "=rm \"{{ $('Store file info').item.json.filenameFullPath }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        176
+      ],
+      "id": "f5d580a0-4b18-4804-a755-10627120da42",
+      "name": "Delete local transcription file",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "text",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "={{ $('Store file info').item.json.filenameNoExt }}.{{ Math.floor(Math.random() * 1000) }}.md"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        928,
+        0
+      ],
+      "id": "15866f29-268c-4a37-919a-380908a5fc5e",
+      "name": "Convert Meeting Summary to File"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "output",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "={{ $('Detect Evergreen').item.json.evergreenTopic }}.md"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        928,
+        384
+      ],
+      "id": "d51b29f6-f3da-44e4-9aad-3d2db758813f",
+      "name": "Convert Evergreen Note to File"
     },
     {
       "parameters": {
@@ -250,11 +341,89 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        1056,
-        416
+        1184,
+        0
       ],
-      "id": "0159c8ef-2934-46a9-8cbb-708f24e920eb",
-      "name": "Write file to Obsidian"
+      "id": "316ef5bd-5b56-4165-aa86-ecdfbe9849a0",
+      "name": "Write Meeting Summary to Obsidian"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "claude-sonnet-4-5-20250929",
+          "cachedResultName": "Claude Sonnet 4.5"
+        },
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        560,
+        592
+      ],
+      "id": "18568436-4c62-45d9-a0ee-8797d24ac33c",
+      "name": "Claude Opus 4.5",
+      "credentials": {
+        "anthropicApi": {
+          "id": "3wpoD5gzpLoMbX1q",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info').item.json.participantsHint.join(', ') }}\nExtracted Date (hint): {{ $('Store file info').item.json.extractedDate }}\nImportant Participants for Prioritization: {{ $('Store file info').item.json.importantParticipants.join(', ') }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "options": {
+          "systemMessage": "={{ $json.data }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        560,
+        0
+      ],
+      "id": "44084c72-db44-4c2a-9ae6-c93d5a71ef17",
+      "name": "Summarize Meeting Transcript"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Please generate the evergreen note now on this CONCEPT: {{ $('Detect Evergreen').item.json.evergreenTopic }} using this TRANSCRIPT: {{ $('Extract Metadata').item.json.data }}",
+        "options": {
+          "systemMessage": "={{ $json.data }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        560,
+        384
+      ],
+      "id": "02ca5109-5d24-47e9-aaca-65a50e91fd28",
+      "name": "Create Evergreen Note"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.gitSystemPromptURL }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "githubApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        256,
+        0
+      ],
+      "id": "e2edc6d8-f647-4e04-aa82-55c88a05c3aa",
+      "name": "Fetch Summary Prompt",
+
     }
   ],
   "pinData": {},
@@ -303,50 +472,6 @@
         ]
       ]
     },
-    "Fetch System Prompt": {
-      "main": [
-        [
-          {
-            "node": "Summarize Transcript",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert to File": {
-      "main": [
-        [
-          {
-            "node": "Write file to Obsidian",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Summarize Transcript": {
-      "main": [
-        [
-          {
-            "node": "Convert to File",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Claude Sonnet 4.5": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Summarize Transcript",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Strip file extension": {
       "main": [
         [
@@ -358,18 +483,58 @@
         ]
       ]
     },
-    "Store file info": {
+    "Detect Evergreen": {
       "main": [
         [
           {
-            "node": "Fetch System Prompt",
+            "node": "Route by Type",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Write file to Obsidian": {
+    "Route by Type": {
+      "main": [
+        [
+          {
+            "node": "Fetch Summary Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Evergreen Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store file info": {
+      "main": [
+        [
+          {
+            "node": "Detect Evergreen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Evergreen Prompt": {
+      "main": [
+        [
+          {
+            "node": "Create Evergreen Note",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Evergreen to Obsidian": {
       "main": [
         [
           {
@@ -379,15 +544,103 @@
           }
         ]
       ]
+    },
+    "Claude Sonnet 4.5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize Meeting Transcript",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert Meeting Summary to File": {
+      "main": [
+        [
+          {
+            "node": "Write Meeting Summary to Obsidian",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert Evergreen Note to File": {
+      "main": [
+        [
+          {
+            "node": "Write Evergreen to Obsidian",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Meeting Summary to Obsidian": {
+      "main": [
+        [
+          {
+            "node": "Delete local transcription file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude Opus 4.5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Create Evergreen Note",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize Meeting Transcript": {
+      "main": [
+        [
+          {
+            "node": "Convert Meeting Summary to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Evergreen Note": {
+      "main": [
+        [
+          {
+            "node": "Convert Evergreen Note to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Summary Prompt": {
+      "main": [
+        [
+          {
+            "node": "Summarize Meeting Transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1",
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "14b83e6b-5739-43ec-abd6-a997bad04c4b",
+  "versionId": "196a0a36-7ee1-4234-ab7d-0f4f0353cd3f",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
