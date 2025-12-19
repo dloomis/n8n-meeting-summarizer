@@ -160,13 +160,7 @@
         384
       ],
       "id": "0228f639-e37c-4bf3-869f-a5821c2731b3",
-      "name": "Fetch Evergreen Prompt",
-      "credentials": {
-        "githubApi": {
-          "id": "8lyAS5hJKsnkm5wM",
-          "name": "GitHub account"
-        }
-      }
+      "name": "Fetch Evergreen Prompt"
     },
     {
       "parameters": {
@@ -203,13 +197,7 @@
         208
       ],
       "id": "d79c3f27-4a5c-46e4-88df-c4fd4282960e",
-      "name": "Claude Sonnet 4.5",
-      "credentials": {
-        "anthropicApi": {
-          "id": "3wpoD5gzpLoMbX1q",
-          "name": "Anthropic account"
-        }
-      }
+      "name": "Claude Sonnet 4.5"
     },
     {
       "parameters": {
@@ -231,13 +219,7 @@
         208
       ],
       "id": "ec3fd73f-5bb6-4d91-954e-3fd859158c42",
-      "name": "qwen/qwen3-30b-a3b-2507",
-      "credentials": {
-        "openAiApi": {
-          "id": "uyrXO9ysZPVSk76V",
-          "name": "OpenAi account"
-        }
-      }
+      "name": "qwen/qwen3-30b-a3b-2507"
     },
     {
       "parameters": {
@@ -259,13 +241,7 @@
         592
       ],
       "id": "810a9959-fc2b-480a-a72b-48865f4df3da",
-      "name": "qwen/qwen3-30b-a3b-",
-      "credentials": {
-        "openAiApi": {
-          "id": "uyrXO9ysZPVSk76V",
-          "name": "OpenAi account"
-        }
-      }
+      "name": "qwen/qwen3-30b-a3b-"
     },
     {
       "parameters": {
@@ -275,7 +251,7 @@
       "typeVersion": 1,
       "position": [
         1520,
-        176
+        192
       ],
       "id": "f5d580a0-4b18-4804-a755-10627120da42",
       "name": "Delete local transcription file",
@@ -284,7 +260,7 @@
     {
       "parameters": {
         "operation": "toText",
-        "sourceProperty": "text",
+        "sourceProperty": "output",
         "options": {
           "encoding": "utf8",
           "fileName": "={{ $('Store file info').item.json.filenameNoExt }}.{{ Math.floor(Math.random() * 1000) }}.md"
@@ -351,13 +327,7 @@
         592
       ],
       "id": "18568436-4c62-45d9-a0ee-8797d24ac33c",
-      "name": "Claude Opus 4.5",
-      "credentials": {
-        "anthropicApi": {
-          "id": "3wpoD5gzpLoMbX1q",
-          "name": "Anthropic account"
-        }
-      }
+      "name": "Claude Opus 4.5"
     },
     {
       "parameters": {
@@ -407,13 +377,7 @@
         0
       ],
       "id": "e2edc6d8-f647-4e04-aa82-55c88a05c3aa",
-      "name": "Fetch Summary Prompt",
-      "credentials": {
-        "githubApi": {
-          "id": "8lyAS5hJKsnkm5wM",
-          "name": "GitHub account"
-        }
-      }
+      "name": "Fetch Summary Prompt"
     },
     {
       "parameters": {
@@ -656,7 +620,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "02e6f500-750c-4aa6-ae3f-9df10492bdd6",
+  "versionId": "ecb425e4-6fab-48d9-92c3-9a20283bfe20",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
