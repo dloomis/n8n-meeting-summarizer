@@ -6,6 +6,7 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 
 - **File Trigger**: Monitors `/data/tmp` for new transcription files
 - **Text Extraction**: Processes text files with speaker labels
+- **Participant Parsing**: Extracts participant names from filenames using '!' delimiter (e.g., `meeting!Alice,Bob.txt`) for summary prioritization
 - **AI Summarization**: Uses Claude Sonnet 4.5 and Qwen models for analysis
 - **Obsidian Output**: Generates formatted markdown with YAML frontmatter, participants, action items, and hot takes
 - **Evergreen Notes Processing**: Automatically detects and processes transcripts into Evergreen Notes using workflow logic (files with '#' trigger note generation)
@@ -54,7 +55,7 @@ An automated workflow using n8n to summarize meeting transcripts into structured
 
 ## Usage
 
-1. **Prepare transcription**: Use MacWhisper to transcribe audio files, then format as text with speaker labels (see `meeting_with_peter.txt` for example). Optionally, include '#' in the filename followed by a concept (e.g., `meeting#productivity.txt`) to generate an Evergreen Note on that topic.
+1. **Prepare transcription**: Use MacWhisper to transcribe audio files, then format as text with speaker labels (see `meeting_with_peter.txt` for example). Optionally, include '!' in the filename followed by comma-separated participant names (e.g., `meeting!Alice,Bob.txt`) to specify participants for prioritization in the summary. Also, include '#' followed by a concept (e.g., `meeting!Alice,Bob#productivity.txt`) to generate an Evergreen Note on that topic.
 2. **Place file**: Copy the transcription file to your local tmp directory (mounted as `/data/tmp` in the container)
 3. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries and Evergreen Notes folder for concept-based notes
 
@@ -77,7 +78,7 @@ The workflow generates both meeting summaries and Evergreen Notes from transcrip
 
 - **System Prompt**: Edit `system-prompt.md` and push to update the workflow's behavior
 - **GitHub Repo URL**: If you fork this repo, update the URL in the "Fetch System Prompt" node to point to your fork (e.g., `https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/system-prompt.md`)
-- **Important Participants**: In the n8n UI, edit the "Store file info" node to update the `importantParticipants` array (e.g., `["Name1", "Name2"]`) to prioritize specific participants in the summary
+- **Important Participants**: The workflow automatically extracts participant names from the filename after '!' (comma-separated) and uses them for prioritization. If no names are specified, it falls back to a default list. You can override this in the "Store file info" node by editing the `importantParticipants` array.
 - **Workflow**: Modify `Meeting Summarizer.json` in n8n UI for advanced changes
 - **Models**: Adjust temperature or switch models in the workflow nodes
 - **Obsidian Templates**: Customize the People Notes Template in your vault for different structures
