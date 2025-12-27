@@ -60,7 +60,7 @@ An automated workflow using n8n that either summarizes meeting transcripts into 
 
 ## Usage
 
-1. **Transcribe and send**: Use MacWhisper to transcribe audio files. The workflow automatically receives the JSON payload via webhook with title and plain text transcript (speaker blocks separated by double newlines). Optionally, include '!' in the title followed by comma-separated participant names (e.g., `meeting!Alice,Bob`) for prioritization. Include '#' followed by a concept (e.g., `meeting!Alice,Bob#productivity`) to generate an Evergreen Note.
+1. **Transcribe and send**: Use MacWhisper to transcribe audio files, then use the Quick Export button to send the transcript in .txt format via the previously defined n8n Integration. The workflow automatically receives the JSON payload via webhook with title and plain text transcript (speaker blocks separated by double newlines). Optionally, include '!' in the title followed by comma-separated participant names (e.g., `meeting!Alice,Bob`) for prioritization. Include '#' followed by a concept (e.g., `meeting!Alice,Bob#productivity`) to generate an Evergreen Note.
 2. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries and Evergreen Notes folder for concept-based notes
 
 ## File Formats
