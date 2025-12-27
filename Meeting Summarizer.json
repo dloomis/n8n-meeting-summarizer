@@ -264,18 +264,14 @@
           ]
         },
         "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "X-Subscription-Token",
-              "value": "BSAAcHZcnROlHAtHjq4T-m5y_K-V1pz"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
+         "headerParameters": {
+           "parameters": [
+             {
+               "name": "Accept",
+               "value": "application/json"
+             }
+           ]
+         },
         "options": {
           "response": {
             "response": {
