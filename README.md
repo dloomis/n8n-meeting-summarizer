@@ -80,7 +80,7 @@ The workflow generates both meeting summaries and Evergreen Notes from transcrip
 
 ## Customization
 
-- **System Prompt**: Edit `system-prompt.md` and push to update the workflow's behavior
+- **System Prompt**: Edit `system-prompt.md` and push to update the behavior for meeting summaries (when generating meeting summaries)
 - **Evergreen Prompt**: Edit `evergreen-prompt.md` and push to customize how Evergreen Notes are generated from transcripts
 - **Evergreen Notes**: The workflow detects Evergreen Notes when the title contains '#' followed by a concept (e.g., `meeting#productivity`). It routes the transcript to AI for concept-based note generation instead of a meeting summary, outputting to the Evergreen Notes folder. This is useful for capturing insights, ideas, or themes from discussions.
 - **GitHub Repo URL**: If you fork this repo, update the URL in the "Fetch System Prompt" and "Fetch Evergreen Prompt" nodes to point to your fork (e.g., `https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/system-prompt.md`)
