@@ -98,6 +98,7 @@ The workflow generates both meeting summaries and Evergreen Notes from transcrip
 - `meeting_with_peter.txt`: Example transcription input
 - `meeting_with_peter.mp3`: Sample audio file
 - `meeting_with_peter.442.md`: Example summary output
+- `meeting-with-peter#business plan.md`: Example evergreen note output
 
 ## Security Notes
 
