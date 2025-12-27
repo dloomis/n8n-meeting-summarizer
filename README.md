@@ -81,8 +81,10 @@ The workflow generates both meeting summaries and Evergreen Notes from transcrip
 ## Customization
 
 - **System Prompt**: Edit `system-prompt.md` and push to update the workflow's behavior
-- **GitHub Repo URL**: If you fork this repo, update the URL in the "Fetch System Prompt" node to point to your fork (e.g., `https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/system-prompt.md`)
-- **Important Participants**: The workflow automatically extracts participant names from the filename after '!' (comma-separated) and uses them for prioritization. If no names are specified, it falls back to a default list. You can override this in the "Store file info" node by editing the `importantParticipants` array.
+- **Evergreen Prompt**: Edit `evergreen-prompt.md` and push to customize how Evergreen Notes are generated from transcripts
+- **Evergreen Notes**: The workflow detects Evergreen Notes when the title contains '#' followed by a concept (e.g., `meeting#productivity`). It routes the transcript to AI for concept-based note generation instead of a meeting summary, outputting to the Evergreen Notes folder. This is useful for capturing insights, ideas, or themes from discussions.
+- **GitHub Repo URL**: If you fork this repo, update the URL in the "Fetch System Prompt" and "Fetch Evergreen Prompt" nodes to point to your fork (e.g., `https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/system-prompt.md`)
+- **Important Participants**: The workflow automatically extracts participant names from the title after '!' (comma-separated) and uses them for prioritization. If no names are specified, it falls back to a default list. You can override this in the "Store file info" node by editing the `importantParticipants` array.
 - **Workflow**: Modify `Meeting Summarizer.json` in n8n UI for advanced changes
 - **Models**: Adjust temperature or switch models in the workflow nodes
 - **Obsidian Templates**: Customize the People Notes Template in your vault for different structures
