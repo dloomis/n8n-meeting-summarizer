@@ -1,69 +1,6 @@
 {
-  "name": "Meeting Summarizer",
+  "name": "Meeting Summarizer - Dev",
   "nodes": [
-    {
-      "parameters": {
-        "triggerOn": "folder",
-        "path": "/data/tmp",
-        "events": [
-          "add",
-          "change"
-        ],
-        "options": {
-          "awaitWriteFinish": true
-        }
-      },
-      "type": "n8n-nodes-base.localFileTrigger",
-      "typeVersion": 1,
-      "position": [
-        -112,
-        -240
-      ],
-      "id": "21beb7b8-cbda-4dec-817e-375fe9f777aa",
-      "name": "Local File Trigger"
-    },
-    {
-      "parameters": {
-        "fileSelector": "={{ $json.path }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.readWriteFile",
-      "typeVersion": 1,
-      "position": [
-        112,
-        -240
-      ],
-      "id": "7b7bd697-f9a5-4dad-beaf-5b23dac13b6b",
-      "name": "Read/Write Files from Disk",
-      "alwaysOutputData": true
-    },
-    {
-      "parameters": {
-        "operation": "text",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.extractFromFile",
-      "typeVersion": 1,
-      "position": [
-        336,
-        -240
-      ],
-      "id": "e54f908e-fc11-4ef6-9ba8-014b970c7cba",
-      "name": "Extract from File"
-    },
-    {
-      "parameters": {
-        "jsCode": "// n8n Code Node - Remove file extension from filename\n// Works with single items or multiple items\n\nreturn items.map(item => {\n    const filename = $('Read/Write Files from Disk').first().json.fileName; // adjust field name as needed\n\n    if (!filename || typeof filename !== 'string') {\n        return item; // return unchanged if no valid filename\n    }\n\n    // Remove the extension (everything after the last dot)\n    // But preserve hidden files like \".gitignore\" or \".env\"\n    const cleanedFilename = filename.replace(/\\.[^/.]+$/, '');\n\n    // Return the item with the new filename (you can name the output field whatever you want)\n    return {\n        json: {\n            ...item.json,\n            filenameNoExt: cleanedFilename,\n            // Optionally keep original:\n            // filename: filename,\n        }\n    };\n});"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        784,
-        -240
-      ],
-      "id": "55e9a93d-e75d-498d-9f70-28bd40927f4b",
-      "name": "Strip file extension"
-    },
     {
       "parameters": {
         "dataType": "boolean",
@@ -71,7 +8,7 @@
         "rules": {
           "rules": [
             {
-              "value2": "={{ $json.evergreenTopic !== null }}",
+              "value2": "={{ $json.isEvergreenNote }}",
               "output": 1
             }
           ]
@@ -81,63 +18,45 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        -112,
-        176
+        -1136,
+        -496
       ],
-      "id": "3b06e9cc-5314-4eb6-9305-b60fc2e81f2b",
+      "id": "21b79861-ec42-44d3-9e75-c0c4a56430fc",
       "name": "Route by Type"
     },
     {
       "parameters": {
         "url": "={{ $json.getEvergreenSystemPromptURL }}",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "githubApi",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        256,
-        384
+        -848,
+        -368
       ],
-      "id": "0228f639-e37c-4bf3-869f-a5821c2731b3",
+      "id": "9b221039-be12-4068-ad38-92d138af1b13",
       "name": "Fetch Evergreen Prompt"
-    },
-    {
-      "parameters": {
-        "operation": "write",
-        "fileName": "=/data/evergreen/[0 - EDIT THIS FILE]{{ $binary.data.fileName }}",
-        "dataPropertyName": "=data",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.readWriteFile",
-      "typeVersion": 1,
-      "position": [
-        1184,
-        384
-      ],
-      "id": "e6c1e5b3-53d2-446f-b168-5e070322df9a",
-      "name": "Write Evergreen to Obsidian"
     },
     {
       "parameters": {
         "model": {
           "__rl": true,
-          "value": "claude-opus-4-5-20251101",
+          "value": "claude-sonnet-4-5-20250929",
           "mode": "list",
-          "cachedResultName": "Claude Opus 4.5"
+          "cachedResultName": "Claude Sonnet 4.5"
         },
         "options": {
-          "temperature": 0.5
+          "temperature": 0.2
         }
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        560,
-        208
+        -784,
+        16
       ],
-      "id": "d79c3f27-4a5c-46e4-88df-c4fd4282960e",
+      "id": "8d167dbc-a351-451d-bb9b-56dcf47de3c3",
       "name": "Claude Sonnet 4.5"
     },
     {
@@ -156,194 +75,89 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        736,
-        208
+        -352,
+        16
       ],
-      "id": "ec3fd73f-5bb6-4d91-954e-3fd859158c42",
-      "name": "qwen/qwen3-30b-a3b-2507"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "qwen/qwen3-30b-a3b-2507",
-          "mode": "list",
-          "cachedResultName": "qwen/qwen3-30b-a3b-2507"
-        },
-        "responsesApiEnabled": false,
-        "options": {
-          "temperature": 0.2
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.3,
-      "position": [
-        736,
-        592
-      ],
-      "id": "810a9959-fc2b-480a-a72b-48865f4df3da",
+      "id": "adceeb60-30ee-4d07-a934-b62c330c49fd",
       "name": "qwen/qwen3-30b-a3b-"
     },
     {
       "parameters": {
-        "command": "=rm \"{{ $('Store file info (UPDATE ME)').item.json.filenameFullPath }}\""
-      },
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
-      "position": [
-        1520,
-        192
-      ],
-      "id": "f5d580a0-4b18-4804-a755-10627120da42",
-      "name": "Delete local transcription file",
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "operation": "toText",
-        "sourceProperty": "output",
-        "options": {
-          "encoding": "utf8",
-          "fileName": "={{ $('Store file info (UPDATE ME)').item.json.filenameNoExt }}.{{ Math.floor(Math.random() * 1000) }}.md"
-        }
-      },
-      "type": "n8n-nodes-base.convertToFile",
-      "typeVersion": 1.1,
-      "position": [
-        928,
-        0
-      ],
-      "id": "15866f29-268c-4a37-919a-380908a5fc5e",
-      "name": "Convert Meeting Summary to File"
-    },
-    {
-      "parameters": {
-        "operation": "toText",
-        "sourceProperty": "output",
-        "options": {
-          "encoding": "utf8",
-          "fileName": "={{ $('Parse file name arguments').item.json.evergreenTopic }}.md"
-        }
-      },
-      "type": "n8n-nodes-base.convertToFile",
-      "typeVersion": 1.1,
-      "position": [
-        928,
-        384
-      ],
-      "id": "d51b29f6-f3da-44e4-9aad-3d2db758813f",
-      "name": "Convert Evergreen Note to File"
-    },
-    {
-      "parameters": {
-        "operation": "write",
-        "fileName": "=/data/summaries/{{ $binary.data.fileName }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.readWriteFile",
-      "typeVersion": 1,
-      "position": [
-        1184,
-        0
-      ],
-      "id": "316ef5bd-5b56-4165-aa86-ecdfbe9849a0",
-      "name": "Write Meeting Summary to Obsidian"
-    },
-    {
-      "parameters": {
         "model": {
           "__rl": true,
+          "value": "claude-opus-4-5-20251101",
           "mode": "list",
-          "value": "claude-sonnet-4-5-20250929",
-          "cachedResultName": "Claude Sonnet 4.5"
+          "cachedResultName": "Claude Opus 4.5"
         },
         "options": {
-          "temperature": 0.2
+          "temperature": 0.5
         }
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        560,
-        592
+        -640,
+        16
       ],
-      "id": "18568436-4c62-45d9-a0ee-8797d24ac33c",
+      "id": "b32e03fd-fe5c-4777-8b81-7134673631d7",
       "name": "Claude Opus 4.5"
     },
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Here is the transcript to summarize.\nDefault Due Date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\nExtracted Participants (hints): {{ $('Store file info (UPDATE ME)').item.json.participantsHint.join(', ') }}\nExtracted Date (hint): {{ $('Store file info (UPDATE ME)').item.json.extractedDate }}\nImportant Participants for Prioritization: {{ $('Store file info (UPDATE ME)').item.json.importantParticipants.join(', ') }}\n\n<transcript>\n{{ $('Extract from File').item.json.data }}\n</transcript>\n\nPlease generate the summary now following the OUTPUT TEMPLATE.",
+        "text": "=## CONCEPT TO EXTRACT\n{{ $('Store file info (UPDATE ME)').item.json.evergreenTopic }}\n\n## SOURCE TRANSCRIPT\n<transcript>\n{{ $('Store file info (UPDATE ME)').item.json.formattedTranscript }}\n</transcript>\n\nGenerate the evergreen note now.",
         "options": {
-          "systemMessage": "={{ $json.data }}"
+          "systemMessage": "={{ $json.data }}",
+          "maxIterations": 5
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        560,
-        0
+        -640,
+        -368
       ],
-      "id": "44084c72-db44-4c2a-9ae6-c93d5a71ef17",
-      "name": "Summarize Meeting Transcript"
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Please generate the evergreen note now on this CONCEPT: {{ $('Store file info (UPDATE ME)').item.json.evergreenTopic }} using this TRANSCRIPT: {{ $('Parse Metadata').item.json.data }}",
-        "options": {
-          "systemMessage": "={{ $json.data }}"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 3,
-      "position": [
-        560,
-        384
-      ],
-      "id": "02ca5109-5d24-47e9-aaca-65a50e91fd28",
+      "id": "43aa9c55-2d7f-4c0f-a2c0-f28db7197c22",
       "name": "Create Evergreen Note"
     },
     {
       "parameters": {
         "url": "={{ $json.gitSummarySystemPromptURL }}",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "githubApi",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        256,
-        0
+        -848,
+        -608
       ],
-      "id": "e2edc6d8-f647-4e04-aa82-55c88a05c3aa",
+      "id": "74cc96fd-e0e5-4ff0-837b-2a63a0e98b54",
       "name": "Fetch Summary Prompt"
     },
     {
       "parameters": {
-        "jsCode": "return items.map(item => {\n    const filename = item.json.filenameNoExt || '';\n    \n    /**\n     * Parses a filename for person names after '!' and evergreen topic after '#'.\n     * Names are extracted after '!' until '#' or end, split by commas.\n     * Topic is extracted after the last '#' if present.\n     * @param {string} filename - The filename to parse (without extension)\n     * @returns {object} Object with 'names' array and 'evergreenTopic' string or null\n     */\n    function parseFilename(filename) {\n        let names = [];\n        let evergreenTopic = null;\n        \n        // Find '!' for names\n        const bangIndex = filename.indexOf('!');\n        if (bangIndex !== -1) {\n            let namePart = '';\n            for (let i = bangIndex + 1; i < filename.length; i++) {\n                if (filename[i] === '#') {\n                    break;\n                }\n                namePart += filename[i];\n            }\n            names = namePart.split(',')\n                .map(name => name.trim())\n                .filter(name => name.length > 0);\n        }\n        \n        // Find last '#' for evergreen topic\n        const hashIndex = filename.lastIndexOf('#');\n        if (hashIndex !== -1) {\n            evergreenTopic = filename.substring(hashIndex + 1).trim();\n        }\n        \n        return {\n            names,\n            evergreenTopic\n        };\n    }\n    \n    const { names, evergreenTopic } = parseFilename(filename);\n    \n    return {\n        json: {\n            ...item.json,\n            names,\n            evergreenTopic\n        }\n    };\n});"
+        "jsCode": "return items.map(item => {\n    const filename = item.json.title || '';\n    \n    /**\n     * Parses a filename for person names after '!' and evergreen topic after '#'.\n     * Names are extracted after '!' until '#' or end, split by commas.\n     * Topic is extracted after the last '#' if present.\n     * @param {string} filename - The filename to parse (without extension)\n     * @returns {object} Object with 'names' array and 'evergreenTopic' string or null\n     */\n    function parseFilename(filename) {\n        let names = [];\n        let evergreenTopic = null;\n        \n        // Find '!' for names\n        const bangIndex = filename.indexOf('!');\n        if (bangIndex !== -1) {\n            let namePart = '';\n            for (let i = bangIndex + 1; i < filename.length; i++) {\n                if (filename[i] === '#') {\n                    break;\n                }\n                namePart += filename[i];\n            }\n            names = namePart.split(',')\n                .map(name => name.trim())\n                .filter(name => name.length > 0);\n        }\n        \n        // Find last '#' for evergreen topic\n        const hashIndex = filename.lastIndexOf('#');\n        if (hashIndex !== -1) {\n            evergreenTopic = filename.substring(hashIndex + 1).trim();\n        }\n        \n        return {\n            names,\n            evergreenTopic\n        };\n    }\n    \n    const { names, evergreenTopic } = parseFilename(filename);\n    \n    return {\n        json: {\n            names,\n            evergreenTopic,\n            ...item.json\n     \n        }\n    };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        992,
-        -240
+        -720,
+        -848
       ],
-      "id": "4ead6c4a-0b26-4215-af2e-68bca7452a45",
+      "id": "f6a6a135-5b63-4dfe-b68c-0dada7e6a5ad",
       "name": "Parse file name arguments"
     },
     {
       "parameters": {
-        "jsCode": "return items.map(item => {\n    const text = item.json.data || '';\n    const blocks = text.split(/\\n\\n/).filter(b => b.trim());\n    const participants = [...new Set(blocks.map(b => b.split('\\n')[0].trim()).filter(p => p))];\n    const dateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/g;\n    let extractedDate = text.match(dateRegex) ? text.match(dateRegex)[0] : new Date().toISOString().split('T')[0];\n    return {\n        json: {\n            ...item.json,\n            participants,\n            extractedDate\n        }\n    };\n});"
+        "jsCode": "return items.map(item => {\n    const title = item.json.body?.title || '';\n    const transcript = item.json.body?.transcript || '';\n    let participants = [];\n    let extractedDate = null;\n    let formattedTranscript = '';\n    \n    // Split into blocks (assuming double newlines separate speakers)\n    const blocks = transcript.split(/\\n\\n/).filter(b => b.trim());\n    \n    // Extract participants and format\n    participants = [...new Set(blocks.map(b => b.split('\\n')[0]?.trim()).filter(p => p && p !== 'Unknown'))];\n    formattedTranscript = blocks.length \n        ? blocks.map(b => {\n            const lines = b.split('\\n');\n            const speaker = lines[0]?.trim() || 'Unknown';\n            const text = lines.slice(1).join('\\n').trim();\n            return `${speaker}: ${text}`;\n        }).join('\\n\\n')\n        : 'No transcript available.';\n    \n    // Extract date from title\n    const titleDateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/;\n    extractedDate = title.match(titleDateRegex) ? title.match(titleDateRegex)[0] : new Date().toISOString().split('T')[0];\n    \n    return {\n        json: {\n            participants,\n            extractedDate,\n            title,\n            formattedTranscript\n        }\n    };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        560,
-        -240
+        -928,
+        -848
       ],
-      "id": "54dbf4ab-a157-4b23-b3dd-9d575b1ba6fd",
+      "id": "4392f8dc-8744-48d8-ba0b-7a3a57fb68c8",
       "name": "Parse Metadata"
     },
     {
@@ -364,14 +178,8 @@
             },
             {
               "id": "filenameNoExt",
-              "name": "filenameNoExt",
-              "value": "={{ $json.filenameNoExt }}",
-              "type": "string"
-            },
-            {
-              "id": "filenameFullPath",
-              "name": "filenameFullPath",
-              "value": "={{ $('Local File Trigger').item.json.path }}",
+              "name": "title",
+              "value": "={{ $json.title }}",
               "type": "string"
             },
             {
@@ -393,9 +201,33 @@
               "type": "array"
             },
             {
+              "id": "038b8982-ad28-4310-9612-8cee5e732cd3",
+              "name": "isEvergreenNote",
+              "value": "={{ $json.evergreenTopic !== null }}",
+              "type": "boolean"
+            },
+            {
               "id": "e689e5d0-6be1-4845-a843-330bd4393fa7",
               "name": "evergreenTopic",
               "value": "={{ $json.evergreenTopic }}",
+              "type": "string"
+            },
+            {
+              "id": "1b5b48f2-8bb2-48b2-a21e-f0f9860f1d95",
+              "name": "obsidianNoteFolder",
+              "value": "={{ $json.evergreenTopic == null ? '/data/summaries/' : '/data/evergreen/' }}",
+              "type": "string"
+            },
+            {
+              "id": "dece3c98-d80e-4145-80e2-c66b05fc824b",
+              "name": "obsidianNoteName",
+              "value": "={{ $json.evergreenTopic == null ? $json.title + '.' + Math.floor(Math.random() * 1000) + '.md' : '[EDIT THIS FILE].' + $json.title + '.md' }}",
+              "type": "string"
+            },
+            {
+              "id": "ea66a226-889c-4ddd-99bc-77a95bd6c40f",
+              "name": "=formattedTranscript",
+              "value": "={{ $('Parse Metadata').item.json.formattedTranscript }}",
               "type": "string"
             }
           ]
@@ -405,59 +237,174 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1184,
-        -240
+        -512,
+        -848
       ],
-      "id": "565e4512-d32c-4d0d-b888-ff708d1ab014",
+      "id": "36562c0d-e724-4ba6-b15e-3d3c0365865a",
       "name": "Store file info (UPDATE ME)"
+    },
+    {
+      "parameters": {
+        "url": "https://api.search.brave.com/res/v1/web/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', `The search query for real-time information on the evergreen topic`, 'string') }}"
+            },
+            {
+              "name": "count",
+              "value": "5"
+            },
+            {
+              "name": "country",
+              "value": "US"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Subscription-Token",
+              "value": "BSAAcHZcnROlHAtHjq4T-m5y_K-V1pz"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        -496,
+        -160
+      ],
+      "id": "ff0277a4-d75c-417c-8f11-88b2c34eef4b",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-haiku-4-5-20251001",
+          "mode": "list",
+          "cachedResultName": "Claude Haiku 4.5"
+        },
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        -496,
+        16
+      ],
+      "id": "c612fa15-2352-4a9a-9664-81a1e9055892",
+      "name": "Claude Haiku 4.5"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "llama-3.3-70b-instruct",
+          "mode": "list",
+          "cachedResultName": "llama-3.3-70b-instruct"
+        },
+        "responsesApiEnabled": false,
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -208,
+        16
+      ],
+      "id": "e6f3d10e-fe9b-4dad-b116-308d571de399",
+      "name": "llama 3.3 70b instruct"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f0675b51-51ca-4cc1-a333-4317e3ffbfcf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1136,
+        -848
+      ],
+      "id": "f3600809-7acf-46b1-9184-f23a2851c43c",
+      "name": "Webhook (UPDATE ME)",
+      "webhookId": "f0675b51-51ca-4cc1-a333-4317e3ffbfcf"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "output",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "={{ $('Store file info (UPDATE ME)').item.json.obsidianNoteName }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -256,
+        -480
+      ],
+      "id": "bf7ba41a-6918-4907-a961-aa4bf681677b",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $('Store file info (UPDATE ME)').item.json.obsidianNoteFolder }}{{ $('Store file info (UPDATE ME)').item.json.obsidianNoteName }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        -480
+      ],
+      "id": "988fddb8-994e-4bed-aa7f-bccbbdf2ee84",
+      "name": "Write to Obsidian"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Summarize this meeting transcript following the OUTPUT TEMPLATE exactly.\n\n**Context:**\n- Default due date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n- Participants: {{ $('Store file info (UPDATE ME)').item.json.participantsHint.join(', ') }}\n- Meeting date: {{ $('Store file info (UPDATE ME)').item.json.extractedDate }}\n- Priority participants: {{ $('Store file info (UPDATE ME)').item.json.importantParticipants.join(', ') }}\n\n**Transcript:**\n{{ $('Store file info (UPDATE ME)').item.json.formattedTranscript }}\n\nGenerate the summary now using the exact structure in OUTPUT TEMPLATE.",
+        "options": {
+          "systemMessage": "={{ $json.data }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -640,
+        -608
+      ],
+      "id": "7bf3b5e1-f463-4ab4-beb1-ad12bea51044",
+      "name": "Create Summary Note"
     }
   ],
   "pinData": {},
   "connections": {
-    "Local File Trigger": {
-      "main": [
-        [
-          {
-            "node": "Read/Write Files from Disk",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Read/Write Files from Disk": {
-      "main": [
-        [
-          {
-            "node": "Extract from File",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Extract from File": {
-      "main": [
-        [
-          {
-            "node": "Parse Metadata",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Strip file extension": {
-      "main": [
-        [
-          {
-            "node": "Parse file name arguments",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Route by Type": {
       "main": [
         [
@@ -487,56 +434,12 @@
         ]
       ]
     },
-    "Write Evergreen to Obsidian": {
-      "main": [
-        [
-          {
-            "node": "Delete local transcription file",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Claude Sonnet 4.5": {
       "ai_languageModel": [
         [
           {
-            "node": "Summarize Meeting Transcript",
+            "node": "Create Summary Note",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert Meeting Summary to File": {
-      "main": [
-        [
-          {
-            "node": "Write Meeting Summary to Obsidian",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert Evergreen Note to File": {
-      "main": [
-        [
-          {
-            "node": "Write Evergreen to Obsidian",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Write Meeting Summary to Obsidian": {
-      "main": [
-        [
-          {
-            "node": "Delete local transcription file",
-            "type": "main",
             "index": 0
           }
         ]
@@ -553,22 +456,11 @@
         ]
       ]
     },
-    "Summarize Meeting Transcript": {
-      "main": [
-        [
-          {
-            "node": "Convert Meeting Summary to File",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Create Evergreen Note": {
       "main": [
         [
           {
-            "node": "Convert Evergreen Note to File",
+            "node": "Convert to File",
             "type": "main",
             "index": 0
           }
@@ -579,7 +471,7 @@
       "main": [
         [
           {
-            "node": "Summarize Meeting Transcript",
+            "node": "Create Summary Note",
             "type": "main",
             "index": 0
           }
@@ -601,7 +493,7 @@
       "main": [
         [
           {
-            "node": "Strip file extension",
+            "node": "Parse file name arguments",
             "type": "main",
             "index": 0
           }
@@ -618,19 +510,50 @@
           }
         ]
       ]
+    },
+    "Webhook (UPDATE ME)": {
+      "main": [
+        [
+          {
+            "node": "Parse Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Write to Obsidian",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Summary Note": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
   "settings": {
-    "executionOrder": "v1",
-    "callerPolicy": "workflowsFromSameOwner",
-    "availableInMCP": false
+    "executionOrder": "v1"
   },
-  "versionId": "1ee62e4c-7389-4cc8-a841-592ce4897631",
+  "versionId": "ad088ee9-ab4e-404c-905e-3d2746fa2145",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
   },
-  "id": "eQXiPWGAUdrJLVEo",
+  "id": "ujL8ZbtG6mD6Lh7W",
   "tags": []
 }

@@ -4,18 +4,19 @@ An automated workflow using n8n that either summarizes meeting transcripts into 
 
 ## Features
 
-- **File Trigger**: Monitors `/data/tmp` for new transcription files
-- **Text Extraction**: Processes text files with speaker labels
-- **Participant Parsing**: Extracts participant names from filenames using '!' delimiter (e.g., `meeting!Alice,Bob.txt`) for summary prioritization
+- **Webhook Trigger**: Receives transcription data via webhook from MacWhisper
+- **Text Extraction**: Processes plain text transcripts with speaker labels (double newlines separate speakers)
+- **Participant Parsing**: Extracts participant names from transcript text and filenames using '!' delimiter (e.g., `meeting!Alice,Bob`) for summary prioritization
 - **AI Summarization**: Uses Claude Sonnet 4.5 and Qwen models for analysis
 - **Obsidian Output**: Generates formatted markdown with YAML frontmatter, participants, action items, and hot takes
-- **Evergreen Notes Processing**: Automatically detects and processes transcripts into Evergreen Notes using workflow logic (files with '#' trigger note generation)
+- **Evergreen Notes Processing**: Automatically detects and processes transcripts into Evergreen Notes using workflow logic (titles with '#' trigger note generation)
 - **GitHub Integration**: Fetches system prompts from this repository
 
 ## Prerequisites
 
 - Docker and Docker Compose
 - n8n account (optional, runs locally)
+- MacWhisper Pro (for webhook integration)
 - API keys for:
   - GitHub (for fetching system prompts)
   - Anthropic (Claude Sonnet 4.5)
@@ -29,7 +30,7 @@ An automated workflow using n8n that either summarizes meeting transcripts into 
    cd n8n-meeting-summarizer
    ```
 
-2. **Configure paths**: Edit `compose.yml` to replace `/path/to/your/tmp/directory`, `/path/to/your/obsidian/vault/Meeting Summaries`, and `/path/to/your/obsidian/vault/Evergreen Notes` with your actual local paths
+2. **Configure paths**: Edit `compose.yml` to replace `/path/to/your/obsidian/vault/Meeting Summaries`, and `/path/to/your/obsidian/vault/Evergreen Notes` with your actual local paths
 
 3. **Start n8n**:
    ```bash
@@ -53,15 +54,18 @@ An automated workflow using n8n that either summarizes meeting transcripts into 
      - "qwen/qwen3-30b-a3b-2507" node: OpenAI API credential
      - "Claude Opus 4.5" node: Anthropic API credential
 
+7. **Configure MacWhisper**:
+   - In MacWhisper Settings > Integrations > n8n, paste the webhook URL from the Webhook node (e.g., `http://localhost:5678/webhook/macwhisper-transcript`)
+   - Enable "Automatically send after finished transcription"
+
 ## Usage
 
-1. **Prepare transcription**: Use MacWhisper to transcribe audio files, then format as text with speaker labels (see `meeting_with_peter.txt` for example). Optionally, include '!' in the filename followed by comma-separated participant names (e.g., `meeting!Alice,Bob.txt`) to specify participants for prioritization in the summary (if not specified, participants are extracted from the transcript). Also, include '#' followed by a concept (e.g., `meeting!Alice,Bob#productivity.txt`) to generate an Evergreen Note on that topic.
-2. **Place file**: Copy the transcription file to your local tmp directory (mounted as `/data/tmp` in the container)
-3. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries and Evergreen Notes folder for concept-based notes
+1. **Transcribe and send**: Use MacWhisper to transcribe audio files. The workflow automatically receives the JSON payload via webhook with title and plain text transcript (speaker blocks separated by double newlines). Optionally, include '!' in the title followed by comma-separated participant names (e.g., `meeting!Alice,Bob`) for prioritization. Include '#' followed by a concept (e.g., `meeting!Alice,Bob#productivity`) to generate an Evergreen Note.
+2. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries and Evergreen Notes folder for concept-based notes
 
 ## File Formats
 
-- **Input**: Plain text with speaker names followed by dialogue (e.g., `Richard\nHello...\nPeter\nResponse...`)
+- **Input**: JSON webhook payload with `{"title": "meeting title", "transcript": "plain text with speaker blocks separated by double newlines (e.g., 'Richard\nHello...\n\nPeter\nResponse...')"}`
 - **Output**: Obsidian markdown with frontmatter, sections for TL;DR, key points, action items, and hot takes with Dataview inline fields for querying
 
 ## Obsidian Vault Integration
@@ -105,7 +109,8 @@ The workflow generates both meeting summaries and Evergreen Notes from transcrip
 - Ensure Docker volumes are correctly mounted
 - Check n8n logs: `docker-compose logs n8n`
 - Verify credential assignments in workflow nodes
-- Test with the provided sample files
+- Verify MacWhisper webhook URL is correctly configured
+- Test webhook manually with sample JSON payload (e.g., via curl)
 
 ## Contributing
 
