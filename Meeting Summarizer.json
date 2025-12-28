@@ -18,8 +18,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        0,
-        352
+        224,
+        336
       ],
       "id": "4082d7c2-9314-4654-a077-9394214d3a54",
       "name": "Route by Type"
@@ -39,8 +39,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        144,
-        832
+        352,
+        816
       ],
       "id": "da9391cd-559e-40f4-a2db-5e42aba7d4de",
       "name": "Claude Sonnet 4.5"
@@ -61,8 +61,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        576,
-        832
+        784,
+        816
       ],
       "id": "32b4695d-5d5c-4822-95dc-e71658683d35",
       "name": "qwen/qwen3-30b-a3b-"
@@ -82,8 +82,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        288,
-        832
+        496,
+        816
       ],
       "id": "0489ab2c-7af4-44c7-9904-9cc47b1792ee",
       "name": "Claude Opus 4.5"
@@ -100,37 +100,296 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        288,
-        480
+        496,
+        464
       ],
       "id": "cc4e44e9-d77f-4ec0-a99c-96347f9dd142",
       "name": "Create Evergreen Note"
     },
     {
       "parameters": {
-        "jsCode": "return items.map(item => {\n    const filename = item.json.title || '';\n    \n    /**\n     * Parses a filename for person names after '!' and evergreen topic after '#'.\n     * Names are extracted after '!' until '#' or end, split by commas.\n     * Topic is extracted after the last '#' if present.\n     * @param {string} filename - The filename to parse (without extension)\n     * @returns {object} Object with 'names' array and 'evergreenTopic' string or null\n     */\n    function parseFilename(filename) {\n        let names = [];\n        let evergreenTopic = null;\n        \n        // Find '!' for names\n        const bangIndex = filename.indexOf('!');\n        if (bangIndex !== -1) {\n            let namePart = '';\n            for (let i = bangIndex + 1; i < filename.length; i++) {\n                if (filename[i] === '#') {\n                    break;\n                }\n                namePart += filename[i];\n            }\n            names = namePart.split(',')\n                .map(name => name.trim())\n                .filter(name => name.length > 0);\n        }\n        \n        // Find last '#' for evergreen topic\n        const hashIndex = filename.lastIndexOf('#');\n        if (hashIndex !== -1) {\n            evergreenTopic = filename.substring(hashIndex + 1).trim();\n        }\n        \n        return {\n            names,\n            evergreenTopic\n        };\n    }\n    \n    const { names, evergreenTopic } = parseFilename(filename);\n    \n    return {\n        json: {\n            names,\n            evergreenTopic,\n            ...item.json\n     \n        }\n    };\n});"
+        "model": {
+          "__rl": true,
+          "value": "claude-haiku-4-5-20251001",
+          "mode": "list",
+          "cachedResultName": "Claude Haiku 4.5"
+        },
+        "options": {
+          "temperature": 0.5
+        }
       },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
       "position": [
-        480,
-        0
+        640,
+        816
       ],
-      "id": "ec3f7e7d-b8f0-4abb-9770-5313b2ea8898",
-      "name": "Parse file name arguments"
+      "id": "025b41b6-627c-48cb-84ab-73e6a25b71f7",
+      "name": "Claude Haiku 4.5"
     },
     {
       "parameters": {
-        "jsCode": "return items.map(item => {\n    const title = item.json.body?.title || '';\n    const transcript = item.json.body?.transcript || '';\n    let participants = [];\n    let extractedDate = null;\n    let formattedTranscript = '';\n    \n    // Split into blocks (assuming double newlines separate speakers)\n    const blocks = transcript.split(/\\n\\n/).filter(b => b.trim());\n    \n    // Extract participants and format\n    participants = [...new Set(blocks.map(b => b.split('\\n')[0]?.trim()).filter(p => p && p !== 'Unknown'))];\n    formattedTranscript = blocks.length \n        ? blocks.map(b => {\n            const lines = b.split('\\n');\n            const speaker = lines[0]?.trim() || 'Unknown';\n            const text = lines.slice(1).join('\\n').trim();\n            return `${speaker}: ${text}`;\n        }).join('\\n\\n')\n        : 'No transcript available.';\n    \n    // Extract date from title\n    const titleDateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/;\n    extractedDate = title.match(titleDateRegex) ? title.match(titleDateRegex)[0] : new Date().toISOString().split('T')[0];\n    \n    return {\n        json: {\n            participants,\n            extractedDate,\n            title,\n            formattedTranscript\n        }\n    };\n});"
+        "model": {
+          "__rl": true,
+          "value": "llama-3.3-70b-instruct",
+          "mode": "list",
+          "cachedResultName": "llama-3.3-70b-instruct"
+        },
+        "responsesApiEnabled": false,
+        "options": {
+          "temperature": 0.5
+        }
       },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
       "position": [
-        256,
+        928,
+        816
+      ],
+      "id": "d987607c-54d2-4e51-94d7-02d9ca1e54e9",
+      "name": "llama 3.3 70b instruct"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "output",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "={{ $('Workflow Data').item.json.obsidianNoteName }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        896,
+        352
+      ],
+      "id": "e4875e73-209b-475e-8b88-3cfd3e78194d",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $('Workflow Data').item.json.obsidianNoteFolder }}{{ $('Workflow Data').item.json.obsidianNoteName }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        352
+      ],
+      "id": "6f8f60b0-2a68-4cf3-b590-ab23de5b6bd0",
+      "name": "Write to Obsidian"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Summarize this meeting transcript following the OUTPUT TEMPLATE exactly.\n\n**Context:**\n- Default due date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n- Participants: {{ $('Workflow Data').item.json.participantsHint.join(', ') }}\n- Meeting date: {{ $('Workflow Data').item.json.extractedDate }}\n- Priority participants: {{ $('Workflow Data').item.json.importantParticipants.join(', ') }}\n\n**Transcript:**\n{{ $('Workflow Data').item.json.formattedTranscript }}\n\nGenerate the summary now using the exact structure in OUTPUT TEMPLATE.",
+        "options": {
+          "systemMessage": "={{ $('Fetch Prompt').item.json.data }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        496,
+        224
+      ],
+      "id": "faf71c22-c0bf-48d8-9415-2c4a18b6bc6e",
+      "name": "Create Summary Note"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f0675b51-51ca-4cc1-a333-4317e3ffbfcf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -224,
         0
       ],
-      "id": "11a01b49-00b7-4b15-ba67-4ae2c79e1543",
-      "name": "Parse Metadata"
+      "id": "9c024e21-d85a-4682-b624-da7e46cafe90",
+      "name": "Webhook"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.gitPromptURL }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "githubApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1120,
+        0
+      ],
+      "id": "2e005cb5-0bce-40bc-9a0a-bf4eabc1e389",
+      "name": "Fetch Prompt"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "filenameNoExt",
+              "name": "transcriptTitle",
+              "value": "={{ $('Parse Transcript').item.json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "participantsHint",
+              "name": "participantsHint",
+              "value": "={{ $('Parse Transcript').item.json.participants }}",
+              "type": "array"
+            },
+            {
+              "id": "extractedDate",
+              "name": "extractedDate",
+              "value": "={{ $('Parse Transcript').item.json.extractedDate }}",
+              "type": "string"
+            },
+            {
+              "id": "importantParticipants",
+              "name": "importantParticipants",
+              "value": "={{ $('Parse Arguments').item.json.importantParticipants }}",
+              "type": "array"
+            },
+            {
+              "id": "038b8982-ad28-4310-9612-8cee5e732cd3",
+              "name": "isEvergreenNote",
+              "value": "={{ $('Parse Arguments').item.json.evergreenTopic !== null }}",
+              "type": "boolean"
+            },
+            {
+              "id": "e689e5d0-6be1-4845-a843-330bd4393fa7",
+              "name": "evergreenTopic",
+              "value": "={{ $('Parse Arguments').item.json.evergreenTopic }}",
+              "type": "string"
+            },
+            {
+              "id": "gitSystemPromptURL",
+              "name": "gitPromptURL",
+              "value": "={{ $('Parse Arguments').item.json.evergreenTopic == null ? $('Workflow Variables').item.json.meetingSummaryPromptURL : $('Workflow Variables').item.json.evergreenPromptURL }}",
+              "type": "string"
+            },
+            {
+              "id": "1b5b48f2-8bb2-48b2-a21e-f0f9860f1d95",
+              "name": "obsidianNoteFolder",
+              "value": "={{ $('Parse Arguments').item.json.evergreenTopic == null ? '/data/summaries/' : '/data/evergreen/' }}",
+              "type": "string"
+            },
+            {
+              "id": "dece3c98-d80e-4145-80e2-c66b05fc824b",
+              "name": "obsidianNoteName",
+              "value": "={{ $('Parse Transcript').item.json.title + '.' + $json.data.substring(0,6) + '.md' }}",
+              "type": "string"
+            },
+            {
+              "id": "ea66a226-889c-4ddd-99bc-77a95bd6c40f",
+              "name": "=formattedTranscript",
+              "value": "={{ $('Parse Transcript').item.json.formattedTranscript }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        896,
+        0
+      ],
+      "id": "80276d47-9505-4c54-9425-e26ec5f0a5fb",
+      "name": "Workflow Data"
+    },
+    {
+      "parameters": {
+        "content": "Set your credentials for each of the models you want to use in this workflow.",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        64,
+        816
+      ],
+      "typeVersion": 1,
+      "id": "83b05e93-8221-4099-ac2d-ab23c534704f",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "Point to your own Github repo if you don't want to use the prompts from the main project.",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        448,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "88cf8cd7-9c64-4250-91c0-443c455963ea",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "The prompts are optimized for Claude Sonnet and Opus. They should be modified for best performance if using another model.",
+        "height": 112
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        896,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "e4afc03d-4b07-4a86-a2e8-544e1bedf984",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "TODO: use Obsidian node to use RESTI API calls instead of local file operations",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1120,
+        256
+      ],
+      "typeVersion": 1,
+      "id": "e9fc4a84-3d3d-4d14-bf12-528a2c7a8f49",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "Local file operations require specific compose.yml env variables (see readme)",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        896,
+        512
+      ],
+      "typeVersion": 1,
+      "id": "3e4c5cb9-8c01-44e6-a865-2fe34eb2eccf",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "Internet search for Evergreen Note creation uses a lot of tokens! Disabled for now.",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        784,
+        656
+      ],
+      "typeVersion": 1,
+      "id": "65324f80-0bc3-40c9-924b-908adae40e5f",
+      "name": "Sticky Note5"
     },
     {
       "parameters": {
@@ -175,119 +434,50 @@
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.3,
       "position": [
-        432,
-        672
+        640,
+        656
       ],
       "id": "755d9139-01a3-40f0-a1d5-02ebca8ca496",
-      "name": "HTTP Request1"
+      "name": "Internet Search"
     },
     {
       "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "claude-haiku-4-5-20251001",
-          "mode": "list",
-          "cachedResultName": "Claude Haiku 4.5"
-        },
-        "options": {
-          "temperature": 0.5
-        }
+        "action": "generate"
       },
-      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
-      "typeVersion": 1.3,
-      "position": [
-        432,
-        832
-      ],
-      "id": "025b41b6-627c-48cb-84ab-73e6a25b71f7",
-      "name": "Claude Haiku 4.5"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "llama-3.3-70b-instruct",
-          "mode": "list",
-          "cachedResultName": "llama-3.3-70b-instruct"
-        },
-        "responsesApiEnabled": false,
-        "options": {
-          "temperature": 0.5
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.3,
-      "position": [
-        720,
-        832
-      ],
-      "id": "d987607c-54d2-4e51-94d7-02d9ca1e54e9",
-      "name": "llama 3.3 70b instruct"
-    },
-    {
-      "parameters": {
-        "operation": "toText",
-        "sourceProperty": "output",
-        "options": {
-          "encoding": "utf8",
-          "fileName": "={{ $('Workflow Data').item.json.obsidianNoteName }}"
-        }
-      },
-      "type": "n8n-nodes-base.convertToFile",
-      "typeVersion": 1.1,
-      "position": [
-        704,
-        368
-      ],
-      "id": "e4875e73-209b-475e-8b88-3cfd3e78194d",
-      "name": "Convert to File"
-    },
-    {
-      "parameters": {
-        "operation": "write",
-        "fileName": "={{ $('Workflow Data').item.json.obsidianNoteFolder }}{{ $('Workflow Data').item.json.obsidianNoteName }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.readWriteFile",
+      "type": "n8n-nodes-base.crypto",
       "typeVersion": 1,
       "position": [
-        912,
-        368
-      ],
-      "id": "6f8f60b0-2a68-4cf3-b590-ab23de5b6bd0",
-      "name": "Write to Obsidian"
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Summarize this meeting transcript following the OUTPUT TEMPLATE exactly.\n\n**Context:**\n- Default due date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n- Participants: {{ $('Workflow Data').item.json.participantsHint.join(', ') }}\n- Meeting date: {{ $('Workflow Data').item.json.extractedDate }}\n- Priority participants: {{ $('Workflow Data').item.json.importantParticipants.join(', ') }}\n\n**Transcript:**\n{{ $('Workflow Data').item.json.formattedTranscript }}\n\nGenerate the summary now using the exact structure in OUTPUT TEMPLATE.",
-        "options": {
-          "systemMessage": "={{ $('Fetch Prompt').item.json.data }}"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 3,
-      "position": [
-        288,
-        240
-      ],
-      "id": "faf71c22-c0bf-48d8-9415-2c4a18b6bc6e",
-      "name": "Create Summary Note"
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "f0675b51-51ca-4cc1-a333-4317e3ffbfcf",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -192,
+        672,
         0
       ],
-      "id": "9c024e21-d85a-4682-b624-da7e46cafe90",
-      "name": "Webhook"
+      "id": "d48e6eba-d2b4-48a8-b09f-96e750791c1b",
+      "name": "Generate filename UUID"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n    const title = item.json.body?.title || '';\n    const transcript = item.json.body?.transcript || '';\n    let participants = [];\n    let extractedDate = null;\n    let formattedTranscript = '';\n    \n    // Split into blocks (assuming double newlines separate speakers)\n    const blocks = transcript.split(/\\n\\n/).filter(b => b.trim());\n    \n    // Extract participants and format\n    participants = [...new Set(blocks.map(b => b.split('\\n')[0]?.trim()).filter(p => p && p !== 'Unknown'))];\n    formattedTranscript = blocks.length \n        ? blocks.map(b => {\n            const lines = b.split('\\n');\n            const speaker = lines[0]?.trim() || 'Unknown';\n            const text = lines.slice(1).join('\\n').trim();\n            return `${speaker}: ${text}`;\n        }).join('\\n\\n')\n        : 'No transcript available.';\n    \n    // Extract date from title\n    const titleDateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/;\n    extractedDate = title.match(titleDateRegex) ? title.match(titleDateRegex)[0] : new Date().toISOString().split('T')[0];\n    \n    return {\n        json: {\n            participants,\n            extractedDate,\n            title,\n            formattedTranscript\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "11a01b49-00b7-4b15-ba67-4ae2c79e1543",
+      "name": "Parse Transcript"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n    const filename = item.json.title || '';\n    \n    // Parses a filename for people after '!' and evergreen topic after '#'.\n    // # and ! are not used together.\n    function parseFilename(filename) {\n        let importantParticipants = [];\n        let evergreenTopic = null;\n        \n        // Find '!' for importantParticipants\n        const bangIndex = filename.indexOf('!');\n        if (bangIndex !== -1) {\n            const namePart = filename.substring(bangIndex + 1); // Everything after !\n            importantParticipants = namePart.split(',')\n                .map(name => name.trim())\n                .filter(name => name.length > 0);\n        }\n        \n        // Find '#' for evergreenTopic\n        const hashIndex = filename.indexOf('#');\n        if (hashIndex !== -1) {\n            evergreenTopic = filename.substring(hashIndex + 1).trim(); // Everything after #\n        }\n        \n        return {\n            importantParticipants,\n            evergreenTopic\n        };\n    }\n    \n    const { importantParticipants, evergreenTopic } = parseFilename(filename);\n    \n    return {\n        json: {\n            importantParticipants,\n            evergreenTopic\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "ec3f7e7d-b8f0-4abb-9770-5313b2ea8898",
+      "name": "Parse Arguments"
     },
     {
       "parameters": {
@@ -312,160 +502,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        32,
+        448,
         0
       ],
       "id": "f172d59d-3491-4ab1-96f9-6b97a1e8a334",
-      "name": "Workflow Variables (EDIT ME)"
-    },
-    {
-      "parameters": {
-        "url": "={{ $json.gitPromptURL }}",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "githubApi",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        928,
-        0
-      ],
-      "id": "2e005cb5-0bce-40bc-9a0a-bf4eabc1e389",
-      "name": "Fetch Prompt"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "filenameNoExt",
-              "name": "title",
-              "value": "={{ $json.title }}",
-              "type": "string"
-            },
-            {
-              "id": "participantsHint",
-              "name": "participantsHint",
-              "value": "={{ $json.participants }}",
-              "type": "array"
-            },
-            {
-              "id": "extractedDate",
-              "name": "extractedDate",
-              "value": "={{ $json.extractedDate }}",
-              "type": "string"
-            },
-            {
-              "id": "importantParticipants",
-              "name": "importantParticipants",
-              "value": "={{ $json.names }}",
-              "type": "array"
-            },
-            {
-              "id": "038b8982-ad28-4310-9612-8cee5e732cd3",
-              "name": "isEvergreenNote",
-              "value": "={{ $json.evergreenTopic !== null }}",
-              "type": "boolean"
-            },
-            {
-              "id": "e689e5d0-6be1-4845-a843-330bd4393fa7",
-              "name": "evergreenTopic",
-              "value": "={{ $json.evergreenTopic }}",
-              "type": "string"
-            },
-            {
-              "id": "gitSystemPromptURL",
-              "name": "gitPromptURL",
-              "value": "={{ $json.evergreenTopic == null ? $('Workflow Variables (EDIT ME)').item.json.meetingSummaryPromptURL : $('Workflow Variables (EDIT ME)').item.json.evergreenPromptURL }}",
-              "type": "string"
-            },
-            {
-              "id": "1b5b48f2-8bb2-48b2-a21e-f0f9860f1d95",
-              "name": "obsidianNoteFolder",
-              "value": "={{ $json.evergreenTopic == null ? '/data/summaries/' : '/data/evergreen/' }}",
-              "type": "string"
-            },
-            {
-              "id": "dece3c98-d80e-4145-80e2-c66b05fc824b",
-              "name": "obsidianNoteName",
-              "value": "={{ $json.evergreenTopic == null ? $json.title + '.' + Math.floor(Math.random() * 1000) + '.md' : '[EDIT THIS FILE].' + $json.title + '.md' }}",
-              "type": "string"
-            },
-            {
-              "id": "ea66a226-889c-4ddd-99bc-77a95bd6c40f",
-              "name": "=formattedTranscript",
-              "value": "={{ $('Parse Metadata').item.json.formattedTranscript }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        704,
-        0
-      ],
-      "id": "80276d47-9505-4c54-9425-e26ec5f0a5fb",
-      "name": "Workflow Data"
-    },
-    {
-      "parameters": {
-        "content": "Set your credentials for each of the models you want to use in this workflow.",
-        "height": 80
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -160,
-        832
-      ],
-      "typeVersion": 1,
-      "id": "83b05e93-8221-4099-ac2d-ab23c534704f",
-      "name": "Sticky Note"
-    },
-    {
-      "parameters": {
-        "content": "Point to your own Github repo if you don't want to use the prompts from the main project.",
-        "height": 80
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -112,
-        -144
-      ],
-      "typeVersion": 1,
-      "id": "88cf8cd7-9c64-4250-91c0-443c455963ea",
-      "name": "Sticky Note1"
-    },
-    {
-      "parameters": {
-        "content": "The prompts are optimized for Claude Sonnet and Opus. They should be modified for best performance if using another model.",
-        "height": 112
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        784,
-        -144
-      ],
-      "typeVersion": 1,
-      "id": "e4afc03d-4b07-4a86-a2e8-544e1bedf984",
-      "name": "Sticky Note2"
-    },
-    {
-      "parameters": {
-        "content": "TODO: use Obsidian MCP Server instead of local file operations",
-        "height": 80
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        768,
-        240
-      ],
-      "typeVersion": 1,
-      "id": "e9fc4a84-3d3d-4d14-bf12-528a2c7a8f49",
-      "name": "Sticky Note3"
+      "name": "Workflow Variables"
     }
   ],
   "pinData": {},
@@ -521,28 +562,6 @@
         ]
       ]
     },
-    "Parse file name arguments": {
-      "main": [
-        [
-          {
-            "node": "Workflow Data",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Parse Metadata": {
-      "main": [
-        [
-          {
-            "node": "Parse file name arguments",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Convert to File": {
       "main": [
         [
@@ -569,18 +588,7 @@
       "main": [
         [
           {
-            "node": "Workflow Variables (EDIT ME)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Workflow Variables (EDIT ME)": {
-      "main": [
-        [
-          {
-            "node": "Parse Metadata",
+            "node": "Parse Transcript",
             "type": "main",
             "index": 0
           }
@@ -603,6 +611,50 @@
         [
           {
             "node": "Fetch Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate filename UUID": {
+      "main": [
+        [
+          {
+            "node": "Workflow Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Transcript": {
+      "main": [
+        [
+          {
+            "node": "Parse Arguments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Arguments": {
+      "main": [
+        [
+          {
+            "node": "Workflow Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Workflow Variables": {
+      "main": [
+        [
+          {
+            "node": "Generate filename UUID",
             "type": "main",
             "index": 0
           }
