@@ -45,14 +45,15 @@ An automated workflow using n8n that either summarizes meeting transcripts into 
    - **OpenAI API**: Get API key from OpenAI
 
 6. **Import workflow**:
-   - In n8n UI, go to Workflows > Import from File
-   - Select `Meeting Summarizer.json`
-   - Assign credentials to nodes:
-     - "Fetch Summary Prompt" node: GitHub API credential
-     - "Fetch Evergreen Prompt" node: GitHub API credential
-     - "Claude Sonnet 4.5" node: Anthropic API credential
-     - "qwen/qwen3-30b-a3b-2507" node: OpenAI API credential
-     - "Claude Opus 4.5" node: Anthropic API credential
+    - In n8n UI, go to Workflows > Import from File
+    - Select `Meeting Summarizer.json`
+    - **Important**: The workflow JSON has been stripped of all credential configurations and instance-specific IDs for security and portability. After import, you must manually assign credentials to each node as follows:
+      - "Fetch Prompt" node: GitHub API credential
+      - "Claude Sonnet 4.5" node: Anthropic API credential
+      - "qwen/qwen3-30b-a3b-" node: OpenAI API credential
+      - "Claude Opus 4.5" node: Anthropic API credential
+      - "Claude Haiku 4.5" node: Anthropic API credential
+      - "llama 3.3 70b instruct" node: OpenAI API credential
 
 7. **Configure MacWhisper**:
    - In MacWhisper Settings > Integrations > n8n, paste the webhook URL from the Webhook node (e.g., `http://localhost:5678/webhook/macwhisper-transcript`)
