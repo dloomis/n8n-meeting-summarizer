@@ -56,8 +56,7 @@ An automated workflow using n8n that either summarizes meeting transcripts into 
       - "llama 3.3 70b instruct" node: OpenAI API credential
 
 7. **Configure MacWhisper**:
-   - In MacWhisper Settings > Integrations > n8n, paste the webhook URL from the Webhook node (e.g., `http://localhost:5678/webhook/macwhisper-transcript`)
-   - Enable "Automatically send after finished transcription"
+    - In MacWhisper Settings > Integrations > n8n, paste the webhook URL from the Webhook node (e.g., `http://localhost:5678/webhook/macwhisper-transcript`)
 
 ## Usage
 
