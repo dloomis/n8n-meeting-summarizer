@@ -6,21 +6,20 @@ An automated workflow using n8n that either summarizes meeting transcripts into 
 
 - **Webhook Trigger**: Receives transcription data via webhook from MacWhisper
 - **Text Extraction**: Processes plain text transcripts with speaker labels (double newlines separate speakers)
-- **Participant Parsing**: Extracts participant names from transcript text and filenames using optional '!' delimiter (e.g., `meeting!Alice,Bob`) for summary prioritization
-- **AI Summarization**: Uses Claude Sonnet 4.5 and Qwen models for analysis
+- **Participant Parsing**: Extracts participant names from transcript text and optional '!' filename delimiter (e.g., `meeting!Alice,Bob`) for summary prioritization
+- **AI Summarization**: Leverages Claude and Qwen models for intelligent analysis
 - **Obsidian Output**: Generates formatted markdown with YAML frontmatter, participants, action items, and hot takes
 - **Two Modes of Operation**: Automatically switches between meeting summaries and evergreen notes based on filename markers
-- **Evergreen Notes Processing**: Optional '#' in filename triggers concept-based note generation from transcripts
-- **GitHub Integration**: Fetches system prompts from this repository
+- **Evergreen Notes**: Optional '#' in filename triggers concept-based note generation from transcripts
+- **GitHub Integration**: Fetches customizable system prompts from this repository
 
 ## Prerequisites
 
 - Docker and Docker Compose
-- n8n account (optional, runs locally)
 - MacWhisper Pro (for webhook integration)
 - API keys for:
   - GitHub (for fetching system prompts)
-  - Anthropic (Claude Sonnet 4.5)
+  - Anthropic (Claude models)
   - OpenAI (Qwen models)
 
 ## Setup
@@ -72,7 +71,12 @@ Filename arguments are optional:
 
 ## Usage
 
-1. **Transcribe and send**: Use MacWhisper to transcribe audio files, then use the Quick Export button to send the transcript in .txt format via the previously defined n8n Integration. The workflow automatically receives the JSON payload via webhook with title and plain text transcript (speaker blocks separated by double newlines). Optionally include filename markers for participant prioritization or evergreen mode.
+1. **Transcribe and send**:
+   - Use MacWhisper to transcribe audio files
+   - Use the Quick Export button to send the transcript in .txt format via the configured n8n integration
+   - The workflow receives the JSON payload via webhook with title and transcript (speaker blocks separated by double newlines)
+   - Optionally include '!' for participants or '#' for evergreen mode in the filename
+
 2. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries and Evergreen Notes folder for concept-based notes
 
 ## File Formats
@@ -96,7 +100,7 @@ The workflow generates both meeting summaries and Evergreen Notes from transcrip
 - **Evergreen Prompt**: Edit `evergreen-prompt.md` and push to customize how Evergreen Notes are generated from transcripts
 - **Evergreen Notes**: The workflow detects Evergreen Notes when the title contains '#' followed by a concept (e.g., `meeting#productivity`). It routes the transcript to AI for concept-based note generation instead of a meeting summary, outputting to the Evergreen Notes folder. This is useful for capturing insights, ideas, or themes from discussions.
 - **GitHub Repo URL**: If you fork this repo, update the URL in the "Fetch System Prompt" and "Fetch Evergreen Prompt" nodes to point to your fork (e.g., `https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/system-prompt.md`)
-- **Important Participants**: The workflow automatically extracts participant names from the title after '!' (comma-separated) and uses them for prioritization. If no names are specified, it falls back to a default list. You can override this in the "Store file info" node by editing the `importantParticipants` array.
+- **Important Participants**: The workflow automatically extracts participant names from the title after '!' (comma-separated) and uses them for prioritization. If no names are specified, it falls back to a default list. You can override this in the "Workflow Data" node by editing the `importantParticipants` array.
 - **Workflow**: Modify `Meeting Summarizer.json` in n8n UI for advanced changes
 - **Models**: Adjust temperature or switch models in the workflow nodes
 - **Obsidian Templates**: Customize the People Notes Template in your vault for different structures
