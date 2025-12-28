@@ -30,7 +30,7 @@ An automated workflow using n8n that either summarizes meeting transcripts into 
    cd n8n-meeting-summarizer
    ```
 
-2. **Configure paths**: Edit `compose.yml` to replace `/path/to/your/obsidian/vault/Meeting Summaries`, and `/path/to/your/obsidian/vault/Evergreen Notes` with your actual local paths
+2. **Configure paths**: Edit `compose.yml` to replace `/path/to/your/obsidian/vault/Meeting Summaries` and `/path/to/your/obsidian/vault/Evergreen Notes` with your actual local paths. Note: The file includes `N8N_RESTRICT_FILE_ACCESS_TO` for n8n v2 compatibility, restricting file access to these mapped paths for security
 
 3. **Start n8n**:
    ```bash
@@ -129,7 +129,7 @@ The workflow generates both meeting summaries and Evergreen Notes from transcrip
 - Verify credential assignments in workflow nodes
 - Verify MacWhisper webhook URL is correctly configured
 - Test webhook manually with sample JSON payload (e.g., via curl)
-- **n8n v2 Local File Restrictions**: If using n8n version 2.x, local file operations may be restricted for security. Enable "Allow file access" in n8n settings under Security > File System Access, or consider using cloud storage integrations instead of direct file writes
+- **n8n v2 Local File Restrictions**: If using n8n version 2.x, local file operations are restricted for security. The included `compose.yml` configures `N8N_RESTRICT_FILE_ACCESS_TO` to allow access only to the mapped `/data` paths. If issues persist, enable "Allow file access" in n8n settings under Security > File System Access, or use cloud storage integrations
 
 ## Contributing
 
