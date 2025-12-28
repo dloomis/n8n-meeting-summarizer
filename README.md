@@ -6,10 +6,11 @@ An automated workflow using n8n that either summarizes meeting transcripts into 
 
 - **Webhook Trigger**: Receives transcription data via webhook from MacWhisper
 - **Text Extraction**: Processes plain text transcripts with speaker labels (double newlines separate speakers)
-- **Participant Parsing**: Extracts participant names from transcript text and filenames using '!' delimiter (e.g., `meeting!Alice,Bob`) for summary prioritization
+- **Participant Parsing**: Extracts participant names from transcript text and filenames using optional '!' delimiter (e.g., `meeting!Alice,Bob`) for summary prioritization
 - **AI Summarization**: Uses Claude Sonnet 4.5 and Qwen models for analysis
 - **Obsidian Output**: Generates formatted markdown with YAML frontmatter, participants, action items, and hot takes
-- **Evergreen Notes Processing**: Automatically detects and processes transcripts into Evergreen Notes using workflow logic (titles with '#' trigger note generation)
+- **Two Modes of Operation**: Automatically switches between meeting summaries and evergreen notes based on filename markers
+- **Evergreen Notes Processing**: Optional '#' in filename triggers concept-based note generation from transcripts
 - **GitHub Integration**: Fetches system prompts from this repository
 
 ## Prerequisites
@@ -58,9 +59,20 @@ An automated workflow using n8n that either summarizes meeting transcripts into 
 7. **Configure MacWhisper**:
     - In MacWhisper Settings > Integrations > n8n, paste the webhook URL from the Webhook node (e.g., `http://localhost:5678/webhook/macwhisper-transcript`)
 
+## Modes of Operation
+
+The workflow supports two modes based on the filename:
+
+- **Meeting Summary Mode** (default): Generates structured meeting summaries with TL;DR, key points, action items, and hot takes
+- **Evergreen Notes Mode**: Triggered by '#' in the filename, generates concept-based notes that capture insights and themes
+
+Filename arguments are optional:
+- `'!'` followed by comma-separated participant names (e.g., `meeting!Alice,Bob`) for prioritization in summaries
+- `'#'` followed by a concept (e.g., `meeting#productivity`) to switch to evergreen mode
+
 ## Usage
 
-1. **Transcribe and send**: Use MacWhisper to transcribe audio files, then use the Quick Export button to send the transcript in .txt format via the previously defined n8n Integration. The workflow automatically receives the JSON payload via webhook with title and plain text transcript (speaker blocks separated by double newlines). Optionally, include '!' in the title followed by comma-separated participant names (e.g., `meeting!Alice,Bob`) for prioritization. Include '#' followed by a concept (e.g., `meeting!Alice,Bob#productivity`) to generate an Evergreen Note.
+1. **Transcribe and send**: Use MacWhisper to transcribe audio files, then use the Quick Export button to send the transcript in .txt format via the previously defined n8n Integration. The workflow automatically receives the JSON payload via webhook with title and plain text transcript (speaker blocks separated by double newlines). Optionally include filename markers for participant prioritization or evergreen mode.
 2. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries and Evergreen Notes folder for concept-based notes
 
 ## File Formats
