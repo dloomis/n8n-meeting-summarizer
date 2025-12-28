@@ -129,6 +129,7 @@ The workflow generates both meeting summaries and Evergreen Notes from transcrip
 - Verify credential assignments in workflow nodes
 - Verify MacWhisper webhook URL is correctly configured
 - Test webhook manually with sample JSON payload (e.g., via curl)
+- **n8n v2 Local File Restrictions**: If using n8n version 2.x, local file operations may be restricted for security. Enable "Allow file access" in n8n settings under Security > File System Access, or consider using cloud storage integrations instead of direct file writes
 
 ## Contributing
 
