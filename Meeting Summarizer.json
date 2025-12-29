@@ -43,7 +43,7 @@
         816
       ],
       "id": "da9391cd-559e-40f4-a2db-5e42aba7d4de",
-      "name": "Claude Sonnet 4.5"
+       "name": "Claude Sonnet 4.5"
     },
     {
       "parameters": {
@@ -65,7 +65,7 @@
         816
       ],
       "id": "32b4695d-5d5c-4822-95dc-e71658683d35",
-      "name": "qwen/qwen3-30b-a3b-"
+       "name": "qwen/qwen3-30b-a3b-"
     },
     {
       "parameters": {
@@ -86,7 +86,7 @@
         816
       ],
       "id": "0489ab2c-7af4-44c7-9904-9cc47b1792ee",
-      "name": "Claude Opus 4.5"
+       "name": "Claude Opus 4.5"
     },
     {
       "parameters": {
@@ -125,7 +125,7 @@
         816
       ],
       "id": "025b41b6-627c-48cb-84ab-73e6a25b71f7",
-      "name": "Claude Haiku 4.5"
+       "name": "Claude Haiku 4.5"
     },
     {
       "parameters": {
@@ -147,7 +147,7 @@
         816
       ],
       "id": "d987607c-54d2-4e51-94d7-02d9ca1e54e9",
-      "name": "llama 3.3 70b instruct"
+       "name": "llama 3.3 70b instruct"
     },
     {
       "parameters": {
@@ -212,7 +212,8 @@
         0
       ],
       "id": "9c024e21-d85a-4682-b624-da7e46cafe90",
-      "name": "Webhook"
+      "name": "Webhook",
+      "webhookId": "f0675b51-51ca-4cc1-a333-4317e3ffbfcf"
     },
     {
       "parameters": {
@@ -228,7 +229,7 @@
         0
       ],
       "id": "2e005cb5-0bce-40bc-9a0a-bf4eabc1e389",
-      "name": "Fetch Prompt"
+       "name": "Fetch Prompt"
     },
     {
       "parameters": {
@@ -486,13 +487,13 @@
             {
               "id": "df8b4cc9-259b-4f06-8763-f030ce58a76c",
               "name": "meetingSummaryPromptURL",
-              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/system-prompt.md",
+              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/summary-system-prompt.md",
               "type": "string"
             },
             {
               "id": "c80e2150-1299-40f7-be71-ffc4baeccf62",
               "name": "evergreenPromptURL",
-              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/evergreen-prompt.md",
+              "value": "https://raw.githubusercontent.com/dloomis/n8n-meeting-summarizer/main/evergreen-system-prompt.md",
               "type": "string"
             }
           ]
@@ -668,6 +669,11 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-
+  "versionId": "3ab06225-10ce-4b75-9a9f-473d6bfcfb9b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
+  },
+  "id": "eQXiPWGAUdrJLVEo",
   "tags": []
 }
