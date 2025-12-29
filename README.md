@@ -1,6 +1,6 @@
 # N8N Meeting Summarizer
 
-An automated workflow using n8n that either summarizes meeting transcripts into structured Obsidian-compatible notes or generates evergreen notes on specific concepts based on filename markers.
+An automated n8n workflow that processes meeting transcripts from MacWhisper, generates AI-powered structured notes in Obsidian (using Claude and Qwen models), supports dual operation modes (meeting summaries and evergreen concept notes triggered by filename markers), integrates with Obsidian vaults for knowledge management, and includes QuickAdd scripts for Kanban board task management.
 
 ## Features
 
