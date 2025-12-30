@@ -1,6 +1,6 @@
 # N8N Meeting Summarizer
 
-An automated n8n workflow that processes meeting transcripts from MacWhisper, generates AI-powered structured notes in Obsidian (using Claude and Qwen models), supports dual operation modes (meeting summaries and evergreen concept notes triggered by filename markers), integrates with Obsidian vaults for knowledge management, and includes QuickAdd scripts for Kanban board task management.
+An automated n8n workflow that processes meeting transcripts from MacWhisper, generates AI-powered structured notes in Obsidian (using Claude and Qwen models), supports three operation modes (meeting summaries, evergreen concept notes, and focused topic deep-dives triggered by filename markers), integrates with Obsidian vaults for knowledge management, and includes QuickAdd scripts for Kanban board task management.
 
 ## Features
 
@@ -9,8 +9,9 @@ An automated n8n workflow that processes meeting transcripts from MacWhisper, ge
 - **Participant Parsing**: Extracts participant names from transcript text and optional '!' filename delimiter (e.g., `meeting!Alice,Bob`) for summary prioritization
 - **AI Summarization**: Leverages Claude and Qwen models for intelligent analysis
 - **Obsidian Output**: Generates formatted markdown with YAML frontmatter, participants, action items, and hot takes
-- **Two Modes of Operation**: Automatically switches between meeting summaries and evergreen notes based on filename markers
+- **Three Modes of Operation**: Automatically switches between meeting summaries, evergreen notes, and focused topic deep-dives based on filename markers
 - **Evergreen Notes**: Optional '#' in filename triggers concept-based note generation from transcripts
+- **Focused Topic Notes**: Optional '+' in filename triggers deep-dive analysis of specific technical topics from transcripts
 - **GitHub Integration**: Fetches customizable system prompts from this repository
 
 ## Prerequisites
@@ -30,7 +31,7 @@ An automated n8n workflow that processes meeting transcripts from MacWhisper, ge
    cd n8n-meeting-summarizer
    ```
 
-2. **Configure paths**: Edit `compose.yml` to replace `/path/to/your/obsidian/vault/Meeting Summaries` and `/path/to/your/obsidian/vault/Evergreen Notes` with your actual local paths. Note: The file includes `N8N_RESTRICT_FILE_ACCESS_TO` for n8n v2 compatibility, restricting file access to these mapped paths for security
+2. **Configure paths**: Edit `compose.yml` to replace `/path/to/your/obsidian/vault/Meeting Summaries`, `/path/to/your/obsidian/vault/Evergreen Notes`, and `/path/to/your/obsidian/vault/Focused Notes` with your actual local paths. Note: The file includes `N8N_RESTRICT_FILE_ACCESS_TO` for n8n v2 compatibility, restricting file access to these mapped paths for security
 
 3. **Start n8n**:
    ```bash
@@ -47,27 +48,31 @@ An automated n8n workflow that processes meeting transcripts from MacWhisper, ge
 6. **Import workflow**:
     - In n8n UI, go to Workflows > Import from File
     - Select `Meeting Summarizer.json`
-    - **Important**: The workflow JSON has been stripped of all credential configurations and instance-specific IDs for security and portability. After import, you must manually assign credentials to each node as follows:
-      - "Fetch Prompt" node: GitHub API credential
-      - "Claude Sonnet 4.5" node: Anthropic API credential
-      - "qwen/qwen3-30b-a3b-" node: OpenAI API credential
-      - "Claude Opus 4.5" node: Anthropic API credential
-      - "Claude Haiku 4.5" node: Anthropic API credential
-      - "llama 3.3 70b instruct" node: OpenAI API credential
+     - **Important**: The workflow JSON has been stripped of all credential configurations and instance-specific IDs for security and portability. After import, you must manually assign credentials to each node as follows:
+       - "Fetch Summary Prompt" node: GitHub API credential
+       - "Fetch Evergreen Prompt" node: GitHub API credential
+       - "Fetch Focused Topic Prompt" node: GitHub API credential
+       - "Claude Sonnet 4.5" node: Anthropic API credential
+       - "qwen/qwen3-30b-a3b-" node: OpenAI API credential
+       - "Claude Opus 4.5" node: Anthropic API credential
+       - "Claude Haiku 4.5" node: Anthropic API credential
+       - "llama 3.3 70b instruct" node: OpenAI API credential
 
 7. **Configure MacWhisper**:
     - In MacWhisper Settings > Integrations > n8n, paste the webhook URL from the Webhook node (e.g., `http://localhost:5678/webhook/macwhisper-transcript`)
 
 ## Modes of Operation
 
-The workflow supports two modes based on the filename:
+The workflow supports three modes based on the filename:
 
 - **Meeting Summary Mode** (default): Generates structured meeting summaries with TL;DR, key points, action items, and hot takes
 - **Evergreen Notes Mode**: Triggered by '#' in the filename, generates concept-based notes that capture insights and themes
+- **Focused Topic Mode**: Triggered by '+' in the filename, generates deep-dive technical analysis of specific topics from the transcript
 
 Filename arguments are optional:
 - `'!'` followed by comma-separated participant names (e.g., `meeting!Alice,Bob`) for prioritization in summaries
 - `'#'` followed by a concept (e.g., `meeting#productivity`) to switch to evergreen mode
+- `'+'` followed by a topic (e.g., `meeting+Docker containers`) to switch to focused topic mode
 
 ## Usage
 
@@ -75,9 +80,9 @@ Filename arguments are optional:
    - Use MacWhisper to transcribe audio files
    - Use the Quick Export button to send the transcript in .txt format via the configured n8n integration
    - The workflow receives the JSON payload via webhook with title and transcript (speaker blocks separated by double newlines)
-   - Optionally include '!' for participants or '#' for evergreen mode in the filename
+   - Optionally include '!' for participants, '#' for evergreen mode, or '+' for focused topic mode in the filename
 
-2. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries and Evergreen Notes folder for concept-based notes
+2. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries, Evergreen Notes folder for concept-based notes, and Focused Notes folder for deep-dive analyses
 
 ## File Formats
 
@@ -86,19 +91,22 @@ Filename arguments are optional:
 
 ## Obsidian Vault Integration
 
-The workflow generates both meeting summaries and Evergreen Notes from transcripts, integrating with your Obsidian vault for structured knowledge management. Meeting summaries include Dataview inline fields for querying, while Evergreen Notes capture concepts with links to related meetings.
+The workflow generates meeting summaries, Evergreen Notes, and Focused Topic Notes from transcripts, integrating with your Obsidian vault for structured knowledge management. Meeting summaries include Dataview inline fields for querying, while Evergreen Notes capture concepts and Focused Notes provide deep technical dives.
 
 - **Hot Takes Querying**: Use Dataview to filter quotes by speaker across all meeting summaries.
 - **People Notes**: Structured templates with sections for notes, hot takes, and meetings, populated via Dataview.
 - **Evergreen Notes**: Concept-based notes extracted from transcripts (triggered by '#' in filename), stored in the Evergreen Notes folder with backlinks to meetings.
+- **Focused Topic Notes**: Deep-dive technical analysis of specific topics (triggered by '+' in filename), stored in the Focused Notes folder for detailed learning.
 - **CSS Hiding**: Inline fields are hidden in preview mode via a custom CSS snippet for clean viewing.
 - **Kanban Boards**: Use the optional QuickAdd script to automatically add action items from meeting summaries to your Kanban boards for task management.
 
 ## Customization
 
-- **System Prompt**: Edit `system-prompt.md` and push to update the behavior for meeting summaries (when generating meeting summaries)
-- **Evergreen Prompt**: Edit `evergreen-prompt.md` and push to customize how Evergreen Notes are generated from transcripts
+- **System Prompt**: Edit `summary-system-prompt.md` and push to update the behavior for meeting summaries
+- **Evergreen Prompt**: Edit `evergreen-system-prompt.md` and push to customize how Evergreen Notes are generated from transcripts
+- **Focused Topic Prompt**: Edit `focused-system-prompt.md` and push to customize how Focused Topic Notes are generated from transcripts
 - **Evergreen Notes**: The workflow detects Evergreen Notes when the title contains '#' followed by a concept (e.g., `meeting#productivity`). It routes the transcript to AI for concept-based note generation instead of a meeting summary, outputting to the Evergreen Notes folder. This is useful for capturing insights, ideas, or themes from discussions.
+- **Focused Topic Notes**: The workflow detects Focused Notes when the title contains '+' followed by a topic (e.g., `meeting+Docker containers`). It routes the transcript to AI for deep-dive technical analysis of that specific topic, outputting to the Focused Notes folder. This is useful for detailed learning on technical concepts discussed in meetings.
 - **GitHub Repo URL**: If you fork this repo, update the URL in the "Fetch System Prompt" and "Fetch Evergreen Prompt" nodes to point to your fork (e.g., `https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/system-prompt.md`)
 - **Important Participants**: The workflow automatically extracts participant names from the title after '!' (comma-separated) and uses them for prioritization. If no names are specified, it falls back to a default list. You can override this in the "Workflow Data" node by editing the `importantParticipants` array.
 - **Workflow**: Modify `Meeting Summarizer.json` in n8n UI for advanced changes
