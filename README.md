@@ -69,12 +69,12 @@ The workflow supports three modes based on the filename:
 - **Evergreen Notes Mode**: Triggered by '#' in the filename, generates concept-based notes that capture insights and themes
 - **Focused Topic Mode**: Triggered by '+' in the filename, generates deep-dive technical analysis of specific topics from the transcript
 
-Filename arguments are optional and can be combined:
+Filename arguments are optional but cannot be combined:
 - `'!'` followed by comma-separated participant names (e.g., `meeting!Alice,Bob`) for prioritization in summaries
 - `'#'` followed by a concept (e.g., `meeting#productivity`) to switch to evergreen mode
 - `'+'` followed by a topic (e.g., `meeting+Docker containers`) to switch to focused topic mode
 
-**Note**: All markers are optional. The workflow defaults to meeting summary mode when no markers are present.
+**Note**: Use only one marker per filename. The workflow defaults to meeting summary mode when no markers are present.
 
 ## Usage
 
