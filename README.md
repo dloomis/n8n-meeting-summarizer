@@ -6,7 +6,7 @@ An automated n8n workflow that processes meeting transcripts from MacWhisper, ge
 
 - **Webhook Trigger**: Receives transcription data via webhook from MacWhisper
 - **Text Extraction**: Processes plain text transcripts with speaker labels (double newlines separate speakers)
-- **Participant Parsing**: Extracts participant names from transcript text and optional '!' filename delimiter (e.g., `meeting!Alice,Bob`) for summary prioritization
+- **Participant Parsing**: Extracts participant names from transcript text and optional '!' filename delimiter (e.g., `meeting!Alice,Bob`) for summary prioritization. The '!' marker is optional and only needed when you want to override automatic participant detection.
 - **AI Summarization**: Leverages Claude and Qwen models for intelligent analysis
 - **Obsidian Output**: Generates formatted markdown with YAML frontmatter, participants, action items, and hot takes
 - **Three Modes of Operation**: Automatically switches between meeting summaries, evergreen notes, and focused topic deep-dives based on filename markers
@@ -69,10 +69,12 @@ The workflow supports three modes based on the filename:
 - **Evergreen Notes Mode**: Triggered by '#' in the filename, generates concept-based notes that capture insights and themes
 - **Focused Topic Mode**: Triggered by '+' in the filename, generates deep-dive technical analysis of specific topics from the transcript
 
-Filename arguments are optional:
+Filename arguments are optional and can be combined:
 - `'!'` followed by comma-separated participant names (e.g., `meeting!Alice,Bob`) for prioritization in summaries
 - `'#'` followed by a concept (e.g., `meeting#productivity`) to switch to evergreen mode
 - `'+'` followed by a topic (e.g., `meeting+Docker containers`) to switch to focused topic mode
+
+**Note**: All markers are optional. The workflow defaults to meeting summary mode when no markers are present.
 
 ## Usage
 
@@ -80,7 +82,7 @@ Filename arguments are optional:
    - Use MacWhisper to transcribe audio files
    - Use the Quick Export button to send the transcript in .txt format via the configured n8n integration
    - The workflow receives the JSON payload via webhook with title and transcript (speaker blocks separated by double newlines)
-   - Optionally include '!' for participants, '#' for evergreen mode, or '+' for focused topic mode in the filename
+   - Optionally include '!' for participants, '#' for evergreen mode, or '+' for focused topic mode in the filename (all markers are optional)
 
 2. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries, Evergreen Notes folder for concept-based notes, and Focused Notes folder for deep-dive analyses
 
