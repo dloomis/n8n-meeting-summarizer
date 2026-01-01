@@ -6,3 +6,4 @@ AGENTS.md
 *.whisper
 metadata.json
 compose.yml.backup
+docker-compose.override.yml
