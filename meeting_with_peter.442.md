@@ -1,34 +1,34 @@
 ---
-Date: 2025-12-13
+Date: 2025-11-28
 Participants:
-  - "[[People/Monica Hall|Monica Hall]]"
-  - "[[People/Richard Hendricks|Richard Hendricks]]"
-  - "[[People/Peter Gregory|Peter Gregory]]"
-  - "[[People/Erlich Bachman|Erlich Bachman]]"
+  - "[[Monica Hall]]"
+  - "[[Richard Hendricks]]"
+  - "[[Peter Gregory]]"
+  - "[[Erlich Bachman]]"
 tags: meeting-summary
 ---
 
 ### TL;DR 📝
-[[Peter Gregory]] rejected [[Richard Hendricks]]' informal approach to the Pied Piper investment, demanding a complete business plan, go-to-market strategy, and financial projections within 48 hours or the deal is off.
+[[Peter Gregory]] challenged [[Richard Hendricks]] on his lack of business planning for Pied Piper, demanding a complete business plan, go-to-market strategy, and financial projections within 48 hours or the investment deal is off.
 
 ### Key Discussion Points 🔑
-- [[Peter Gregory]] discovered [[Erlich Bachman]] owns 10% of Pied Piper for providing incubator space, questioning the equity allocation
-- [[Richard Hendricks]] came unprepared with no cap table, investment deck, business plan, or relevant documentation
-- [[Peter Gregory]] emphasized that turning down $10 million requires clarity on company structure, roles, and essential personnel
-- [[Richard Hendricks]] misunderstood the meeting as a casual check pickup rather than a serious business review
+- [[Richard Hendricks]] revealed he gave [[Erlich Bachman]] 10% equity for incubator space, which [[Peter Gregory]] found excessive compared to the 5% for $200,000 investment [[meeting_with_peter.d815dc.m4a#t=00:40|🔊]]
+- [[Peter Gregory]] discovered [[Richard Hendricks]] had no cap table, investment deck, business plan, or other essential documentation prepared [[meeting_with_peter.d815dc.m4a#t=01:07|🔊]]
+- [[Peter Gregory]] emphasized the need to define company structure, roles, and essential personnel beyond just the algorithm [[meeting_with_peter.d815dc.m4a#t=01:50|🔊]]
+- [[Peter Gregory]] issued ultimatum requiring comprehensive business documentation within 48 hours to receive investment funding [[meeting_with_peter.d815dc.m4a#t=02:55|🔊]]
 
 ### Action Items ✅
-- [ ] Prepare airtight business plan for Pied Piper 🎯 (action-owner:: [[Richard Hendricks]]) 🗣️ (action-requestor:: [[Peter Gregory]]) 📅 2025-12-15 🔺
-- [ ] Develop clear go-to-market strategy 🎯 (action-owner:: [[Richard Hendricks]]) 🗣️ (action-requestor:: [[Peter Gregory]]) 📅 2025-12-15 🔺
-- [ ] Create three-year summary P&L projections 🎯 (action-owner:: [[Richard Hendricks]]) 🗣️ (action-requestor:: [[Peter Gregory]]) 📅 2025-12-15 🔺
-- [ ] Prepare cap table showing all equity allocations 🎯 (action-owner:: [[Richard Hendricks]]) 🗣️ (action-requestor:: [[Peter Gregory]]) 📅 2025-12-15 ⏫
-- [ ] Document roles and essentiality of all team members 🎯 (action-owner:: [[Richard Hendricks]]) 🗣️ (action-requestor:: [[Peter Gregory]]) 📅 2025-12-15 ⏫
+- [ ] Prepare airtight business plan for Pied Piper 🎯 (action-owner:: [[Richard Hendricks]]) 🗣️ (action-requestor:: [[Peter Gregory]]) 📅 2025-11-30 🔺 [[meeting_with_peter.d815dc.m4a#t=02:55|🔊]]
+- [ ] Develop clear go-to-market strategy 🎯 (action-owner:: [[Richard Hendricks]]) 🗣️ (action-requestor:: [[Peter Gregory]]) 📅 2025-11-30 🔺 [[meeting_with_peter.d815dc.m4a#t=02:58|🔊]]
+- [ ] Create three-year summary P&L projections 🎯 (action-owner:: [[Richard Hendricks]]) 🗣️ (action-requestor:: [[Peter Gregory]]) 📅 2025-11-30 🔺 [[meeting_with_peter.d815dc.m4a#t=03:01|🔊]]
+- [ ] Build cap table showing all equity allocations 🎯 (action-owner:: [[Richard Hendricks]]) 🗣️ (action-requestor:: [[Peter Gregory]]) 📅 2025-11-30 ⏫ [[meeting_with_peter.d815dc.m4a#t=01:07|🔊]]
+- [ ] Define company structure and essential personnel roles 🎯 (action-owner:: [[Richard Hendricks]]) 🗣️ (action-requestor:: [[Peter Gregory]]) 📅 2025-11-30 ⏫ [[meeting_with_peter.d815dc.m4a#t=02:00|🔊]]
 
 ### Hot Takes 🔥
-> (quote:: "I'm paying you $200,000 for 5%, yet you're giving this man twice that in exchange for a futon and some sandwiches?" - [[Peter Gregory]])
+> (quote:: "I'm paying you $200,000 for 5%, yet you're giving this man twice that in exchange for a futon and some sandwiches? (in context to equity allocation concerns and valuation inconsistency)" - [[Peter Gregory]])
 
-> (quote:: "This is not college, Richard. I'm not going to be giving you a course syllabus. You turned down $10 million to keep Pied Piper. What did you give up that money for?" - [[Peter Gregory]])
+> (quote:: "This is not college, Richard. I'm not going to be giving you a course syllabus. (in context to expectations for founder preparedness and business fundamentals)" - [[Peter Gregory]])
 
-> (quote:: "I cannot guide you until you give me something to guide. This is going very poorly." - [[Peter Gregory]])
+> (quote:: "The algorithm is the product of the company. What I'm asking about is the company itself. Who is it? What do they do? Are they essential? (in context to distinguishing between product value and organizational structure)" - [[Peter Gregory]])
 
-> (quote:: "Come back in 48 hours with an airtight business plan, a clear go-to-market strategy, and a three-year summary P&L, or there will be no check." - [[Peter Gregory]])
+> (quote:: "I cannot guide you until you give me something to guide. This is going very poorly. (in context to the failed meeting and lack of preparation)" - [[Peter Gregory]])
