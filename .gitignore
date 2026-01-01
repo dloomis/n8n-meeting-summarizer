@@ -3,3 +3,4 @@
 tmp/
 data/
 AGENTS.md
+*.whisper
