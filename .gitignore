@@ -4,3 +4,4 @@ tmp/
 data/
 AGENTS.md
 *.whisper
+metadata.json
