@@ -125,9 +125,10 @@ The workflow generates meeting summaries, Evergreen Notes, and Focused Topic Not
 
 ## Sample Files
 
-- `meeting_with_peter.442.whisper`: Example .whisper file (exported from MacWhisper, contains JSON transcription and audio)
-- `meeting_with_peter.442.md`: Example summary output with audio links
+- `meeting_with_peter.d815dc.md`: Example meeting summary output with audio links
 - `meeting_with_peter#business plan.md`: Example evergreen note output
+- `meeting_with_peter.d815dc.m4a`: Example audio file for timestamp linking
+- `meeting_with_peter.txt`: Example transcription text file
 
 ## Security Notes
 
