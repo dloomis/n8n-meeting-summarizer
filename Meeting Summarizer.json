@@ -12,7 +12,7 @@
               "output": 1
             },
             {
-              "value2": "={{ $json.evergreenTopic }}",
+              "value2": "={{ $json.isEvergreenNote }}",
               "output": 2
             }
           ]
@@ -22,10 +22,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        192,
-        752
+        1056,
+        2032
       ],
-      "id": "16629f69-e03c-4801-a9e1-e98de1b478ee",
+      "id": "264295b3-3c3a-4630-b4e6-913310a8e3c6",
       "name": "Route by Type"
     },
     {
@@ -43,10 +43,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        720,
-        1360
+        1584,
+        2640
       ],
-      "id": "43cdc6e7-6bff-4ac6-9cbf-d4159b1424b6",
+      "id": "bacc2bc0-58d5-4547-8afc-2f08fc327ae0",
       "name": "Claude Sonnet 4.5"
     },
     {
@@ -65,10 +65,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        1152,
-        1360
+        2016,
+        2640
       ],
-      "id": "3ffda992-387b-455a-8298-2a8914ed6340",
+      "id": "49d5e54d-e318-4421-bd5c-1bdadaca5e33",
       "name": "qwen/qwen3-30b-a3b-"
     },
     {
@@ -86,10 +86,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        864,
-        1360
+        1728,
+        2640
       ],
-      "id": "b27edb42-3195-42d2-b9df-940fb6dc75e9",
+      "id": "2d6df054-df2c-472b-a978-b6a817820b56",
       "name": "Claude Opus 4.5"
     },
     {
@@ -104,10 +104,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        864,
-        992
+        1728,
+        2272
       ],
-      "id": "42631f5f-2aed-4ffe-b639-e3b6e716b6aa",
+      "id": "4a091dbc-3538-4394-bb32-e6f6b7be6d4b",
       "name": "Create Evergreen Note"
     },
     {
@@ -125,10 +125,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        1008,
-        1360
+        1872,
+        2640
       ],
-      "id": "bd99749e-5401-4844-84a9-5713e972f50d",
+      "id": "7e22cede-ecdf-4dba-bca0-54291feea656",
       "name": "Claude Haiku 4.5"
     },
     {
@@ -147,10 +147,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        1296,
-        1360
+        2160,
+        2640
       ],
-      "id": "55f4ae9b-0ba2-4a06-b6dd-55ee589bc8cc",
+      "id": "a59fa8dd-aa73-416b-b32e-f69ac3f30618",
       "name": "llama 3.3 70b instruct"
     },
     {
@@ -159,32 +159,17 @@
         "sourceProperty": "output",
         "options": {
           "encoding": "utf8",
-          "fileName": "={{ $('Workflow Data').item.json.obsidianNoteName }}"
+          "fileName": "={{ $('Workflow Data').item.json.obsidianNoteRootName }}.md"
         }
       },
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        1280,
-        768
+        2384,
+        2048
       ],
-      "id": "14569d25-b70b-4023-9f8e-515ba7238126",
+      "id": "ea722e3e-0f66-4397-bce6-c1a4704ea696",
       "name": "Convert to File"
-    },
-    {
-      "parameters": {
-        "operation": "write",
-        "fileName": "={{ $('Workflow Data').item.json.obsidianNoteFolder }}{{ $('Workflow Data').item.json.obsidianNoteName }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.readWriteFile",
-      "typeVersion": 1,
-      "position": [
-        1504,
-        768
-      ],
-      "id": "4e3d9f40-cc22-4a2a-bd9e-7e01cbee7598",
-      "name": "Write to Obsidian"
     },
     {
       "parameters": {
@@ -197,27 +182,11 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        864,
-        528
+        1728,
+        1808
       ],
-      "id": "274c597a-623b-49e8-bccd-7617a51ad49c",
+      "id": "592cbf06-dd35-4766-94cf-64ae2c5b0ed3",
       "name": "Create Summary Note"
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "f0675b51-51ca-4cc1-a333-4317e3ffbfcf",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -256,
-        304
-      ],
-      "id": "5bfd4134-6b9c-4e74-8c49-abdb91232d4d",
-      "name": "Webhook",
-      "webhookId": "f0675b51-51ca-4cc1-a333-4317e3ffbfcf"
     },
     {
       "parameters": {
@@ -226,7 +195,7 @@
             {
               "id": "filenameNoExt",
               "name": "transcriptTitle",
-              "value": "={{ $('Parse Transcript').item.json.title }}",
+              "value": "={{ $('Parse Arguments').item.json.baseFilename }}",
               "type": "string"
             },
             {
@@ -279,8 +248,8 @@
             },
             {
               "id": "dece3c98-d80e-4145-80e2-c66b05fc824b",
-              "name": "obsidianNoteName",
-              "value": "={{ $('Parse Transcript').item.json.title + '.' + $json.data.substring(0,6) + '.md' }}",
+              "name": "obsidianNoteRootName",
+              "value": "={{ $('Store Filename').item.json.transcriptionName + '.' + $json.data.substring(0,6) }}",
               "type": "string"
             },
             {
@@ -296,10 +265,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        864,
-        304
+        1728,
+        1584
       ],
-      "id": "98bf5ef0-4f41-49e2-9d80-8003761d76f2",
+      "id": "30d45a46-b84a-40eb-9ac3-fe94cfbe12ba",
       "name": "Workflow Data"
     },
     {
@@ -309,11 +278,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        32,
-        1120
+        1264,
+        2640
       ],
       "typeVersion": 1,
-      "id": "1a3b4322-ace2-4dc4-9d3a-a5e522d092c1",
+      "id": "3984755e-d4bf-4eff-a1e0-3f674e186b8a",
       "name": "Sticky Note"
     },
     {
@@ -323,11 +292,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        416,
-        208
+        1280,
+        1488
       ],
       "typeVersion": 1,
-      "id": "cc19a318-1270-4eed-bfc1-02920483901f",
+      "id": "d6700601-565f-4418-b7de-42c4a29d3a88",
       "name": "Sticky Note1"
     },
     {
@@ -337,26 +306,12 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        864,
-        176
+        1728,
+        1456
       ],
       "typeVersion": 1,
-      "id": "53070374-f20f-4ce2-a938-2268d86d70e7",
+      "id": "c51e2a16-8ace-4e3f-b445-6378e6e50828",
       "name": "Sticky Note2"
-    },
-    {
-      "parameters": {
-        "content": "TODO: use Obsidian node to use RESTI API calls instead of local file operations",
-        "height": 80
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1488,
-        560
-      ],
-      "typeVersion": 1,
-      "id": "fec76cd4-39b2-472d-b2c5-baac4c4b886c",
-      "name": "Sticky Note3"
     },
     {
       "parameters": {
@@ -365,11 +320,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1264,
-        1040
+        2384,
+        1952
       ],
       "typeVersion": 1,
-      "id": "7719e64a-a858-4cc6-bdf5-e310785b6370",
+      "id": "c2fe782a-8577-4315-a59d-97f140307fee",
       "name": "Sticky Note4"
     },
     {
@@ -379,11 +334,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1152,
-        1184
+        2016,
+        2464
       ],
       "typeVersion": 1,
-      "id": "01a01bd3-42dd-4135-9d70-e64c759a314d",
+      "id": "f29e46f4-9953-4609-aa6c-a9ab462252fa",
       "name": "Sticky Note5"
     },
     {
@@ -429,10 +384,10 @@
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.3,
       "position": [
-        1008,
-        1184
+        1872,
+        2464
       ],
-      "id": "ba901351-e0db-427f-b415-68eb3bea7944",
+      "id": "e17387e4-e437-4964-9951-73a1e43c845f",
       "name": "Internet Search"
     },
     {
@@ -442,36 +397,36 @@
       "type": "n8n-nodes-base.crypto",
       "typeVersion": 1,
       "position": [
-        640,
-        304
+        1504,
+        1584
       ],
-      "id": "3ed0c561-d230-4dfc-8494-e765e471b54d",
+      "id": "e3dbec9d-118a-4325-b0d7-e42c66615ce9",
       "name": "Generate filename UUID"
     },
     {
       "parameters": {
-        "jsCode": "return items.map(item => {\n    const title = item.json.body?.title || '';\n    const transcript = item.json.body?.transcript || '';\n    let participants = [];\n    let extractedDate = null;\n    let formattedTranscript = '';\n    \n    // Split into blocks (assuming double newlines separate speakers)\n    const blocks = transcript.split(/\\n\\n/).filter(b => b.trim());\n    \n    // Extract participants and format\n    participants = [...new Set(blocks.map(b => b.split('\\n')[0]?.trim()).filter(p => p && p !== 'Unknown'))];\n    formattedTranscript = blocks.length \n        ? blocks.map(b => {\n            const lines = b.split('\\n');\n            const speaker = lines[0]?.trim() || 'Unknown';\n            const text = lines.slice(1).join('\\n').trim();\n            return `${speaker}: ${text}`;\n        }).join('\\n\\n')\n        : 'No transcript available.';\n    \n    // Extract date from title\n    const titleDateRegex = /\\b(\\d{4}-\\d{2}-\\d{2})\\b/;\n    extractedDate = title.match(titleDateRegex) ? title.match(titleDateRegex)[0] : new Date().toISOString().split('T')[0];\n    \n    return {\n        json: {\n            participants,\n            extractedDate,\n            title,\n            formattedTranscript\n        }\n    };\n});"
+        "jsCode": "return items.map(item => {\n    const transcripts = item.json.data?.transcripts || [];\n    \n    // Parse extractedDate from dateCreated (Mac absolute time in seconds since 2001-01-01)\n    const dateCreated = item.json.data?.dateCreated || 0;\n    const unixTimestamp = dateCreated + 978307200; // Add offset to convert to Unix seconds\n    const extractedDate = new Date(unixTimestamp * 1000).toISOString().split('T')[0];\n    \n    // Default title (can override from filename if needed)\n    const title = 'Meeting Transcript';\n    \n    // Format transcripts with timestamps in MM:SS\n    const formattedTranscript = transcripts.map(seg => {\n        const speaker = seg.speaker?.name || 'Unknown';\n        const startSeconds = (seg.start || 0) / 1000; // ms to seconds\n        const minutes = Math.floor(startSeconds / 60);\n        const seconds = Math.floor(startSeconds % 60);\n        const timestamp = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;\n        return `${speaker}\\n${timestamp}\\n${seg.text}`;\n    }).join('\\n\\n');\n    \n    // Unique participants\n    const participants = [...new Set(transcripts.map(seg => seg.speaker?.name || 'Unknown').filter(name => name !== 'Unknown'))];\n    \n    return {\n        json: {\n            title,\n            extractedDate,\n            formattedTranscript,\n            participants\n        }\n    };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -32,
-        304
+        832,
+        1584
       ],
-      "id": "8583c9c7-5d17-4e8a-9264-f509c765f450",
+      "id": "9870f061-370b-4e18-969e-ad7587942c9a",
       "name": "Parse Transcript"
     },
     {
       "parameters": {
-        "jsCode": "return items.map(item => {\n    const filename = item.json.title || '';\n    \n    // Parses a filename for people after '!' , evergreen topic after '#', and focused topic after '+'.\n    // #, !, and + are optional and can be used separately.\n    function parseFilename(filename) {\n        let importantParticipants = [];\n        let evergreenTopic = null;\n        let focusedTopic = null;  // NEW: For +topic\n        \n        // Find '!' for importantParticipants\n        const bangIndex = filename.indexOf('!');\n        if (bangIndex !== -1) {\n            const namePart = filename.substring(bangIndex + 1); // Everything after !\n            importantParticipants = namePart.split(',')\n                .map(name => name.trim())\n                .filter(name => name.length > 0);\n        }\n        \n        // Find '#' for evergreenTopic\n        const hashIndex = filename.indexOf('#');\n        if (hashIndex !== -1) {\n            evergreenTopic = filename.substring(hashIndex + 1).trim(); // Everything after #\n        }\n        \n        // NEW: Find '+' for focusedTopic (logic exactly like #)\n        const plusIndex = filename.indexOf('+');\n        if (plusIndex !== -1) {\n            focusedTopic = filename.substring(plusIndex + 1).trim(); // Everything after +, multi-word support\n        }\n        \n        return {\n            importantParticipants,\n            evergreenTopic,\n            focusedTopic  // NEW\n        };\n    }\n    \n    const { importantParticipants, evergreenTopic, focusedTopic } = parseFilename(filename);\n    \n    return {\n        json: {\n            importantParticipants,\n            evergreenTopic,\n            focusedTopic  // NEW: Add to output JSON\n        }\n    };\n});"
+        "jsCode": "return items.map(item => {\n    const filename = $('Store Filename').first().json.transcriptionName || '';\n    \n    // Parses a filename for people after '!' , evergreen topic after '#', and focused topic after '+'.\n    // #, !, and + are optional and can be used separately.\n    function parseFilename(filename) {\n        let importantParticipants = [];\n        let evergreenTopic = null;\n        let focusedTopic = null;  // For +topic\n        \n        // Find the earliest special character to get base filename\n        const specialChars = ['!', '#', '+'];\n        let minIndex = filename.length;\n        for (const char of specialChars) {\n            const index = filename.indexOf(char);\n            if (index !== -1 && index < minIndex) {\n                minIndex = index;\n            }\n        }\n        const baseFilename = minIndex < filename.length ? filename.substring(0, minIndex) : filename;\n        \n        // Find '!' for importantParticipants\n        const bangIndex = filename.indexOf('!');\n        if (bangIndex !== -1) {\n            const namePart = filename.substring(bangIndex + 1); // Everything after !\n            importantParticipants = namePart.split(',')\n                .map(name => name.trim())\n                .filter(name => name.length > 0);\n        }\n        \n        // Find '#' for evergreenTopic\n        const hashIndex = filename.indexOf('#');\n        if (hashIndex !== -1) {\n            evergreenTopic = filename.substring(hashIndex + 1).trim(); // Everything after #\n        }\n        \n        // Find '+' for focusedTopic\n        const plusIndex = filename.indexOf('+');\n        if (plusIndex !== -1) {\n            focusedTopic = filename.substring(plusIndex + 1).trim(); // Everything after +, multi-word support\n        }\n        \n        return {\n            baseFilename,\n            importantParticipants,\n            evergreenTopic,\n            focusedTopic\n        };\n    }\n    \n    const { baseFilename, importantParticipants, evergreenTopic, focusedTopic } = parseFilename(filename);\n    \n    return {\n        json: {\n            baseFilename,\n            importantParticipants,\n            evergreenTopic,\n            focusedTopic\n        }\n    };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        192,
-        304
+        1056,
+        1584
       ],
-      "id": "742f5b73-c379-4e05-b88c-d228297f4974",
+      "id": "c4e39e0c-461e-4ef4-be0c-31f7cea0ba43",
       "name": "Parse Arguments"
     },
     {
@@ -503,25 +458,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        416,
-        304
+        1280,
+        1584
       ],
-      "id": "8c0902df-ae8c-4bd8-a95e-801fe35b7f23",
+      "id": "6c1f3d14-f8cd-43af-9421-76656bc7ce92",
       "name": "Workflow Variables"
-    },
-    {
-      "parameters": {
-        "content": "Reference this webhook URL in MacWhisper or your favorite audio transcription tool.",
-        "height": 80
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -256,
-        208
-      ],
-      "typeVersion": 1,
-      "id": "faa4bafd-e122-4095-bc6a-acb5425d2492",
-      "name": "Sticky Note6"
     },
     {
       "parameters": {
@@ -533,10 +474,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        528,
-        528
+        1392,
+        1808
       ],
-      "id": "59350a32-015d-443f-9d90-cf7ac9d9e417",
+      "id": "23e561a5-3680-4e7a-aec4-45811c25930e",
       "name": "Fetch Summary Prompt"
     },
     {
@@ -549,10 +490,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        528,
-        992
+        1392,
+        2272
       ],
-      "id": "d5cf0345-46ff-439f-b60d-f8dd560e3a8b",
+      "id": "ad6c6a0d-695f-460e-b506-dfa1bba9d7b7",
       "name": "Fetch Evergreen Prompt"
     },
     {
@@ -565,16 +506,16 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        528,
-        768
+        1392,
+        2048
       ],
-      "id": "5e383a1d-f82d-45f8-8946-fe6b106cd017",
+      "id": "78f7e1a1-b17f-41a7-b608-f87ec2903bb4",
       "name": "Fetch Focused Topic Prompt"
     },
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Analyze the following meeting transcript for a deep learning dive on this topic:\n\nTOPIC: {{ $('Workflow Data').item.json.focusedTopic }}\n\nTRANSCRIPT: {{ $('Workflow Data').item.json.formattedTranscript }}\n\nProvide a comprehensive technical explanation of this topic based on the discussion in the transcript, including all relevant DoD/military context, technical specifications, and key insights from the conversation.",
+        "text": "=Analyze the following meeting transcript for a deep learning dive on this topic:\n\nTOPIC: {{ $('Workflow Data').item.json.focusedTopic }}\n\nTRANSCRIPT: {{ $('Workflow Data').item.json.formattedTranscript }}\n\nProvide a comprehensive technical explanation of this topic based on the discussion in the transcript, including all relevant context, technical specifications, and key insights from the conversation.",
         "options": {
           "systemMessage": "={{ $json.data }}"
         }
@@ -582,11 +523,184 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        864,
-        768
+        1728,
+        2048
       ],
-      "id": "0f3dba5e-7f9a-4435-b5e1-e9cf693f4c1e",
+      "id": "dcfa735b-b72a-4cb0-b020-83ddaa4c71e7",
       "name": "Create Focused Note"
+    },
+    {
+      "parameters": {
+        "triggerOn": "folder",
+        "path": "/data/tmp",
+        "events": [
+          "add",
+          "change"
+        ],
+        "options": {
+          "awaitWriteFinish": true
+        }
+      },
+      "type": "n8n-nodes-base.localFileTrigger",
+      "typeVersion": 1,
+      "position": [
+        832,
+        1232
+      ],
+      "id": "d708e5a2-4b50-4d1d-80c0-9610f39dda14",
+      "name": "Local File Trigger"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/data/tmp/metadata.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1504,
+        1232
+      ],
+      "id": "fd302aa3-f3cc-4eee-a60e-0cb2d087cc47",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        1728,
+        1232
+      ],
+      "id": "b8c41d7d-20ea-43b7-8617-9e31078fd12e",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e728765e-1614-49ad-9c1d-5b3f67b72d4b",
+              "name": "transcriptionName",
+              "value": "={{ $json.path.split('/').pop().replace('.whisper', '') }}",
+              "type": "string"
+            },
+            {
+              "id": "7109878d-3eb4-4fc1-b405-cd25723f8ad1",
+              "name": "path",
+              "value": "={{ $json.path }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1056,
+        1232
+      ],
+      "id": "e2bc764d-7dd6-4182-8ed2-144e152926c0",
+      "name": "Store Filename"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $('Workflow Data').item.json.obsidianNoteFolder }}{{ $('Workflow Data').item.json.obsidianNoteRootName }}.md",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        2608,
+        2048
+      ],
+      "id": "4670c0c5-1bf4-4cfc-9433-59ca226942cb",
+      "name": "Write Note to Obsidian"
+    },
+    {
+      "parameters": {
+        "jsCode": "    return items.map(item => {\n      const summary = $input.first().json.output || ''; // Adjust field if different\n      const audioFileName = $('Workflow Data').first().json.obsidianNoteRootName + '.m4a';\n      const updatedSummary = summary.replace(/audio\\.m4a/g, audioFileName);\n      return {\n          json: {\n              output: updatedSummary // Update the field\n          }\n      };\n  });"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        1808
+      ],
+      "id": "4e149b51-99af-472c-aa67-92aaf7df27b8",
+      "name": "Replace audio file name"
+    },
+    {
+      "parameters": {
+        "command": "=unzip -o \"{{ $json.path }}\" -d /data/tmp"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        1232
+      ],
+      "id": "86523653-5245-4630-a901-da297bf89c64",
+      "name": "Unzip .whisper file"
+    },
+    {
+      "parameters": {
+        "content": "Point to your own Github repo if you don't want to use the prompts from the main project.",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1056,
+        1808
+      ],
+      "typeVersion": 1,
+      "id": "710b99ca-d55f-42ef-8cd8-5032e6e6b81c",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "command": "=cp /data/tmp/originalAudio \"/data/audio/{{ $('Workflow Data').item.json.obsidianNoteRootName }}.m4a\" "
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        2800,
+        2048
+      ],
+      "id": "81149038-12d2-4598-a4f8-333177d28c17",
+      "name": "Copy Audio File to Obsidian"
+    },
+    {
+      "parameters": {
+        "command": "=rm  \"{{ $('Local File Trigger').item.json.path }}\""
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        3008,
+        2048
+      ],
+      "id": "374c63f7-383f-4c25-8aa2-30f4b2c1cc0f",
+      "name": "Delete .whisper file"
+    },
+    {
+      "parameters": {
+        "content": "Local file operations require specific compose.yml env variables (see readme)",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1504,
+        1120
+      ],
+      "typeVersion": 1,
+      "id": "5dbb6628-2226-4e75-bd3d-0e2bea1a004f",
+      "name": "Sticky Note6"
     }
   ],
   "pinData": {},
@@ -658,7 +772,7 @@
       "main": [
         [
           {
-            "node": "Write to Obsidian",
+            "node": "Write Note to Obsidian",
             "type": "main",
             "index": 0
           }
@@ -669,18 +783,7 @@
       "main": [
         [
           {
-            "node": "Convert to File",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "Parse Transcript",
+            "node": "Replace audio file name",
             "type": "main",
             "index": 0
           }
@@ -785,6 +888,94 @@
           }
         ]
       ]
+    },
+    "Local File Trigger": {
+      "main": [
+        [
+          {
+            "node": "Store Filename",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Parse Transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Filename": {
+      "main": [
+        [
+          {
+            "node": "Unzip .whisper file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Note to Obsidian": {
+      "main": [
+        [
+          {
+            "node": "Copy Audio File to Obsidian",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace audio file name": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unzip .whisper file": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copy Audio File to Obsidian": {
+      "main": [
+        [
+          {
+            "node": "Delete .whisper file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
@@ -793,10 +984,9 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "a68ca0e7-d097-4fc3-b6cf-351b25dc08d5",
+  "versionId": "f9dac8c8-6dea-4278-b991-1a21813c278b",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
+    "templateCredsSetupCompleted": true
   },
   "id": "eQXiPWGAUdrJLVEo",
   "tags": []
