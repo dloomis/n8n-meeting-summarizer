@@ -47,7 +47,8 @@
         1520
       ],
       "id": "c074d6db-ec71-4713-98be-fd1c2e264b07",
-      "name": "Claude Sonnet 4.5"
+       "name": "Claude Sonnet 4.5"
+    },
     {
       "parameters": {
         "model": {
@@ -89,7 +90,8 @@
         1520
       ],
       "id": "3b211641-f9a7-4fc9-a9c5-46f8e700a314",
-      "name": "Claude Opus 4.5"
+       "name": "Claude Opus 4.5"
+    },
     {
       "parameters": {
         "promptType": "define",
@@ -127,7 +129,8 @@
         1520
       ],
       "id": "4967b136-b7ec-44ce-ab13-5b186b7fbfe5",
-      "name": "Claude Haiku 4.5"
+       "name": "Claude Haiku 4.5"
+    },
     {
       "parameters": {
         "model": {
@@ -475,7 +478,8 @@
         688
       ],
       "id": "398b491b-70ad-4130-9b5f-b34c70ab34c9",
-      "name": "Fetch Summary Prompt"
+       "name": "Fetch Summary Prompt"
+    },
     {
       "parameters": {
         "url": "={{ $('Workflow Variables').item.json.evergreenPromptURL }}",
@@ -490,7 +494,8 @@
         1152
       ],
       "id": "1953294b-1671-4b24-aa90-0cde8c28c05d",
-      "name": "Fetch Evergreen Prompt"
+       "name": "Fetch Evergreen Prompt"
+    },
     {
       "parameters": {
         "url": "={{ $('Workflow Variables').item.json.focusedTopicPromptURL }}",
@@ -505,7 +510,8 @@
         928
       ],
       "id": "cd494005-3451-48a2-94cb-adc3013ad483",
-      "name": "Fetch Focused Topic Prompt"
+       "name": "Fetch Focused Topic Prompt"
+    },
     {
       "parameters": {
         "promptType": "define",
