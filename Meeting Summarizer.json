@@ -22,10 +22,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        -448,
-        912
+        3040,
+        3712
       ],
-      "id": "9d4cd607-40c5-4055-877e-6ad9b3a64d54",
+      "id": "ee110cd8-f29c-4f8a-9d51-534667511916",
       "name": "Route by Type"
     },
     {
@@ -43,10 +43,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        80,
-        1520
+        3568,
+        4320
       ],
-      "id": "c074d6db-ec71-4713-98be-fd1c2e264b07",
+      "id": "450573d0-4b20-4bf8-8d7c-c49125ecd8dc",
        "name": "Claude Sonnet 4.5"
     },
     {
@@ -65,11 +65,11 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        512,
-        1520
+        4000,
+        4320
       ],
-      "id": "d6ae0c51-2f27-4ec7-9e36-f9eee325ceef",
-      "name": "qwen/qwen3-30b-a3b-"
+      "id": "88fc6aba-a59a-43ee-847d-ebedeb8ce188",
+       "name": "qwen/qwen3-30b-a3b-"
     },
     {
       "parameters": {
@@ -86,10 +86,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        224,
-        1520
+        3712,
+        4320
       ],
-      "id": "3b211641-f9a7-4fc9-a9c5-46f8e700a314",
+      "id": "220ab684-0458-4b93-8e3f-ff918606323a",
        "name": "Claude Opus 4.5"
     },
     {
@@ -104,10 +104,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        224,
-        1152
+        3712,
+        3952
       ],
-      "id": "c804501f-afce-4558-8db4-999ca140e4b3",
+      "id": "9c7ba2d1-c5d4-43a4-997f-f73eb92257b7",
       "name": "Create Evergreen Note"
     },
     {
@@ -125,10 +125,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        368,
-        1520
+        3856,
+        4320
       ],
-      "id": "4967b136-b7ec-44ce-ab13-5b186b7fbfe5",
+      "id": "9e2e47e6-b47c-47a7-abf2-6da44222db09",
        "name": "Claude Haiku 4.5"
     },
     {
@@ -147,11 +147,11 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        656,
-        1520
+        4144,
+        4320
       ],
-      "id": "31a869f8-f2ab-49bd-9d8f-67b049844dff",
-      "name": "llama 3.3 70b instruct"
+      "id": "0b2fb7bf-b896-4f23-a420-2a916c505cd0",
+       "name": "llama 3.3 70b instruct"
     },
     {
       "parameters": {
@@ -165,10 +165,10 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        992,
-        928
+        4480,
+        3728
       ],
-      "id": "95aabe7e-6f04-45f6-a1a7-ca78f2a6ae75",
+      "id": "cfc3b0fe-6412-4b53-b4ed-ee23a8c2d923",
       "name": "Convert to File"
     },
     {
@@ -182,10 +182,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        224,
-        688
+        3712,
+        3488
       ],
-      "id": "84ea811c-e938-4c38-9db2-fe4283acde56",
+      "id": "d0e000a4-1390-4d39-9faf-39ee9cf231f5",
       "name": "Create Summary Note"
     },
     {
@@ -195,7 +195,7 @@
             {
               "id": "filenameNoExt",
               "name": "transcriptTitle",
-              "value": "={{ $('Parse Arguments').item.json.baseFilename }}",
+              "value": "={{ $('Store Filename').item.json.transcriptionName }}",
               "type": "string"
             },
             {
@@ -265,10 +265,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        352,
-        464
+        3840,
+        3264
       ],
-      "id": "9ad23649-4731-4066-bb39-c21220c584f2",
+      "id": "38c6cbc3-8a46-4ff3-94ce-06b8d47375b5",
       "name": "Workflow Data"
     },
     {
@@ -278,11 +278,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -240,
-        1520
+        3248,
+        4320
       ],
       "typeVersion": 1,
-      "id": "bc7f50f2-2c9d-4fd8-a37f-67a5cc244f56",
+      "id": "2d9e0b3e-18bd-4d69-8294-29ac1dfa1504",
       "name": "Sticky Note"
     },
     {
@@ -292,25 +292,25 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -96,
-        368
+        3392,
+        3168
       ],
       "typeVersion": 1,
-      "id": "a69f933e-9537-4840-b5cf-8f6f65978cba",
+      "id": "a71d9f2b-af82-433b-accf-a13fd35d4b07",
       "name": "Sticky Note1"
     },
     {
       "parameters": {
         "content": "The prompts are optimized for Claude Sonnet and Opus. They should be modified for best performance if using another model.",
-        "height": 112
+        "height": 80
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -240,
-        1296
+        3248,
+        4096
       ],
       "typeVersion": 1,
-      "id": "a451d81c-3513-4e8a-a801-2bb6b2be8427",
+      "id": "071626cb-4948-4453-9ca9-97904cc4dbf6",
       "name": "Sticky Note2"
     },
     {
@@ -320,11 +320,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        992,
-        832
+        4480,
+        3632
       ],
       "typeVersion": 1,
-      "id": "67c1a0f5-7ea3-4136-9bad-00f460b8a718",
+      "id": "ea15c8e3-42fa-4486-af6f-6f1da6ee9667",
       "name": "Sticky Note4"
     },
     {
@@ -334,11 +334,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        512,
-        1344
+        4000,
+        4144
       ],
       "typeVersion": 1,
-      "id": "47fcfa47-6416-4dda-96c3-32d6f3fd8381",
+      "id": "cf86bae6-9b7d-43e6-a929-03b4f9d62188",
       "name": "Sticky Note5"
     },
     {
@@ -384,10 +384,10 @@
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.3,
       "position": [
-        368,
-        1344
+        3856,
+        4144
       ],
-      "id": "7cc839b2-9383-43ae-86e0-7e0d4f179ed4",
+      "id": "2c6055ed-0880-46a9-992c-00468dd27b01",
       "name": "Internet Search"
     },
     {
@@ -397,10 +397,10 @@
       "type": "n8n-nodes-base.crypto",
       "typeVersion": 1,
       "position": [
-        128,
-        464
+        3616,
+        3264
       ],
-      "id": "9542416e-bacb-44d8-beaa-1ad7b3e1efcc",
+      "id": "33392d08-7e11-467f-a5eb-f5d6874f7d96",
       "name": "Generate filename UUID"
     },
     {
@@ -410,10 +410,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -544,
-        464
+        2944,
+        3264
       ],
-      "id": "d92b0886-e79f-4d5c-b1b2-8ab75cb1dc25",
+      "id": "7f3b1559-a918-4231-8034-b4f70ee77227",
       "name": "Parse Transcript"
     },
     {
@@ -423,10 +423,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -320,
-        464
+        3168,
+        3264
       ],
-      "id": "a436450e-3e9a-4917-b822-590023714054",
+      "id": "e52d6467-7049-489e-8edc-0bde7836ca03",
       "name": "Parse Arguments"
     },
     {
@@ -458,10 +458,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -96,
-        464
+        3392,
+        3264
       ],
-      "id": "a25119d4-efad-4b34-9b88-bbf4ee6484fe",
+      "id": "5f951078-5912-46e3-9b00-b5d4cc58f937",
       "name": "Workflow Variables"
     },
     {
@@ -474,10 +474,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        -96,
-        688
+        3392,
+        3488
       ],
-      "id": "398b491b-70ad-4130-9b5f-b34c70ab34c9",
+      "id": "55c1542d-78e4-40dd-8fef-212f351198c0",
        "name": "Fetch Summary Prompt"
     },
     {
@@ -490,10 +490,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        -96,
-        1152
+        3392,
+        3952
       ],
-      "id": "1953294b-1671-4b24-aa90-0cde8c28c05d",
+      "id": "0b4d6956-b5ed-4193-8389-2b43a5c4752f",
        "name": "Fetch Evergreen Prompt"
     },
     {
@@ -506,10 +506,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        -96,
-        928
+        3392,
+        3728
       ],
-      "id": "cd494005-3451-48a2-94cb-adc3013ad483",
+      "id": "47e180a8-f53c-450d-b528-f9a5d750b30d",
        "name": "Fetch Focused Topic Prompt"
     },
     {
@@ -523,10 +523,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        224,
-        928
+        3712,
+        3728
       ],
-      "id": "0d6f521c-32a7-409c-bc4d-212c7f171faa",
+      "id": "ba109218-497f-4b32-9008-ab8d0fcc1f37",
       "name": "Create Focused Note"
     },
     {
@@ -544,10 +544,10 @@
       "type": "n8n-nodes-base.localFileTrigger",
       "typeVersion": 1,
       "position": [
-        -768,
-        112
+        2720,
+        2912
       ],
-      "id": "95b7db38-47af-47a5-b003-8409924a7e72",
+      "id": "ff5493a4-1211-45ce-8b68-b5a8c9c8668c",
       "name": "Local File Trigger"
     },
     {
@@ -558,10 +558,10 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        -96,
-        112
+        3616,
+        2896
       ],
-      "id": "eff70871-bf4f-4bbe-9a06-9d71d91e6a27",
+      "id": "1237fc02-7612-4ad8-b06d-7d1f40cef431",
       "name": "Read/Write Files from Disk"
     },
     {
@@ -572,10 +572,10 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1.1,
       "position": [
-        128,
-        112
+        3840,
+        2896
       ],
-      "id": "3d2375cf-4f13-4bd1-a421-629de7188240",
+      "id": "a490c013-1769-427e-a573-2f2ab6db4f3d",
       "name": "Extract from File"
     },
     {
@@ -601,10 +601,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -544,
-        112
+        3168,
+        2896
       ],
-      "id": "36ee8587-e2d3-4c0d-a5b5-81ca13b701c5",
+      "id": "44146dd3-feb6-4742-a3e3-68747d2b93b7",
       "name": "Store Filename"
     },
     {
@@ -616,10 +616,10 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        1216,
-        928
+        4704,
+        3728
       ],
-      "id": "cdeb2624-0fdf-48bb-867c-aff56f202532",
+      "id": "c41cbcdb-8b46-4b29-a7a6-54a682b16538",
       "name": "Write Note to Obsidian"
     },
     {
@@ -629,10 +629,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        752,
-        928
+        4240,
+        3728
       ],
-      "id": "1116bd36-8778-40de-9440-b0fe2bbc428a",
+      "id": "17e632fd-5e4c-4aa7-99cf-4a91013601cc",
       "name": "Replace audio file name"
     },
     {
@@ -642,10 +642,10 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        -320,
-        112
+        3392,
+        2896
       ],
-      "id": "3bc37fbd-8d31-477a-93b3-706fb7f384ce",
+      "id": "39c7fa98-6620-487f-a2da-f35296741c01",
       "name": "Unzip .whisper file"
     },
     {
@@ -655,11 +655,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -448,
-        688
+        3040,
+        3488
       ],
       "typeVersion": 1,
-      "id": "74bf47d7-e2bf-4e73-bc56-2f156f6b536a",
+      "id": "e47ac34f-af36-4938-b21e-88a95fc2ec2a",
       "name": "Sticky Note3"
     },
     {
@@ -669,10 +669,10 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        1632,
-        928
+        5120,
+        3728
       ],
-      "id": "a687c025-e9b8-4705-aaf6-6aa261d252e7",
+      "id": "db060234-aa20-4b93-8bfe-295a2f6e9591",
       "name": "Delete .whisper file",
       "onError": "continueRegularOutput"
     },
@@ -683,11 +683,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -96,
-        0
+        3392,
+        2784
       ],
       "typeVersion": 1,
-      "id": "9a57655d-fbab-41aa-9a1f-c4ba3ca9091b",
+      "id": "041e93ea-bef8-4d2a-887e-bda49e3da272",
       "name": "Sticky Note6"
     },
     {
@@ -697,10 +697,10 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        576,
-        464
+        4064,
+        3264
       ],
-      "id": "8198dc11-303d-4d08-a2c5-887332d1cdbb",
+      "id": "fd92f133-536a-4836-b38e-842db3d780aa",
       "name": "Rename Audio File"
     },
     {
@@ -710,10 +710,10 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        1424,
-        928
+        4912,
+        3728
       ],
-      "id": "714c933c-fc9b-42aa-b891-e4184c8c2ed8",
+      "id": "3ba3aac5-bb59-4f2b-9f9f-f9db44f048cb",
       "name": "Move Audio File to Obsidian"
     },
     {
@@ -723,12 +723,60 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        352,
-        368
+        3840,
+        3168
       ],
       "typeVersion": 1,
-      "id": "ada3556a-c5a1-4bb1-b9dd-d3ad87f382f0",
+      "id": "06e3f75e-42d0-4daa-bf24-10cb2bef593e",
       "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "First action: make sure to have valid Github and model (Antrhopic) API Keys set in the n8n credentials on the main page and in the Fetch Prompt and Create * Note nodes (below)\n or you'll get 404 or other auth issues.",
+        "height": 112,
+        "width": 336
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2704,
+        2768
+      ],
+      "typeVersion": 1,
+      "id": "45c7ef47-2e14-43f4-8d52-bd2210423a5d",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3b17d337-4e9d-4614-a3d4-56fb138f4b3c",
+              "leftValue": "={{ $json.path }}",
+              "rightValue": ".whisper",
+              "operator": {
+                "type": "string",
+                "operation": "endsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2944,
+        2912
+      ],
+      "id": "ea193dd1-216e-4fd2-bdd7-0a84c5ad1dea",
+      "name": "Detect and process only .whisper files"
     }
   ],
   "pinData": {},
@@ -884,17 +932,6 @@
         ]
       ]
     },
-    "Fetch Evergreen Prompt": {
-      "main": [
-        [
-          {
-            "node": "Create Evergreen Note",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Fetch Focused Topic Prompt": {
       "main": [
         [
@@ -921,7 +958,7 @@
       "main": [
         [
           {
-            "node": "Store Filename",
+            "node": "Detect and process only .whisper files",
             "type": "main",
             "index": 0
           }
@@ -1015,17 +1052,41 @@
           }
         ]
       ]
+    },
+    "Detect and process only .whisper files": {
+      "main": [
+        [
+          {
+            "node": "Store Filename",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Evergreen Prompt": {
+      "main": [
+        [
+          {
+            "node": "Create Evergreen Note",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
   "settings": {
     "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "1ba84ce6-a521-488e-a035-ff5092963b89",
+  "versionId": "07bf6beb-999a-41ef-a35e-dcdd182b4039",
   "meta": {
-    "instanceId": "22863421c197f349475cd72864ad35cca84f4aa9dc6ef4febdad912c8dac441c"
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
   },
-  "id": "Twl_5sbGzQWIxTbNExwXc",
+  "id": "eQXiPWGAUdrJLVEo",
   "tags": []
 }
