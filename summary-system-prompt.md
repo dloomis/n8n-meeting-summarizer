@@ -28,6 +28,7 @@ Participants:
   - "[[Name]]"
   - "[[Name]]"
 tags: meeting-summary
+transcript: "[[TRANSCRIPT_NAME]]"
 ---
 
 ### TL;DR 📝
