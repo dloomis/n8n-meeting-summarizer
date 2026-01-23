@@ -22,7 +22,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        3040,
+        3168,
         3712
       ],
       "id": "ee110cd8-f29c-4f8a-9d51-534667511916",
@@ -43,10 +43,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        3568,
+        3696,
         4320
       ],
-      "id": "450573d0-4b20-4bf8-8d7c-c49125ecd8dc",
+       "id": "450573d0-4b20-4bf8-8d7c-c49125ecd8dc",
        "name": "Claude Sonnet 4.5"
     },
     {
@@ -65,10 +65,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        4000,
+        4128,
         4320
       ],
-      "id": "88fc6aba-a59a-43ee-847d-ebedeb8ce188",
+       "id": "88fc6aba-a59a-43ee-847d-ebedeb8ce188",
        "name": "qwen/qwen3-30b-a3b-"
     },
     {
@@ -86,10 +86,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        3712,
+        3840,
         4320
       ],
-      "id": "220ab684-0458-4b93-8e3f-ff918606323a",
+       "id": "220ab684-0458-4b93-8e3f-ff918606323a",
        "name": "Claude Opus 4.5"
     },
     {
@@ -104,7 +104,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        3712,
+        3840,
         3952
       ],
       "id": "9c7ba2d1-c5d4-43a4-997f-f73eb92257b7",
@@ -125,10 +125,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        3856,
+        3984,
         4320
       ],
-      "id": "9e2e47e6-b47c-47a7-abf2-6da44222db09",
+       "id": "9e2e47e6-b47c-47a7-abf2-6da44222db09",
        "name": "Claude Haiku 4.5"
     },
     {
@@ -147,10 +147,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        4144,
+        4272,
         4320
       ],
-      "id": "0b2fb7bf-b896-4f23-a420-2a916c505cd0",
+       "id": "0b2fb7bf-b896-4f23-a420-2a916c505cd0",
        "name": "llama 3.3 70b instruct"
     },
     {
@@ -165,8 +165,8 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        4480,
-        3728
+        3376,
+        4544
       ],
       "id": "cfc3b0fe-6412-4b53-b4ed-ee23a8c2d923",
       "name": "Convert to File"
@@ -174,7 +174,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Summarize this meeting transcript following the OUTPUT TEMPLATE exactly.\n\n**Context:**\n- Default due date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n- Participants: {{ $('Workflow Data').item.json.participantsHint.join(', ') }}\n- Meeting date: {{ $('Workflow Data').item.json.extractedDate }}\n- Priority participants: {{ $('Workflow Data').item.json.importantParticipants.join(', ') }}\n\n**Transcript:**\n{{ $('Workflow Data').item.json.formattedTranscript }}\n\nGenerate the summary now using the exact structure in OUTPUT TEMPLATE.",
+        "text": "=Summarize this meeting transcript following the OUTPUT TEMPLATE exactly.\n\n**Context:**\n- Default due date: {{ $now.plus({days: 7}).toFormat('yyyy-MM-dd') }}\n- Participants: {{ $('Workflow Data').item.json.participantsHint.join(', ') }}\n- Meeting date: {{ $('Workflow Data').item.json.extractedDate }}\n- Priority participants: {{ $('Workflow Data').item.json.importantParticipants.join(', ') }}\n\n**Transcript:**\n{{ $('Workflow Data').item.json.formattedTranscript }}\n\n**TRANSCRIPT-NAME**\n{{ $('Workflow Data').item.json.obsidianNoteTranscriptName }}\n\nGenerate the summary now using the exact structure in OUTPUT TEMPLATE.",
         "options": {
           "systemMessage": "={{ $json.data }}"
         }
@@ -182,7 +182,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        3712,
+        3840,
         3488
       ],
       "id": "d0e000a4-1390-4d39-9faf-39ee9cf231f5",
@@ -253,6 +253,12 @@
               "type": "string"
             },
             {
+              "id": "7d08c9fc-dfde-428d-81b7-640cfe557302",
+              "name": "obsidianNoteTranscriptName",
+              "value": "={{ $('Store Filename').item.json.transcriptionName + '.' + $json.data.substring(0,6) }}.transcript",
+              "type": "string"
+            },
+            {
               "id": "ea66a226-889c-4ddd-99bc-77a95bd6c40f",
               "name": "=formattedTranscript",
               "value": "={{ $('Parse Transcript').item.json.formattedTranscript }}",
@@ -278,7 +284,7 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        3248,
+        3376,
         4320
       ],
       "typeVersion": 1,
@@ -306,7 +312,7 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        3248,
+        3376,
         4096
       ],
       "typeVersion": 1,
@@ -320,8 +326,8 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        4480,
-        3632
+        3376,
+        4448
       ],
       "typeVersion": 1,
       "id": "ea15c8e3-42fa-4486-af6f-6f1da6ee9667",
@@ -334,7 +340,7 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        4000,
+        4128,
         4144
       ],
       "typeVersion": 1,
@@ -384,7 +390,7 @@
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.3,
       "position": [
-        3856,
+        3984,
         4144
       ],
       "id": "2c6055ed-0880-46a9-992c-00468dd27b01",
@@ -474,10 +480,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        3392,
+        3520,
         3488
       ],
-      "id": "55c1542d-78e4-40dd-8fef-212f351198c0",
+       "id": "55c1542d-78e4-40dd-8fef-212f351198c0",
        "name": "Fetch Summary Prompt"
     },
     {
@@ -490,10 +496,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        3392,
+        3520,
         3952
       ],
-      "id": "0b4d6956-b5ed-4193-8389-2b43a5c4752f",
+       "id": "0b4d6956-b5ed-4193-8389-2b43a5c4752f",
        "name": "Fetch Evergreen Prompt"
     },
     {
@@ -506,10 +512,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        3392,
+        3520,
         3728
       ],
-      "id": "47e180a8-f53c-450d-b528-f9a5d750b30d",
+       "id": "47e180a8-f53c-450d-b528-f9a5d750b30d",
        "name": "Fetch Focused Topic Prompt"
     },
     {
@@ -523,7 +529,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        3712,
+        3840,
         3728
       ],
       "id": "ba109218-497f-4b32-9008-ab8d0fcc1f37",
@@ -616,8 +622,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        4704,
-        3728
+        3600,
+        4544
       ],
       "id": "c41cbcdb-8b46-4b29-a7a6-54a682b16538",
       "name": "Write Note to Obsidian"
@@ -629,7 +635,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4240,
+        4368,
         3728
       ],
       "id": "17e632fd-5e4c-4aa7-99cf-4a91013601cc",
@@ -655,7 +661,7 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        3040,
+        3168,
         3488
       ],
       "typeVersion": 1,
@@ -669,8 +675,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        5120,
-        3728
+        4016,
+        4544
       ],
       "id": "db060234-aa20-4b93-8bfe-295a2f6e9591",
       "name": "Delete .whisper file",
@@ -710,8 +716,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        4912,
-        3728
+        3808,
+        4544
       ],
       "id": "3ba3aac5-bb59-4f2b-9f9f-f9db44f048cb",
       "name": "Move Audio File to Obsidian"
@@ -777,6 +783,63 @@
       ],
       "id": "ea193dd1-216e-4fd2-bdd7-0a84c5ad1dea",
       "name": "Detect and process only .whisper files"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "=",
+        "binaryPropertyName": "=data",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "={{ $('Workflow Data').item.json.obsidianNoteRootName }}.md"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        4432,
+        4544
+      ],
+      "id": "e9d457bd-63f3-4b97-b55b-872c0cbe3b66",
+      "name": "Convert Formatted Transcript to File"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/transcripts/{{ $('Workflow Data').item.json.obsidianNoteTranscriptName }}.md",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        4640,
+        4544
+      ],
+      "id": "c79564d6-1da9-4470-8289-870354e7f414",
+      "name": "Write Formatted Transcript to Obsidian"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d971988-1329-4d2c-871d-4573c516cb1d",
+              "name": "=output",
+              "value": "={{ $('Workflow Data').item.json.formattedTranscript }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4224,
+        4544
+      ],
+      "id": "c05f6a74-bc16-4145-b485-597c1fe87d4a",
+      "name": "Set Transcript Field"
     }
   ],
   "pinData": {},
@@ -1074,15 +1137,53 @@
           }
         ]
       ]
+    },
+    "Delete .whisper file": {
+      "main": [
+        [
+          {
+            "node": "Set Transcript Field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert Formatted Transcript to File": {
+      "main": [
+        [
+          {
+            "node": "Write Formatted Transcript to Obsidian",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Formatted Transcript to Obsidian": {
+      "main": [
+        []
+      ]
+    },
+    "Set Transcript Field": {
+      "main": [
+        [
+          {
+            "node": "Convert Formatted Transcript to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
     "executionOrder": "v1",
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "07bf6beb-999a-41ef-a35e-dcdd182b4039",
+  "versionId": "47fffba5-22d9-4556-bc54-cddb3acd0cba",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fc95f5dcf8564dad8406657e222d807a38320c03e61ffe53bddcf6037399e437"
