@@ -34,7 +34,13 @@ An automated n8n workflow that processes .whisper files exported from MacWhisper
    cd n8n-meeting-summarizer
    ```
 
-2. **Configure paths**: Edit `compose.yml` to replace `/path/to/your/obsidian/vault/Meeting Summaries`, `/path/to/your/obsidian/vault/Evergreen Notes`, `/path/to/your/obsidian/vault/Focused Notes`, and `/path/to/your/obsidian/vault/audio` with your actual local paths. The audio path mounts to an "audio" subfolder in your vault for file indexing. Note: The file includes `N8N_RESTRICT_FILE_ACCESS_TO` for n8n v2 compatibility, restricting file access to these mapped paths for security
+2. **Configure paths**: Edit `compose.yml` to replace the following paths with your actual local Obsidian vault paths:
+   - `/path/to/your/obsidian/vault/Audio` → maps to `/data/audio` (for audio files)
+   - `/path/to/your/obsidian/vault/Transcripts` → maps to `/data/transcripts` (for formatted transcript files)
+   - `/path/to/your/obsidian/vault/03 Meeting Summaries` → maps to `/data/summaries` (for meeting summary notes)
+   - `/path/to/your/obsidian/vault/04 Evergreen Notes` → maps to both `/data/evergreen` (evergreen notes) and `/data/focused` (focused topic notes)
+
+   Note: The workflow creates formatted transcript files alongside summaries. The file includes `N8N_RESTRICT_FILE_ACCESS_TO` for n8n v2 compatibility, restricting file access to these mapped paths for security.
 
 3. **Start n8n**:
    ```bash
@@ -87,12 +93,15 @@ Filename arguments are optional but cannot be combined:
    - The workflow automatically detects new .whisper files, extracts the JSON transcription data and audio file, and processes them
    - Optionally include '!' for participants, '#' for evergreen mode, or '+' for focused topic mode in the .whisper filename (all markers are optional)
 
-2. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries with audio links, Evergreen Notes folder for concept-based notes, and Focused Notes folder for deep-dive analyses. Audio files are saved to the vault's audio subfolder for linking.
+2. **Monitor output**: Check your Obsidian vault's Meeting Summaries folder for summaries with audio links, Evergreen Notes folder for concept-based notes, Focused Notes folder for deep-dive analyses, and Transcripts folder for formatted transcript files. Audio files are saved to the vault's Audio subfolder for linking.
 
 ## File Formats
 
 - **Input**: .whisper file (ZIP archive containing `metadata.json` with transcription data, timestamps, speakers, and an audio file like .m4a)
-- **Output**: Obsidian markdown with frontmatter, sections for TL;DR, key points, action items, hot takes, and audio timestamp links (e.g., `[[meeting.m4a#t=MM:SS|(audio)]]`) with Dataview inline fields for querying
+- **Output**: 
+  - Meeting summaries: Obsidian markdown with frontmatter, sections for TL;DR, key points, action items, hot takes, and audio timestamp links (e.g., `[[meeting.m4a#t=MM:SS|(audio)]]`) with Dataview inline fields for querying
+  - Formatted transcripts: Clean text files with speaker timestamps for reference
+  - Audio files: Saved to Audio folder for linking and playback
 
 ## Obsidian Vault Integration
 
